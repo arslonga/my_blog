@@ -84,8 +84,8 @@
 % my $unliked_cnt = $content->[0]->{'unliked'} || 0;
 % if( !$client_check ){
 %    $status = ' disabled';
-% }elsif( defined $c->cookie( 'user'.$client_id.'_'.$title_alias.'_'.$id ) && 
-%    $title_alias.'_'.$id eq $c->cookie( 'user'.$client_id.'_'.$title_alias.'_'.$id ) ){
+% }elsif( defined $c->signed_cookie( 'user'.$client_id.'_'.$title_alias.'_'.$id ) && 
+%    $title_alias.'_'.$id eq $c->signed_cookie( 'user'.$client_id.'_'.$title_alias.'_'.$id ) ){
 %    $status = ' disabled';
 % }else{
 %   $status = "";

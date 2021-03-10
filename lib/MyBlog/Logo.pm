@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::Util qw(decode encode trim);
-use File::Slurp qw(write_file read_file);
+use IO::File;
 use List::Util qw(max);
 use Mojo::Asset::File;
 use MyBlog::Tag;
@@ -202,7 +202,8 @@ my $slidename_pattern = $self->top_config->{'name_pattern'}->{'slide'};
 my $slideshow_templ_file = $self->top_config->{'slideshow_template'};
 my $head_conf_set = $self->top_config->{'logo_head_file'};
 my $Directory; # = "$dir_domen/$prefix/$slides_image_path";
-my $RewriteImage = RewriteImage->new;  
+my $RewriteImage = RewriteImage->new;
+my $cwd = cwd();  
 
 #******************************
 if($self->param('upload_slide')){
@@ -269,24 +270,25 @@ NE:
 $self->spurt($self->param('data_interval'), $data_interval_file);
 my $css_cont = $self->slurp($css_file_path);
 
-my $cwd = cwd();
-my @lines = read_file($cwd.'/'.$css_file_path);
-my @lines_modif = @lines;
-
-my $i = 0;
-foreach my $item(@lines_modif){
-    $lines[$i] = $item;
-    if($item =~ /\/\*TRANSITION\_DURATION\*\//){
-        $lines[$i] = 'transition-duration:'.$self->param('transition_duration').";/*TRANSITION_DURATION*/\n";
-    }
-$i++;
-}
-
-open(FILE, ">>$cwd".'/'."$css_file_path") || die "Open file error $cwd.'/'.$css_file_path2: $!\n";
+#+++++++++++++++++++++++++++++++++++++++++++
+if ( open( my $fh, $cwd.'/'.$css_file_path ) ) {
+  my @arr_lines = <$fh>;
+  map{
+        if( $_ =~ /\/\*TRANSITION\_DURATION\*\// ){ 
+            $_ = 'transition-duration:'.$self->param('transition_duration').'; -webkit-transition-duration:'.$self->param('transition_duration').'; -o-transition-duration:'.$self->param('transition_duration').";/*TRANSITION_DURATION*/\n";
+        }
+     } @arr_lines;
+     
+open(FILE, ">>$cwd".'/'."$css_file_path") || die "Open file error $cwd.'/'.$css_file_path: $!\n";
 seek FILE,0,0;
 truncate FILE,0;
-print FILE @lines;
+print FILE @arr_lines;
 close(FILE);
+
+} else {
+  warn "Could not open file $cwd.'/'.$css_file_path $!";
+}
+#+++++++++++++++++++++++++++++++++++++++++++ 
 
 $self->spurt( $self->param('transition_duration'), $transition_duration_file );
 $self->spurt( $self->param('height_fit'), $height_fit_file );

@@ -1,0 +1,219 @@
+#mjsimple_v {
+background-color: #ffffff;    
+}
+a {
+color: #551A8B;
+text-decoration: none;
+}
+a:hover, a:visited, a:active, a:focus{
+color: #551A8B;    
+}
+#enter_button{
+margin-top:6px;
+background-color: #91A3C9;
+font-weight:bold;
+border: 0   
+}
+.more_button{
+background-color: #91A3C9;
+margin-bottom: 20px; 
+width:100%;
+padding: 6px;
+border-radius: 4px;
+fint-weight: bold;
+border:0px;
+color: #551A8B; 
+}
+#forgotn_button{
+background-color:#ffffff;
+color: #91A3C9;
+padding-left:0px;
+margin-top:6px;
+border-width: 0px;    
+}
+a > .head_post{
+color: #000000;
+}
+.pagination > .active > span,
+.pagination > .active > span:hover {
+background-color: #91A3C9;
+border-color: #D3D3D3;
+}
+.pagination > li > a {
+color: #91A3C9;
+font-weight: bold;
+background-color: #fff;
+border: 1px solid #D3D3D3;
+}
+.pagination > li > a:hover {
+color: #91A3C9;
+border: 1px solid #BFC5E7;
+}
+.pagination > li > a:visited {
+background-color: #ffffff;
+}
+.pagination > .disabled > a {
+color: #91A3C9;
+border: 1px solid #D3D3D3;
+}
+/*=======================================================*/
+.top_panel{
+position: fixed;
+width: 100%;
+padding-left:10px;
+padding-right:20px;
+padding-top: 15px;
+padding-bottom:-30px;
+margin-bottom: 0px;
+height: 52px;
+z-index: 10;
+background-color: #91A3C9;
+}
+.panel {
+-webkit-box-shadow: initial;
+box-shadow: initial;
+background-color: #91A3C9;
+}
+.colored{
+background-color: #91A3C9;
+margin-right: 1px;
+margin-left: 0px;
+}
+.sidebar{
+background-color: #BFC5E7;
+padding-bottom: 1px;
+margin-right: -16px;
+}
+#search_form {
+border-color: #551A8B;
+}
+input.search_frase:focus {
+border-color: #551A8B !important;
+width: 100%;
+}
+.form-control:focus {
+border-color: #551A8B;
+outline: 0;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px rgba(0, 0, 0, .2);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px rgba(0, 0, 0, .2);
+}
+.paNel-heading a{
+display: block;
+color: #551A8B;
+text-decoration:none;
+}
+.paNel-heading a:active,
+.paNel-heading a:visited,
+.paNel-heading a:hover{
+color: #551A8B;
+}
+.paNel-title{
+display: block;
+-webkit-box-sizing: border-box;
+        box-sizing: border-box;
+background: #BFC5E7;
+color: #551A8B;
+font-size: 1.5vw;
+font-weight: bold;
+padding: 0px 0px 0px 0px;
+margin: 0px;
+margin-right: -10px;
+}
+.paNel-title > a, .paNel-title > a:hover {
+border-bottom:1px dashed #551A8B;
+color: #551A8B;
+text-decoration: none;
+padding: 8px 0px 8px 10px;
+}
+.subchapt_style a{
+padding-left: 10px;
+display: block;
+color: #551A8B;
+font-size: 1.4vw;
+background-color: #E8E5FA;
+margin: -6px;
+padding-top: 5px;
+padding-bottom: 5px;
+}
+.subchapt_style a:visited, 
+.subchapt_style a:active,
+.subchapt_style a:hover{
+padding-left: 10px;
+display: block;
+color: #551A8B;
+font-size: 1.4vw;
+background-color: #E8E5FA;
+margin: -6px;
+padding-top: 5px;
+padding-bottom: 5px;
+text-decoration: none;
+}
+.chevron:before {
+border-style: solid;
+margin-top: -2px;
+margin-right: 10px;
+border-width: 0.18em 0.18em 0 0;
+color: #551A8B;
+font-size: 2vw;
+content: '';
+display: inline-block;
+height: 0.4em;
+left: -4px;
+position: relative;
+top: 0.28em;
+-webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+vertical-align: top;
+width: 0.4em;
+-webkit-transition: -webkit-transform .4s ease-in-out;
+transition: -webkit-transform .4s ease-in-out;
+-o-transition: transform .4s ease-in-out;
+transition: transform .4s ease-in-out;
+transition: transform .4s ease-in-out, -webkit-transform .4s ease-in-out;
+}
+.arch_link{
+color: #551A8B;
+font-weight:bold;
+}
+.footer{
+background: #000;
+color: silver;
+padding: 10px; 
+margin-left: -15px; 
+margin-right: -15px; 
+margin-top: 0px;   
+}
+.footer a,
+.footer a:visited,
+.footer a:hover,
+.footer a:active{
+color: silver;
+text-decoration: none;
+}
+.footer-copyright{
+background-color: #BFC5E7;
+color: #333;
+padding: 6px;
+margin-right: -25px;
+margin-left: -25px;
+margin-bottom: -20px;
+}
+@media only screen and (max-width: 768px) {
+  #mjsimple_v {
+  background-color: #91A3C9; 
+  margin-right: 4px;   
+  }
+  .footer-copyright{
+  margin-bottom: -10px;
+  }
+  .footer {
+  margin-right: -19px;
+  }
+  .top_panel{
+    padding-bottom: 13px;
+  }
+  .sidebar{
+  background-color: #91A3C9;
+  }
+}

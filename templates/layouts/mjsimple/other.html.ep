@@ -52,7 +52,12 @@
     <%= include lc($self->template).'/archive_menu' =%>
     <%= include lc($self->template).'/meta_menu' %>
     </div>    
-</div>  
+</div>
+
+<div class="to-top">
+<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+</div>
+ 
 <footer class="footer">  
   <%= include lc($self->template).'/foot_content' =%>
 </footer>

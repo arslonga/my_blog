@@ -2,81 +2,117 @@
 <p>Web-application based <a href="https://mojolicious.org">Mojolicious</a></p>
 <h2 id="preparing">Preparing</h2>
 <p>Some Perl modules that MornCat requires cannot be installed without certain compilation tools. You need install universal GNU Compiler Collection (gcc).</p>
-<p>To install it in <strong>Linux</strong> type in terminale:</p>
+<p>To install it in <strong>Linux</strong> type in terminal:</p>
 <p><code>$ sudo apt install build-essential</code></p>
 <p>Confirm your installation by checking for GCC version:</p>
-<pre><code><span class="hljs-symbol">$</span> gcc --version
-gcc (Ubuntu <span class="hljs-number">7.2</span><span class="hljs-number">.0</span><span class="hljs-number">-18</span>ubuntu2) <span class="hljs-number">7.2</span><span class="hljs-number">.0</span>
-Copyright (C) <span class="hljs-number">2017</span> <span class="hljs-keyword">Free</span> Software Foundation, Inc.
-This is <span class="hljs-keyword">free</span> software; see the source <span class="hljs-keyword">for</span> copying conditions.  There is <span class="hljs-keyword">NO</span>
-warranty; <span class="hljs-keyword">not</span> even <span class="hljs-keyword">for</span> MERCHANTABILITY <span class="hljs-keyword">or</span> FITNESS <span class="hljs-keyword">FOR</span> A PARTICULAR PURPOSE.
-</code></pre><p><strong><code>&#39;make&#39;</code></strong> utility required to install some Perl modules is supplied with build-essential usually. Check make installatuin typing</p>
-<p><code>$ make --version</code>
-in terminale.</p>
+<pre><code>$ gcc --version
+gcc (Ubuntu 7.2.0-18ubuntu2) 7.2.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</code></pre>
+<p><strong><code>'make'</code></strong> utility required to install some Perl modules is supplied with build-essential usually. Check make installatuin typing</p>
+<p><code>$ make --version</code> in terminal.</p>
 <p>If make is not installed type the following in a shell:</p>
 <p><code>$ sudo apt install make</code></p>
-<p><strong><code>&#39;gcc&#39;</code></strong> and <strong><code>&#39;make&#39;</code></strong> for <strong>Windows</strong> you can find at:</p>
-<p><a href="https://sourceware.org/cygwin/">https://sourceware.org/cygwin/</a></p>
+<p><strong><code>'gcc'</code></strong> and <strong><code>'make'</code></strong> for <strong>Windows</strong> you can find at:</p>
+<p>https://sourceware.org/cygwin/</p>
 <p>and</p>
-<p><a href="https://sourceforge.net/projects/gnuwin32/files/make/3.81/">https://sourceforge.net/projects/gnuwin32/files/make/3.81/</a>
-respectively.</p>
+<p>https://sourceforge.net/projects/gnuwin32/files/make/3.81/ respectively.</p>
 <h2 id="start">Start</h2>
 <p>So, you need.</p>
-<p><strong>1. Installed Perl interpreter</strong> </p>
+<p><strong>1. Installed Perl interpreter</strong></p>
 <p>If you are Linux user, check installed Perl typing in terminal:</p>
 <p><code>$ perl -v</code></p>
-<p>If Perl is installed, you&#39;ll view in terminal:</p>
-<pre><code>This is perl <span class="hljs-number">5</span>, <span class="hljs-built_in">version</span> <span class="hljs-number">26</span>, subversion <span class="hljs-number">3</span> (v5<span class="hljs-number">.26</span><span class="hljs-number">.3</span>) built <span class="hljs-keyword">for</span> x86_64-linux
-(<span class="hljs-keyword">with</span> <span class="hljs-number">1</span> registered patch, see perl -V <span class="hljs-keyword">for</span> more detail)
+<p>If Perl is installed, you'll view in terminal:</p>
+<pre><code>This is perl 5, version 26, subversion 3 (v5.26.3) built for x86_64-linux
+(with 1 registered patch, see perl -V for more detail)
 
-Copyright <span class="hljs-number">1987</span><span class="hljs-number">-2018</span>, Larry Wall
+Copyright 1987-2018, Larry Wall
 
-Perl may be copied only under <span class="hljs-keyword">the</span> terms <span class="hljs-keyword">of</span> either <span class="hljs-keyword">the</span> Artistic License <span class="hljs-keyword">or</span> <span class="hljs-keyword">the</span>
-GNU General Public License, which may be found <span class="hljs-keyword">in</span> <span class="hljs-keyword">the</span> Perl <span class="hljs-number">5</span> source kit.
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
 
-Complete documentation <span class="hljs-keyword">for</span> Perl, including FAQ lists, should be found <span class="hljs-keyword">on</span>
-this <span class="hljs-keyword">system</span> <span class="hljs-keyword">using</span> <span class="hljs-string">"man perl"</span> <span class="hljs-keyword">or</span> <span class="hljs-string">"perldoc perl"</span>.  If you have access <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span>
-Internet, point your browser <span class="hljs-keyword">at</span> <span class="hljs-keyword">http</span>://www.perl.org/, <span class="hljs-keyword">the</span> Perl Home Page.
-</code></pre><p>If Perl is not installed on your OS Linux, you can install it from source: <a href="https://www.cpan.org/src/README.html">https://www.cpan.org/src/README.html</a></p>
-<p>If you work on Windows, download installer from <a href="http://strawberryperl.com/download/5.16.3.1/strawberry-perl-5.16.3.1-32bit.msi">here</a> (It&#39;s recommended 5.16 version because it is difficult to install <strong><code>Image::Magick</code></strong> module on the higher Perl version)</p>
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using &quot;man perl&quot; or &quot;perldoc perl&quot;.  If you have access to the
+Internet, point your browser at http://www.perl.org/, the Perl Home Page.</code></pre>
+<p>If Perl is not installed on your OS Linux, you can install it from source: <a href="https://www.cpan.org/src/README.html">https://www.cpan.org/src/README.html</a></p>
+<p>If you work on Windows, download installer from <a href="http://strawberryperl.com/download/5.16.3.1/strawberry-perl-5.16.3.1-32bit.msi">here</a> (It's recommended 5.16 version because it is difficult to install <strong><code>Image::Magick</code></strong> module on the higher Perl version)</p>
 <p><strong>2. Installed database server</strong></p>
-<p>MornCat tested with <a href="https://www.postgresql.org/about/news/postgresql-96-released-1703/">PostgreSQL</a> (version 9.6).</p>
+<p>MornCat tested with <a href="https://www.postgresql.org/download/">PostgreSQL</a> (versions 9.6 and 12.6).</p>
+<p>For working Perl with PostgreSQL on Linux you need install 'libpq-dev'. Type in terminal:</p>
+<pre><code>$ sudo apt-get install libpq-dev</code></pre>
 <h2 id="installation">Installation</h2>
 <p>Create directory where you want place your application. For example, type in terminal</p>
-<p>-on Linux:</p>
-<pre><code>$ cd /<span class="hljs-built_in">home</span>
-$ /<span class="hljs-built_in">home</span><span class="hljs-meta"># mkdir www</span>
-$ /<span class="hljs-built_in">home</span><span class="hljs-meta"># cd www</span>
-$ /<span class="hljs-built_in">home</span>/www<span class="hljs-meta"># mkdir myapplication</span>
-</code></pre><p>-on Windows:</p>
-<pre><code>C:<span class="hljs-tag">\<span class="hljs-name">Users</span></span><span class="hljs-tag">\<span class="hljs-name">WindowsUser</span></span>&gt;cd<span class="hljs-tag">\<span class="hljs-name">
-</span></span>C:<span class="hljs-tag">\<span class="hljs-name">&gt;</span></span>mkdir myapplication
-</code></pre><p>Unpack <strong><code>MorncCat</code></strong> archive in the newly created directory. And then type in command line:</p>
-<pre><code><span class="hljs-variable">$ </span>/home/www<span class="hljs-comment"># cd myapplication</span>
-<span class="hljs-variable">$ </span>/home/www/myapplication<span class="hljs-comment"># cpan</span>
-<span class="hljs-variable">$ </span>cpan&gt; install <span class="hljs-symbol">App:</span><span class="hljs-symbol">:cpanminus</span>
-</code></pre><p>After installing module <code>App::cpanminus</code> type in command line:</p>
-<pre><code>$ cpan&gt;<span class="hljs-keyword">exit</span>
-$ <span class="hljs-regexp">/home/</span>www<span class="hljs-regexp">/myapplication# cpanm --installdeps .</span>
-</code></pre><blockquote>
-<p>Pay attention, the point after <strong><code>&#39;installdeps + space&#39;</code></strong> must be certainly.</p>
+<ul>
+<li><p>on <strong>Linux:</strong></p>
+<pre><code>$ cd /home
+$ /home# mkdir www
+$ /home# cd www
+$ /home/www# mkdir myapplication</code></pre></li>
+<li><p>on <strong>Windows:</strong></p>
+<pre><code>C:\Users\WindowsUser&gt;cd\
+C:\&gt;mkdir myapplication</code></pre></li>
+</ul>
+<p>Unpack <strong><code>MorncCat</code></strong> archive in the newly created directory. And then type in command line:</p>
+<pre><code>$ /home/www# cd myapplication
+$ /home/www/myapplication# sudo cpan
+$ cpan&gt; install App::cpanminus</code></pre>
+<p>After installing module <code>App::cpanminus</code> type in command line:</p>
+<pre><code>$ cpan&gt;exit
+$ /home/www/myapplication# sudo cpanm --installdeps .</code></pre>
+<blockquote>
+<p>Pay attention, the point after <strong><code>'installdeps + space'</code></strong> must be certainly.</p>
 </blockquote>
 <p>Next you need install <code>PerlMagick</code> module.</p>
-<p>-on Linux (Ubuntu):</p>
+<ul>
+<li>on <strong>Linux</strong> (Ubuntu):</li>
+</ul>
 <p><code>$ sudo apt-get update</code></p>
 <p><code>$ sudo apt-get install perlmagick</code></p>
-<p>-on Windows:</p>
+<ul>
+<li>on <strong>Windows</strong>:</li>
+</ul>
 <p><code>C:\&gt;ppm install Image-Magick</code></p>
 <p>So you can start development server for running application:</p>
-<p><code>$ /home/www/myapplication# morbo my_blog.pl</code></p>
+<ul>
+<li>on Linux:</li>
+</ul>
+<p><code>$ /home/www/myapplication# sudo morbo my_blog.pl</code></p>
+<ul>
+<li>on Windows:</li>
+</ul>
+<p><code>C:\myapplication&gt; morbo my_blog.pl</code></p>
 <p>Now you will see something like this message:</p>
-<pre><code>Server available <span class="hljs-keyword">at</span> <span class="hljs-keyword">http</span>://<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">3000</span>
-DBI connect(<span class="hljs-string">'database=yourdatabase;host=localhost'</span>,<span class="hljs-string">'Username'</span>,...) failed: could <span class="hljs-keyword">not</span> connect <span class="hljs-built_in">to</span> server: Connection refused (<span class="hljs-number">0x0000274D</span>/<span class="hljs-number">10061</span>)
-        Is <span class="hljs-keyword">the</span> server running <span class="hljs-keyword">on</span> <span class="hljs-title">host</span> <span class="hljs-string">"localhost"</span> (::<span class="hljs-title">1</span>) <span class="hljs-title">and</span> <span class="hljs-title">accepting</span>
-        TCP/IP connections <span class="hljs-keyword">on</span> <span class="hljs-title">port</span> <span class="hljs-title">5432</span>?
-could <span class="hljs-keyword">not</span> connect <span class="hljs-built_in">to</span> server: Connection refused (<span class="hljs-number">0x0000274D</span>/<span class="hljs-number">10061</span>)
-        Is <span class="hljs-keyword">the</span> server running <span class="hljs-keyword">on</span> <span class="hljs-title">host</span> <span class="hljs-string">"localhost"</span> (<span class="hljs-title">127</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>) <span class="hljs-title">and</span> <span class="hljs-title">accepting</span>
-        TCP/IP connections <span class="hljs-keyword">on</span> <span class="hljs-title">port</span> <span class="hljs-title">5432</span>? <span class="hljs-title">at</span> <span class="hljs-title">lib</span>/<span class="hljs-title">DB</span>.<span class="hljs-title">pm</span> <span class="hljs-title">line</span> <span class="hljs-title">75</span>.
-Get started <span class="hljs-keyword">at</span> /dbaccess address
-</code></pre><p>Don&#39;t panic. Just enter <strong><code>http://127.0.0.1:3000/dbaccess</code></strong> in address bar of your browser</p>
-<p>More documentation see at <a href="https://mojoblog.me/documentation/for_users">MornCat</a> site</p>
+<pre><code>Server available at http://127.0.0.1:3000
+DBI connect(&#39;database=yourdatabase;host=localhost&#39;,&#39;Username&#39;,...) failed: could not connect to server: Connection refused (0x0000274D/10061)
+        Is the server running on host &quot;localhost&quot; (::1) and accepting
+        TCP/IP connections on port 5432?
+could not connect to server: Connection refused (0x0000274D/10061)
+        Is the server running on host &quot;localhost&quot; (127.0.0.1) and accepting
+        TCP/IP connections on port 5432? at lib/DB.pm line 75.
+Get started at /dbaccess address</code></pre>
+<p>Don't panic. Just enter <strong><code>http://127.0.0.1:3000/dbaccess</code></strong> in address bar of your browser</p>
+<h2 id="votingcomment-system">Voting/Comment system</h2>
+<p>If you want try out voting/comment system, add few records to the table associated with users.</p>
+<p>Just type command in terminal of database environment:</p>
+<pre><code>$ INSERT into auser ( curr_date, login, pass, email, comment_quant, view_status, newsletter ) VALUES ( current_timestamp, &#39;loginTest1&#39;, &#39;passTest1&#39;, &#39;loginTest1@gmail.com&#39;, 0, &#39;yes&#39;, &#39;no&#39; );
+...
+...
+$ INSERT into auser ( curr_date, login, pass, email, comment_quant, view_status, newsletter ) VALUES ( current_timestamp, &#39;loginTestN&#39;, &#39;passTestN&#39;, &#39;loginTestN@gmail.com&#39;, 0, &#39;yes&#39;, &#39;no&#39; );</code></pre>
+<p>Do not use the same <strong><code>login</code></strong> and <strong><code>email</code></strong> for different users.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Ne</th>
+<th align="left">xt</th>
+<th align="left">, you can authorize on the test site and add comments and responses.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mo</td>
+<td align="left">re</td>
+<td align="left">documentation see at <a href="https://mojoblog.me/documentation/for_users">MornCat</a> site</td>
+</tr>
+</tbody>
+</table>

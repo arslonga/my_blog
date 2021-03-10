@@ -5,7 +5,7 @@ Web-application based [Mojolicious](https://mojolicious.org)
 
 Some Perl modules that MornCat requires cannot be installed without certain compilation tools. You need install universal GNU Compiler Collection (gcc).
 
-To install it in **Linux** type in terminale:
+To install it in **Linux** type in terminal:
 
 `$ sudo apt install build-essential`
 
@@ -21,7 +21,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 **`'make'`** utility required to install some Perl modules is supplied with build-essential usually. Check make installatuin typing
 
 `$ make --version`
-in terminale.
+in terminal.
 
 If make is not installed type the following in a shell:
 
@@ -67,12 +67,17 @@ If you work on Windows, download installer from [here](http://strawberryperl.com
 
 **2. Installed database server**
 
-MornCat tested with [PostgreSQL](https://www.postgresql.org/about/news/postgresql-96-released-1703/) (version 9.6).
+MornCat tested with [PostgreSQL](https://www.postgresql.org/download/) (versions 9.6 and 12.6).
+
+For working Perl with PostgreSQL on Linux you need install 'libpq-dev'. Type in terminal:
+```
+$ sudo apt-get install libpq-dev
+```
 
 ## Installation
 Create directory where you want place your application. For example, type in terminal
 
--on Linux:
+- on **Linux:**
 ```
 $ cd /home
 $ /home# mkdir www
@@ -80,7 +85,7 @@ $ /home# cd www
 $ /home/www# mkdir myapplication
 ```
 
--on Windows:
+- on **Windows:**
 ```
 C:\Users\WindowsUser>cd\
 C:\>mkdir myapplication
@@ -90,7 +95,7 @@ Unpack **`MorncCat`** archive in the newly created directory. And then type in c
 
 ```
 $ /home/www# cd myapplication
-$ /home/www/myapplication# cpan
+$ /home/www/myapplication# sudo cpan
 $ cpan> install App::cpanminus
 ```
 
@@ -98,26 +103,32 @@ After installing module `App::cpanminus` type in command line:
 
 ```
 $ cpan>exit
-$ /home/www/myapplication# cpanm --installdeps .
+$ /home/www/myapplication# sudo cpanm --installdeps .
 ```
 
 >Pay attention, the point after **`'installdeps + space'`** must be certainly.
 
 Next you need install `PerlMagick` module.
 
--on Linux (Ubuntu):
+- on **Linux** (Ubuntu):
 
 `$ sudo apt-get update`
 
 `$ sudo apt-get install perlmagick`
 
--on Windows:
+- on **Windows**:
 
 `C:\>ppm install Image-Magick`
 
 So you can start development server for running application:
 
-`$ /home/www/myapplication# morbo my_blog.pl`
+- on Linux:
+
+`$ /home/www/myapplication# sudo morbo my_blog.pl`
+
+- on Windows:
+
+`C:\myapplication> morbo my_blog.pl`
 
 Now you will see something like this message:
 
@@ -133,5 +144,20 @@ Get started at /dbaccess address
 ```
 Don't panic. Just enter **`http://127.0.0.1:3000/dbaccess`** in address bar of your browser
 
+## Voting/Comment system
 
+If you want try out voting/comment system, add few records to the table associated with users.
+
+Just type command in terminal of database environment:
+
+```
+$ INSERT into auser ( curr_date, login, pass, email, comment_quant, view_status, newsletter ) VALUES ( current_timestamp, 'loginTest1', 'passTest1', 'loginTest1@gmail.com', 0, 'yes', 'no' );
+...
+...
+$ INSERT into auser ( curr_date, login, pass, email, comment_quant, view_status, newsletter ) VALUES ( current_timestamp, 'loginTestN', 'passTestN', 'loginTestN@gmail.com', 0, 'yes', 'no' );
+```
+Do not use the same **`login`** and **`email`** for different users.
+
+Next, you can authorize on the test site and add comments and responses.
+- - -
 More documentation see at [MornCat](https://mojoblog.me/documentation/for_users) site

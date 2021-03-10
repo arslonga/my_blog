@@ -484,7 +484,7 @@ border-width:2px;
 border-color:red
 }
 img{
-float:left
+/*float:left*/
 }
 #search_btn {
 height: 34px;

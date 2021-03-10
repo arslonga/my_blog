@@ -65,11 +65,21 @@ sub search_clean {
 #---------------------------
 my($self, $arg) = @_;
 
+$arg =~ s/\&nbsp\;/ /g;
+$arg =~ s/\&raquo\;/ /g;
+$arg =~ s/\&mdash\;/ /g;
+$arg =~ s/\&ndash\;/ /g;
+$arg =~ s/\-/ /g;
+$arg =~ s/\—/ /g;
+$arg =~ s/\&laquo\;/ /g;
+$arg =~ s/\&rsquo\;//g;
+$arg =~ s/\s+/ /g;
 $arg =~s/\,\s+/ /g ;
 $arg =~ s/\<[^<>]+\>//g;
 $arg =~ s/\.+/\./g;
 $arg =~ s/\/+/\//g;
 $arg =~ s/[\’\'&;`"\\|*?~<>^()\[\]{}\$\n\r]+//g;
+#$arg =~ s/[&;`"\\|*?~<>^()\[\]{}\$\n\r]+//g;
 return $arg;
 }#-------------
 

@@ -33,10 +33,10 @@
 
 <div class="radio">
 <div class="row">
-<div class="col-sm-3">
+<div class="col-sm-3 text-left">
 <b><%= $self->lang_config->{'order_for_time'}->{$language} %>:</b>
 </div>
-<div class="col-sm-3" style="margin-left:-50px; margin-top:-5px">
+<div class="col-sm-3" style="margin-top:-5px">
   <label class="radio-inline">
     <input type="radio" name="order_for_time" value="direct" <%= $direct_checked %>> <%= $self->lang_config->{'direct'}->{$language} %>
   </label>
@@ -45,7 +45,7 @@
   </label>
   </div>
   <div class="col-sm-4">
-        <input type="submit" class="btn btn-primary" value="<%= $self->lang_config->{'set'}->{$language} %>">
+        <input type="submit" style="margin-top:10px" class="btn btn-primary" value="<%= $self->lang_config->{'set'}->{$language} %>">
 %= hidden_field title_alias => $title_alias
 %= hidden_field title => $self->param('title')
 </div>

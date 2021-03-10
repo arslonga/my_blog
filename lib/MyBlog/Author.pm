@@ -80,18 +80,16 @@ if( $self->param('access') ){
                      }
                    );
     }else{
-        $db->insert($table, [$login, $pass, $email]);
+        $db->insert( $table, [$login, $pass, $email] );
     }
+$self->spurt( '', 'conf/'.$self->language.'/tmp' );
 $self->redirect_to('admin');
 }#*********
 
 $self->redirect_to('dbaccess') unless $db;
 
 $access_check_config = $self->sess_check->check_config( $self, 'access' );
-
-if( !$access_check_config ){
-    $self->redirect_to('admin');
-}
+$self->sess_check->check_config( $self, 'access_next', $access_check_config );
 
 RENDRACCESS:
 $self->render(
@@ -140,7 +138,7 @@ username => $username,
 password => $pass,
 database => $database
 );
-$self->spurt( $db_conf_content, 'conf/'.$self->language.'/comirka.conf' );
+$self->spurt( trim($db_conf_content), 'conf/'.$self->language.'/comirka.conf' );
 #=====================================
 
 $self->spurt( $self->config('secrets')->[0], 
@@ -150,14 +148,17 @@ $self->spurt( $self->config('secrets')->[0],
 
 my($db, $err) = DB->connect_db( $self );
 if($err){
+    $self->spurt( '', 'conf/'.$self->language.'/'.$self->top_config->{'db_configured_status_file'} );
     $message = $mess_prefix.' '."<b style=\"color:red\">$err</b>";
     $added_param = 'request_reconf|reconf_access';
     goto RENDR;
 }
 if( $self->param('request_reconf') eq 'reconf_access' ){
+    $self->spurt( 'yes', 'conf/'.$self->language.'/tmp' );
     $checking_reconf = 1;
     goto RENDR;
 }else{
+    $self->spurt( 'yes', 'conf/'.$self->language.'/tmp' );
     return $self->redirect_to('/access');
 }
     
@@ -166,7 +167,7 @@ if( $self->param('request_reconf') eq 'reconf_access' ){
 
 $db_check_config = $self->sess_check->check_config( $self, 'dbaccess' );
 
-if($self->param('request') eq 'fatal_err'){
+if( $self->param('request') eq 'fatal_err' ){
     $db_check_config = 1;
 }
 
@@ -232,7 +233,15 @@ title => $self->lang_config->{'labels'}->{$self->language}->{'dbdriver_set'},
 sub admin {
 #---------------------------------
 my $self = shift;
-my $access_configured_status;
+my($message, $db, $err, $db_err, $access_configured_status);
+my $language = $self->language;
+my $access_configured_status_file = 'conf/'.$language.'/'.$self->top_config->{'access_configured_status_file'};
+#Таблиця 'user_passw' атрибутів достубу до консолі адміну
+my $table_access = $self->top_config->{'adm'}->{'table'}->{'access'}->{'name'};
+
+# Масив полів форми, що обов'язково мають бути заповнені
+my $admin_required_fields = $self->top_config->{'adm'}->{'admin_required_fields'};
+my $mess_prefix = $self->lang_config->{'labels'}->{$self->language}->{'wrong_configure_db'};
 
 eval{
 $access_configured_status = 
@@ -251,17 +260,6 @@ chdir cwd();
 foreach(@{$self->top_config->{'need_ditectories'}}){
     mkdir($_, 0755);
 }
-
-my($message, $db, $err, $db_err);
-my $language = $self->language;
-
-my $access_configured_status_file = 'conf/'.$language.'/'.$self->top_config->{'access_configured_status_file'};
-#Таблиця 'user_passw' атрибутів достубу до консолі адміну
-my $table_access = $self->top_config->{'adm'}->{'table'}->{'access'}->{'name'};
-
-# Масив полів форми, що обов'язково мають бути заповнені
-my $admin_required_fields = $self->top_config->{'adm'}->{'admin_required_fields'};
-my $mess_prefix = $self->lang_config->{'labels'}->{$self->language}->{'wrong_configure_db'};
 
 ($db, $err) = DB->connect_db($self); #, [@{$self->top_config->{'need_tables_adm'}}]);
 
@@ -298,10 +296,12 @@ if( $self->param('enter') ){
     my $v = $self-> _validation($self->top_config->{'adm'}->{'admin_required_fields'});
     goto RENDRA if $v->has_error;
 
-    my @data = $self->menu->find($table_access, '*')->list;
+    my $access_row = $self->menu->find($table_access, '*')->hash;
+    my $login   = $access_row->{admin};
+    my $passwrd = $access_row->{password};
     
     #***************
-    if( $data[0] eq trim($self->param('login')) && $data[1] eq trim($self->param('pass')) ){
+    if( $login eq trim($self->param('login')) && $passwrd eq trim($self->param('pass')) ){
     #***************
 
     foreach(@{$self->top_config->{'need_tables_main'}}){
@@ -322,7 +322,7 @@ if( $self->param('enter') ){
     );
 
     # Встановлюємо куки для сесії адміністратора
-    Session->admin($self, $data[0]);
+    Session->admin($self, $login, $passwrd);
 
     $self->redirect_to('/manager');
     }else{ #***********

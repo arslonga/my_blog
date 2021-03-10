@@ -150,8 +150,8 @@ my $unliked_cnt = $hash_id_subs{$_}->{'unliked'} || 0;
 
 if( !$client_check ){
     $status = ' disabled';
-}elsif(defined $c->session('user'.$client_id.'_'.$hash_id_subs{$_}->{'id'}) && 
-    $hash_id_subs{$_}->{'id'} == $c->session('user'.$client_id.'_'.$hash_id_subs{$_}->{'id'})){
+}elsif(defined $c->signed_cookie('user'.$client_id.'_'.$hash_id_subs{$_}->{'id'}) && 
+    $hash_id_subs{$_}->{'id'} == $c->signed_cookie('user'.$client_id.'_'.$hash_id_subs{$_}->{'id'})){
     $status = ' disabled';
 }
 
@@ -353,8 +353,8 @@ my $unliked_cnt = $data->{'unliked'} || 0;
 
 if( !$client_check ){
     $status = ' disabled';
-}elsif(defined $c->session('user'.$client_id.'_'.$data->{'id'}) && 
-    $c->session('user'.$client_id.'_'.$data->{'id'}) == $data->{'id'}){
+}elsif(defined $c->signed_cookie('user'.$client_id.'_'.$data->{'id'}) && 
+    $c->signed_cookie('user'.$client_id.'_'.$data->{'id'}) == $data->{'id'}){
     $status = ' disabled';
 }
 

@@ -6,7 +6,7 @@ use Mojo::Promise;
 use Mojo::Util qw(trim encode decode);
 use LiteralIdent;
 use Mojo::Pg;
-use Mojo::mysql;
+#use Mojo::mysql;
 use MyBlog::Model::CommentCount;
 
 has 'db';

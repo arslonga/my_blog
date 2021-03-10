@@ -15,7 +15,7 @@ return 1;
 sub comment {
 #-------------------------------------
 my($self, $c, $user_id_name, $comment_id) = @_;
-$c->session( $user_id_name => $comment_id, expiration => 32000000);
+$c->signed_cookie( $user_id_name => $comment_id, {expires => time + 32000000});
 
 return 1;
 }#---------------
@@ -24,7 +24,7 @@ return 1;
 sub voting {
 #-------------------------------------
 my($self, $c, $user_vote_id, $title_alias_and_id) = @_;
-$c->cookie( $user_vote_id => $title_alias_and_id, {expires => time + 32000000});
+$c->signed_cookie( $user_vote_id => $title_alias_and_id, {expires => time + 32000000});
 
 return 1;
 }#---------------
@@ -41,8 +41,8 @@ return 1;
 #-------------------------------------
 sub admin {
 #-------------------------------------
-my($self, $c, $login) = @_;
-$c->session( admin => $login, expiration => 32000000 );
+my($self, $c, $login, $passwrd) = @_;
+$c->session( admin => [$login, $passwrd], expiration => 32000000 );
 return 1;
 }#---------------
 

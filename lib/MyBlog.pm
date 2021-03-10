@@ -61,16 +61,21 @@ sub startup {
     $self->helper( db_driver => sub { trim( $self->slurp('conf/'.$self->language.'/'.$self->top_config->{'db_driver_file'}) ) } );
     $self->helper( thumb_img_style => sub { $self->slurp('conf/thumb_img_style') });
     $self->helper( clean_text => sub { my $self = shift;
-        my $arg = shift if(@_); $arg =~ s/\&nbsp\;/ /g;
+        my $arg = shift if(@_); $arg =~ s/\&quot\;//g;
+                                $arg =~ s/\&nbsp\;/ /g;
                                 $arg =~ s/\&raquo\;/ /g;
                                 $arg =~ s/\&mdash\;/ /g;
+                                $arg =~ s/\&ndash\;/ /g;
+                                $arg =~ s/\-/ /g;
+                                $arg =~ s/\—/ /g;
                                 $arg =~ s/\&laquo\;/ /g;
                                 $arg =~ s/\&rsquo\;//g;
                                 $arg =~ s/\s+/ /g;
                                 $arg =~ s/\<[^<>]+\>//g;
-                                $arg =~ s/[&;`\\|\"\*?~^()\$\n\r]+//g;
-        return $arg; 
-    } );
+                                #$arg =~ s/[&;`\\|\"\*?~^()\$\n\r]+//g;
+                                $arg =~ s/[\’\'&;`"\\|*?~<>^()\[\]{}\$\n\r]+//g;
+                  return $arg; 
+                  } );
     $self->helper(regexp => sub { MyBlog::RegExp->new()} );
     $self->helper(captcha => sub { Captcha->new });
     
@@ -186,16 +191,16 @@ sub startup {
   
   #======================================= Admin routes END ====================
  
-  $r->any('/likeartcl')->to('likeartcl#respnse')->name('likeartcl');
-  $r->any('/unlikeartcl')->to('unlikeartcl#respnse')->name('unlikeartcl');
+  $r->any('/likeartcl')->to('voting#likeartcl')->name('likeartcl');
+  $r->any('/unlikeartcl')->to('voting#unlikeartcl')->name('unlikeartcl');
   
-  $r->any('/like')->to('like#responce')->name('like');
-  $r->any('/unlike')->to('unlike#responce')->name('unlike');
+  $r->any('/like')->to('voting#likecomment')->name('like');
+  $r->any('/unlike')->to('voting#unlikecomment')->name('unlike');
   
-  $r->any('/rubric/:id', [ id => qr/[0-9]+/ ])->to(namespace => 'RubricList', action => 'show_rubrics');
-  $r->any('/all.rubrics')->to(namespace => 'RubricList', action => 'show_all');
-  $r->any('/view.user')->to(namespace => $template.'::ViewUser', action => 'user_comments');
-  $r->any('/user.allposts')->to(namespace => $template.'::ViewUser', action => 'user_posts');
+  $r->any('/rubric/:id', [ id => qr/[0-9]+/ ])->to(namespace => '', controller => 'RubricList', action => 'show_rubrics');
+  $r->any('/all.rubrics')->to(namespace => '', controller => 'RubricList', action => 'show_all');
+  $r->any('/view.user')->to(namespace => $template, controller => 'ViewUser', action => 'user_comments');
+  $r->any('/user.allposts')->to(namespace => $template, controller => 'ViewUser', action => 'user_posts');
   $r->any('/sitemap')->to('sitemap#sitemap')->name('sitemap');
   $r->any('/articles-feed')->to('rss#articles_feed')->name('articles-feed');
   $r->any('/comments-feed')->to('rss#comments_feed')->name('comments-feed');
@@ -220,7 +225,7 @@ sub startup {
                                                   article => qr/[\w\d\-]+/ ])
                                                   ->to($self->template.'#article');
 
-  $r->any('/')->to( namespace => $NAMESPACE, action => 'main' )->name('main');
+  $r->any('/')->to( $self->template.'#main' )->name('main');
 
 }#------------
 1;

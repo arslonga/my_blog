@@ -1,8 +1,8 @@
 -m
 
-log/**
-conf/*
-public/*
+log/
+conf/
+public/
 templates/mjsimple/head
 templates/mjsimple_v/head
 templates/mjsimple/sitemap.html.ep

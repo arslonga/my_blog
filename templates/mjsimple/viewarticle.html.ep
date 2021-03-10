@@ -70,21 +70,23 @@
  <div class="col-sm-11 text-right">
 
 %# Like/Unlike block ##########################
-% my $status = "";
-% my $like_id = 'like_'.$title_alias.'_'.$id;
-% my $unlike_id = 'unlike_'.$title_alias.'_'.$id;
-% my $like_btn_name = 'like'.$title_alias.'_'.$id;
-% my $unlike_btn_name = 'unlike'.$title_alias.'_'.$id;
-% my $liked_cnt = $content->[0]->{'liked'} || 0;
-% my $unliked_cnt = $content->[0]->{'unliked'} || 0;
-% if( !$client_check ){
-%    $status = ' disabled';
-% }elsif( defined $c->cookie( 'user'.$client_id.'_'.$title_alias.'_'.$id ) && 
-%    $title_alias.'_'.$id eq $c->cookie( 'user'.$client_id.'_'.$title_alias.'_'.$id ) ){
-%    $status = ' disabled';
-% }else{
-%   $status = "";
-% }
+<% my $status = "";
+my $like_id = 'like_'.$title_alias.'_'.$id;
+my $unlike_id = 'unlike_'.$title_alias.'_'.$id;
+my $like_btn_name = 'like'.$title_alias.'_'.$id;
+my $unlike_btn_name = 'unlike'.$title_alias.'_'.$id;
+my $liked_cnt = $content->[0]->{'liked'} || 0;
+my $unliked_cnt = $content->[0]->{'unliked'} || 0;
+
+if( !$client_check ){
+    $status = ' disabled';
+}elsif( defined $c->signed_cookie( 'user'.$client_id.'_'.$title_alias.'_'.$id ) && 
+    $title_alias.'_'.$id eq $c->signed_cookie( 'user'.$client_id.'_'.$title_alias.'_'.$id ) ){
+    $status = ' disabled';
+}else{
+   $status = "";
+ }
+%>
 
 <button type="button" name="<%= $like_btn_name %>" class="btn btn-default" 
 onclick="LikeArtcl('<%= $title_alias %>', '<%= $id %>', 'like_<%= $title_alias.'_'.$id %>', '<%= $client_id %>', 'unlike<%= $title_alias.'_'.$id %>'); this.disabled='disabled';" id="chevron_stl"<%= $status %>>

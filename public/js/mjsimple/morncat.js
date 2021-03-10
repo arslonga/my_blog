@@ -209,36 +209,34 @@ function _showNavig() { //********************************
 
 ///////////////////////////////////////////////////////////////////////////////////
 function Like(comntId, comment_span, user_id, unlike_btn_name) {
-  var elems = document.getElementsByName(unlike_btn_name);
-  for(var i = 0; i < elems.length; i++) {
+  let elems = document.getElementsByName(unlike_btn_name);
+  for(let i = 0; i < elems.length; i++) {
     elems[i].disabled = true;
   }
-  var cnt = parseInt(document.getElementById(comment_span).innerHTML);
-  cnt = cnt + 1;
-  var xhttp = new XMLHttpRequest();
+  
+  let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
      if (this.readyState == 4 && this.status == 200) {
-      document.getElementById(comment_span).innerHTML = cnt;
+      document.getElementById(comment_span).innerHTML = this.responseText;
     }
   };
-  xhttp.open("POST", "/like?comment_id=" + comntId + '&comment_span=' + comment_span + '&user_id=' + user_id + '&count=' + cnt, true);
+  xhttp.open("POST", "/like?comment_id=" + comntId + '&comment_span=' + comment_span + '&user_id=' + user_id, true);
   xhttp.send();
 }
 
 function Unlike(comntId, comment_span, user_id, like_btn_name) {
-  var elems = document.getElementsByName(like_btn_name);
+  let elems = document.getElementsByName(like_btn_name);
   for(var i = 0; i < elems.length; i++) {
     elems[i].disabled = true;
   }
-  var cnt = parseInt(document.getElementById(comment_span).innerHTML);
-  cnt = cnt + 1;
-  var xhttp = new XMLHttpRequest();
+ 
+  let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById(comment_span).innerHTML = cnt;
+      document.getElementById(comment_span).innerHTML = this.responseText;
     }
   };
-  xhttp.open("POST", "/unlike?comment_id=" + comntId + '&comment_span=' + comment_span + '&user_id=' + user_id + '&count=' + cnt, true);
+  xhttp.open("POST", "/unlike?comment_id=" + comntId + '&comment_span=' + comment_span + '&user_id=' + user_id, true);
   xhttp.send();
 }
 ///////////////////////////////////////////
@@ -427,39 +425,35 @@ if( window.innerHeight < alterNavHeight ){
 
 //---------- Like/Unlike of article ------------------------------------------------------------------->
 function LikeArtcl(titleAlias, articleId, vote_span, user_id, unlike_btn_name) {
-    //alert(vote_span);
-  var elems = document.getElementsByName(unlike_btn_name);
-  for(var i = 0; i < elems.length; i++) {
+
+  let elems = document.getElementsByName(unlike_btn_name);
+  for(let i = 0; i < elems.length; i++) {
     elems[i].disabled = true;
   }
-  var cnt = parseInt(document.getElementById(vote_span).innerHTML);
-  //alert('cnt = ' + cnt);
-  cnt = cnt + 1;
-  var xhttp = new XMLHttpRequest();
+
+  let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-  //alert(this.readyState + ' ' + this.status);
      if (this.readyState == 4 && this.status == 200) {
-      document.getElementById(vote_span).innerHTML = cnt;
+      document.getElementById(vote_span).innerHTML = this.responseText;
     }
   };
-  xhttp.open("POST", "/likeartcl?title_alias=" + titleAlias + '&article_id=' + articleId + '&vote_span=' + vote_span + '&user_id=' + user_id + '&count=' + cnt, true);
+  xhttp.open("POST", "/likeartcl?title_alias=" + titleAlias + '&article_id=' + articleId + '&vote_span=' + vote_span + '&user_id=' + user_id, true);
   xhttp.send();
 }
 
 function UnlikeArtcl(titleAlias, articleId, vote_span, user_id, like_btn_name) {
-  var elems = document.getElementsByName(like_btn_name);
-  for(var i = 0; i < elems.length; i++) {
+  let elems = document.getElementsByName(like_btn_name);
+  for(let i = 0; i < elems.length; i++) {
     elems[i].disabled = true;
   }
-  var cnt = parseInt(document.getElementById(vote_span).innerHTML);
-  cnt = cnt + 1;
-  var xhttp = new XMLHttpRequest();
+
+  let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById(vote_span).innerHTML = cnt;
+      document.getElementById(vote_span).innerHTML = this.responseText;
     }
   };
-  xhttp.open("POST", "/unlikeartcl?title_alias=" + titleAlias + '&article_id=' + articleId + '&vote_span=' + vote_span + '&user_id=' + user_id + '&count=' + cnt, true);
+  xhttp.open("POST", "/unlikeartcl?title_alias=" + titleAlias + '&article_id=' + articleId + '&vote_span=' + vote_span + '&user_id=' + user_id, true);
   xhttp.send();
 }
 //---------- Like/Unlike of article END ------------------------------------------------------------------->
@@ -531,10 +525,14 @@ if( checkboxTumbler ){
 //----------- VIEW PASSWORD END -------------------------------------------
 
 //----------- SCROLL TO ERROR LOCATION ON page with comments -------------------
-let fieldWithErr = document.querySelector('.field-with-error');
-let errMessage = document.querySelector('#comnt-label').nextElementSibling.innerHTML;
-console.log('fieldWithErr = ' + fieldWithErr + ' - ' + 'errMessage = ' + errMessage);
-if( fieldWithErr || errMessage ){
+function gotoErr( errfield ){
+  let errMessage = document.querySelector('#comnt-label').nextElementSibling.innerHTML;
+  if( errfield || errMessage ){
     window.location.href = window.location.href + '#err-locat';
+  }
+}
+let fieldWithErr = document.querySelector('.field-with-error');
+if( fieldWithErr ){
+  gotoErr( fieldWithErr );
 }
 //----------- SCROLL TO ERROR LOCATION END -------------------------------------

@@ -3,10 +3,10 @@
     <div class="col-md-4"></div>
     <div class="col-md-4 text-left">
     <h2><%= $self->db_driver %></h2>
-    <form action="/dbdriver" method="post">
+    <!--<form action="/dbdriver" method="post">
     <input type="hidden" name="request" value="change_db">
     <input type="submit" name="set_new_db" id="forgotn_button" value="<%= $self->lang_config->{'change_db'}->{$self->language} %>">
-    </form>
+    </form>-->
 <hr>
 
 %= form_for 'access' => (method => 'post') => begin

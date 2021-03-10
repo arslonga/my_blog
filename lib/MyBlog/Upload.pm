@@ -113,7 +113,7 @@ foreach my $param_name( @required_fields ){
                                      FileName->doc_media_file( $uploaded_filename );
             }
         }
-        $upload_obj->move_to("public/$path_for_upload/$uploaded_filename");
+        $upload_obj->move_to( 'public'.$path_for_upload.'/'.$uploaded_filename );
 
         if($template_for_upload =~ /\_image$/){
             $RewrImag->illustration( $self, 
