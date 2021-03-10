@@ -1,0 +1,35 @@
+% layout lc($self->template).'/other';
+% my $action = 'decode_'.$self->db_driver;
+<div class="row">
+<div class="col-sm-12" id="articl_box">
+<%= include lc($self->template).'/index_banner1' %>
+
+<h5>
+<a class="breadcr_href" href="/all.rubrics"><%= $self->lang_config->{'all_rubrics'}->{$language} %> <span class="glyphicon glyphicon-arrow-right"></span></a>
+</h5>
+% my $rubric_name = $self->$action( $rubric ) || $rubric;
+<h4><%== $self->lang_config->{'rubric'}->{$language}.' &laquo;'.$rubric_name.'&raquo;' %></h4>
+<hr>
+<div class="row" id="indx_style">
+% my $ind = 0;
+% foreach my $item(@$content){
+    <span class="date_post"><%= substr($item->{'curr_date'}, 0, 10) %></span>
+    % $item->{'url_chaptr'} = "" if $item->{'url_chaptr'} eq '/';
+    % if(!$item->{'url_chaptr'}){
+    <a href="/">
+    % }else{
+    <a href="<%= $item->{'url_chaptr'} %>">
+    % }
+    <h3 class="head_post"><%= $self->$action( $item->{'head'} ) %></h3>
+    </a>
+<span class="artcl_content">
+    <%== $self->$action( $item->{'announce'} ) %>
+</span>
+% if( $ind < (scalar(@$content) - 1) ){
+    <hr>
+% }
+%   $ind++;
+% } 
+</div>
+</div> 
+</div>

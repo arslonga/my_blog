@@ -1,0 +1,1062 @@
+{
+
+"routines" : {"uk" : "Доступні шаблони",
+              "en" : "Available templates"
+             },
+"transliteration" : {"uk" : "Транслітерація",
+                     "en" : "Transliteration"},
+"loren_ipsum" : {
+            "uk" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed dapibus nulla. Fusce et ultrices urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur maximus dui eget nibh ullamcorper interdum. Cras tincidunt turpis vitae erat volutpat consequat. Nullam efficitur mi vitae finibus auctor. Duis malesuada quis erat sagittis malesuada. Nulla facilisi. Phasellus sed mi sed quam faucibus iaculis. Sed vel nunc blandit leo tempus hendrerit nec nec quam. Sed elementum tempus molestie. In congue tincidunt ultrices. In porta vel erat at placerat. Fusce venenatis euismod lorem eget tempor. Ut eu tellus metus.",
+            "en" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed dapibus nulla. Fusce et ultrices urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur maximus dui eget nibh ullamcorper interdum. Cras tincidunt turpis vitae erat volutpat consequat. Nullam efficitur mi vitae finibus auctor. Duis malesuada quis erat sagittis malesuada. Nulla facilisi. Phasellus sed mi sed quam faucibus iaculis. Sed vel nunc blandit leo tempus hendrerit nec nec quam. Sed elementum tempus molestie. In congue tincidunt ultrices. In porta vel erat at placerat. Fusce venenatis euismod lorem eget tempor. Ut eu tellus metus."
+            },
+"not_change_filename" : 
+        {
+        "uk" : "Не змінювати назву файла",
+        "en" : "Do not change file name"
+        },
+"edit_menu" :
+            {
+                "uk" : "Редагування меню",
+                "en" : "Edit menu"
+            },
+            "add_new_chapter" :
+                {
+                    "uk" : "Новий розділ:",
+                    "en" : "New section:"
+                },
+            "add_new_subchapter" :
+                {
+                    "uk" : "Новий підрозділ:",
+                    "en" : "New subchapter:"
+                },
+            "delete" :
+            {
+                "uk" : "Видалити",
+                "en" : "delete"
+            },
+            "add_new" :
+                {
+                    "uk" : "Додати новий",
+                    "en" : "Add new"
+                },
+            "category" :
+                {
+                    "uk" : ["article_стаття", "gallery_галерея"],
+                    "en" : ["article_article", "gallery_gallery"]
+                },
+            "list_enable" :
+                {
+                    "yes" : {"uk" : "багатосторінковий", "en" : "multy"},
+                    "no" : {"uk" : "одна сторінка", "en" : "one page"}
+                },
+            "_new_page_content": "Фраза, що додається як контент до щойно створеної сторінки",
+            "new_page_content" :
+                {
+                    "uk" : "Сторінка створюється...",
+                    "en" : "The page in progress..."
+                },
+            "alert_delete" :
+                {
+                    "uk" : "Для підтвердження натисніть OK!",
+                    "en" : "Confirm submit"
+                },
+            "empty_field" :
+                {
+                    "uk" : "Незаповнене поле",
+                    "en" : "Empty field"
+                },
+            "subchapter" :
+                {
+                    "uk" : "Підрозділ",
+                    "en" : "Subchapter"
+                },
+        "subchapter_alias" :
+                {
+                    "uk" : "Псевдо підрозділу (англ.)",
+                    "en" : "Subchapter alias (eng.)"
+                },
+        "upload_items" :
+                {
+                    "uk" : {
+                            "img" : "Вибрати зображення для завантаження", 
+                            "doc" : "Вибрати документ для завантаження", 
+                            "med" : "Вибрати медіафайл для завантаження"
+                            },
+                    "en" : {
+                            "img" : "Choose images for uploading", 
+                            "doc" : "Choose documents for uploading", 
+                            "med" : "Choose media for uploading"
+                            }
+                },
+                
+    "num_month" : 
+               {
+                "01" : {"uk" : "січень", "en" : "January"},
+                "02" : {"uk" : "лютий", "en" : "February"},
+                "03" : {"uk" : "березень", "en" : "March"},
+                "04" : {"uk" : "квітень", "en" : "April"},
+                "05" : {"uk" : "травень", "en" : "May"},
+                "06" : {"uk" : "червень", "en" : "June"},
+                "07" : {"uk" : "липень", "en" : "July"},
+                "08" : {"uk" : "серпень", "en" : "August"},
+                "09" : {"uk" : "вересень", "en" : "September"},
+                "10" : {"uk" : "жовтень", "en" : "October"},
+                "11" : {"uk" : "листопад", "en" : "November"},
+                "12" : {"uk" : "грудень", "en" : "December"}
+               },
+"explain_ab_restart" :
+        {
+         "uk" : "<p style='color:blue'><b>Якщо ви змінили драйвер бази даних, перезапустіть ваш робочий сервер, і можете продовжити </b></p>",
+         "en" : "<p style='color:blue'><b>If you have changed database driver restart your production server and continue</b></p>"
+         },
+"empty_form" :
+        {"uk" : "Форма не заповнена",
+         "en" : "Form is empty"},
+"order_for_time" :
+        {"uk" : "Порядок сортування за часом",
+         "en" : "Order of sorting for date"},
+"direct" :
+        {"uk" : "Прямий",
+         "en" : "ascent"},
+"reverse" :
+        {"uk" : "Зворотній",
+         "en" : "descent"},
+"multipage" : {"uk" : "багатосторінковий",
+               "en" : "multi-page"
+              },
+"sign_in" :
+        {"uk" : "Ввійти",
+        "en" : "Sign In"
+        },
+"transliter" :
+        {"uk" : "абвгдеєжзиіїйклмнопрстуфхцчшщюяьъэыи/abvhdeegzyiijklmnoprstufxzcccuj__eyi",
+        "en" : "/"
+        },
+"textar_comment_featr" :
+        {"uk" : "Не використовуйте в TEXTAREA тегів <b>&lt;p&gt;</b> і <b>&lt;div&gt;</b>. Натомість використовуйте тег <b>&lt;br&gt;</b>.",
+        "en" : "Do not use tags <b>&lt;p&gt;</b> і <b>&lt;div&gt;</b> in the TEXTAREA. Use tag <b>&lt;br&gt;</b> instead."
+        },
+"yes" :
+        {"uk" : "Так",
+        "en" : "Yes"
+        },
+"no" :
+        {"uk" : "Ні",
+        "en" : "No"
+        },
+"authorize_form":
+        {
+        "uk" : "Форма авторизації", 
+        "en" : "Authentication form"
+        },
+"show_authorize_form" :
+        {
+        "uk" : "Відображати форму авторизації", 
+        "en" : "Show authentication form"
+        },
+"authorize_form_showing" :
+        {
+        "uk" : "Відображання форму авторизації", 
+        "en" : "Authentication form showing"
+        },
+"conf_rss_begin" :
+            {
+            "uk" : "Спершу необхідно сконфігурувати RSS", 
+            "en" : "First configure RSS"
+            },
+"configure_db" :
+            {
+            "uk" : "Сконфігурувати базу даних", 
+            "en" : "Configure database"
+            },
+"theme" :
+        {
+        "uk" : "Колірна тема", 
+        "en" : "Colour theme"
+        },
+"default" : {"uk" : "за уставою", "en" : "default"},
+"red" : {"uk" : "червоний", "en" : "red"},
+"green" : {"uk" : "зелений", "en" : "green"},
+"blue" : {"uk" : "синій", "en" : "blue"},
+"logo" :
+        {
+        "uk" : "ЛОГО", 
+        "en" : "LOGO"
+        },
+"logo_image" : 
+            {
+            "uk" : "ЛОГО як зображення", 
+            "en" : "LOGO as image"
+            },
+"logo_background" : 
+            {
+            "uk" : "ЛОГО як тло",
+            "en" : "LOGO as background"
+            },
+"logo_slideshow" :
+            {
+            "uk" : "ЛОГО як слайдшоу",
+            "en" : "LOGO as slideshow"
+            },
+"fit_to_height" :
+            {
+            "uk" : "Припасувати до висоти",
+            "en" : "Fit to height"
+            },
+"brand" :
+        {
+        "uk" : "БРЕНД", 
+        "en" : "BRAND"
+        },
+"brand_margin_top" :
+        {
+        "uk" : "margin-top (px)", 
+        "en" : "margin-top (px)"
+        },
+"brand_margin_left" :
+        {
+        "uk" : "margin-left (px)", 
+        "en" : "margin-left (px)"
+        },
+"brand_margin_right" :
+        {
+        "uk" : "margin-right (px)", 
+        "en" : "margin-right (px)"
+        },
+"brand_max_height" :
+        {
+        "uk" : "max-height (px)", 
+        "en" : "max-height (px)"
+        },
+"favicon" :
+        {
+        "uk" : "Favicon", 
+        "en" : "Favicon"
+        },
+"menu" :
+        {
+        "uk" : "Меню", 
+        "en" : "Menu"
+        },
+"pagination" :
+        {
+        "uk" : "Сторінкування", 
+        "en" : "Pagination"
+        },
+"rss" :
+        {
+        "uk" : "RSS", 
+        "en" : "RSS"
+        },
+"under_menu_inclusion" :
+        {"uk" : "Включення під меню",
+        "en" : "Inclusions under menu"},
+"motto" : 
+        {
+        "uk" : "Девіз",
+        "en" : "Motto"
+        },
+"image" : 
+        {
+        "uk" : "Зображення",
+        "en" : "Image"
+        },
+"image_bg" : 
+        {
+        "uk" : "Зображення тла",
+        "en" : "Background image"
+        },
+"archive" : 
+        {
+        "uk" : "Архів",
+        "en" : "Archive"
+        },
+"set" : 
+        {
+        "uk" : "Встановити",
+        "en" : "Set"
+        },
+"reset" : 
+        {
+        "uk" : "Скинути",
+        "en" : "Reset"
+        },
+"reset_password" :
+        {
+        "uk" : "Змінити пароль",
+        "en" : "Reset Password"
+        },
+"change_password" :
+        {
+        "uk" : "Змінити пароль",
+        "en" : "Change Password"
+        },
+"enter_new_password" :
+        {
+        "uk" : "Введіть новий пароль",
+        "en" : "Enter new password"
+        },
+"logo_setting" : 
+        {
+        "uk" : "Лого сайту",
+        "en" : "Logo for the site"
+        },
+"miniature_style" : 
+        {
+        "uk" : "Стиль мініатюр зображень",
+        "en" : "Image thumbnail style"
+        },
+"comments_level_deep" : 
+        {
+        "uk" : "Глибина вкладення коментарів", 
+        "en" : "Inclusion depth for comments"
+        },
+"commentsShowedNumber" : 
+        {
+        "uk" : "Кількість відображуваних коментарів на початку", 
+        "en" : "Number of showed comments on beginning"
+        },
+"commentsShowedStep" : 
+        {
+        "uk" : "Крок для відображуваних коментарів", 
+        "en" : "Step for showed comments"
+        },
+"pgn_round_numb" : 
+        {
+        "uk" : "Кількість суміжних з поточною номерів сторінок", 
+        "en" : "Page numbers related to the current page"
+        },
+"pgn_outer_numb" : 
+        {
+        "uk" : "Кількість номерів сторінок на початку і в кінці", 
+        "en" : "Quantity of page numbers at the beginning and at the end"
+        },
+"annot_numb_of_page" : 
+        {
+        "uk" : "Кількість анотацій на одній сторінці", 
+        "en" : "Annotations number at the one page"
+        },
+"pgn_place" : 
+        {
+        "uk" : "Розташування посторінкової навігації",
+        "en" : "Location of the pagination block"
+        },
+"bottom" : 
+        {
+        "uk" : "знизу",
+        "en" : "at the bottom"
+        },
+"top_bottom" : 
+        {
+        "uk" : "згори і знизу",
+        "en" : "at the bootom and at the top"
+        },
+"you_suchen" : 
+        {
+        "uk" : "<b>Ви шукали:</b>",
+        "en" : "<b>You looked for:</b>"
+        },
+"search" : 
+        {
+        "uk" : "Шукати",
+        "en" : "Search"
+        },
+"no_search_result" : 
+        {
+        "uk" : "Нічого не знайдено",
+        "en" : "Nothing found"
+        },
+"not_enough_chars" : 
+        {
+        "uk" : "Недостатньо знаків для пошуку",
+        "en" : "It is not enough characters for searching"
+        },
+"numb_of_artcl_rss" : 
+        {
+        "uk" : "Кількість лінків у списку",
+        "en" : "Number of links in the list"
+        },
+"meta" : 
+        {
+        "uk" : "Мета",
+        "en" : "Meta"
+        },
+"rubric_list" : 
+        {
+        "uk" : "Рубрики",
+        "en" : "Categories"
+        },
+"rubric" : 
+        {
+        "uk" : "Рубрика",
+        "en" : "Category"
+        },
+"no_rubric" : 
+        {
+        "uk" : "Без рубрики",
+        "en" : "No category"
+        },
+"title" :
+        {"uk" : "Заголовок",
+         "en" : "Title"},
+"all_rubrics" : 
+        {
+        "uk" : "Всі рубрики",
+        "en" : "All categories"
+        },
+"rubric_list_numbers" : 
+        {
+        "uk" : "Кількість назв рубрик для відображання у бічній колонці",
+        "en" : "Number of categories for displaying in the side column"
+        },
+"sitemap" : 
+        {
+        "uk" : "Мапа сайту",
+        "en" : "Site map"
+        },
+"sitemap_description" : 
+        {
+        "uk" : "CMS MornCat. Мапа сайту",
+        "en" : "MornCat CMS. Site map"
+        },
+"sitemap_keywords" : 
+        {
+        "uk" : "CMS, MornCat, Мапа сайту, CMS на основі Perl",
+        "en" : "Morncat, CMS, Site map, CMS based Perl"
+        },
+"users" : 
+        {
+        "uk" : "Користувачі",
+        "en" : "Users"
+        },
+"ban"   :
+        {
+        "uk" : "(Бан)",
+        "en" : "(banned)"
+        },
+"list" : 
+        {
+        "uk" : "список",
+        "en" : "list"
+        },
+"registration_date" : 
+        {
+        "uk" : "Дата реєстрації",
+        "en" : "Registration date"
+        },
+"comments_quantity" : 
+        {
+        "uk" : "Кількість коментарів",
+        "en" : "Comments number"
+        },
+"comments" : 
+        {
+        "uk" : "Відгуки",
+        "en" : "Comments"
+        },
+"sending" : 
+        {
+        "uk" : "Розсилка",
+        "en" : "Newsletter"
+        },
+"subscribe_newsletter" : 
+        {
+        "uk" : "Підписатися на розсилку",
+        "en" : "Subscribe to Newsletter"
+        },
+"viewing" : 
+        {
+        "uk" : "Видимість",
+        "en" : "Visibility"
+        },
+"edit_priority" : 
+        {
+        "uk" : "Пріоритети редагування",
+        "en" : "Priorities editing"
+        },
+"set_edit_priority" : 
+        {
+        "uk" : "Встановити пріоритети редагування",
+        "en" : "Set priorities editing"
+        },
+"set_brand" : 
+        {
+        "uk" : "Встановити бренд",
+        "en" : "Set brand"
+        },
+"go_exit" : 
+        {
+        "uk" : "Вийти",
+        "en" : "Log out"
+        },
+"editing" : 
+        {
+        "uk" : "Редагування",
+        "en" : "Editing"
+        },
+"editing_explain" : 
+        {
+        "uk" : "Тут ви можете редагувати свої статті чи додавати нові. Для редагування вам потрібен дозвіл адміністратора сайту",
+        "en" : "Here you can edit your's own articles or to add new ones. You need permission for editing from the site administrator"
+        },
+"list_enabled_for_edit" : 
+        {
+        "uk" : "Список розділів, які Ви можете редагувати:",
+        "en" : "List of sections that you can edit"
+        },
+"chapter_list" : 
+        {
+        "uk" : "Список розділів",
+        "en" : "List of chapters"
+        },
+"posts" : 
+        {
+        "uk" : "Публікації",
+        "en" : "Posts"
+        },
+"posts_of_user" : 
+        {
+        "uk" : "Публікації цього автора",
+        "en" : "Author's posts"
+        },
+"of_posts" : 
+        {
+        "uk" : "публікації",
+        "en" : "posts"
+        },
+"of_comments" : 
+        {
+        "uk" : "коментарі",
+        "en" : "comments"
+        },
+"comments_of_user" : 
+        {
+        "uk" : "Коментарі цього автора",
+        "en" : "Author's comments"
+        },
+"user_comments" : 
+        {
+        "uk" : "Коментарі цього користувача",
+        "en" : "User's comments"
+        },
+"to_site" : 
+        {
+        "uk" : "На сайт",
+        "en" : "To the site"
+        },
+"queue" : 
+        {
+        "uk" : "порядок",
+        "en" : "order"
+        },
+"attention_add_chapter" : 
+        {
+        "uk" : "Увага! Додаючи новий розділ, можна порушити вже створену структуру меню поточного розділу",
+        "en" : "Attention! Adding a new section, you can break an existing menu structure of the current section"
+        },
+"all_comments" : 
+        {
+        "uk" : "Всі коментарі",
+        "en" : "All comments"
+        },
+"cover_up" : 
+        {
+        "uk" : "Приховати",
+        "en" : "Cover up"
+        },
+"comment_inappropriate" : 
+        {
+        "uk" : "коментар приховано як недоречний",
+        "en" : "Comment hidden as inappropriate"
+        },
+"comment_deleted" : 
+        {
+        "uk" : "<i class='comment_deleted'>коментар вилучено</i>",
+        "en" : "<i class='comment_deleted'>comment deleted</i>"
+        },
+"edit" : 
+        {
+        "uk" : "Редагувати",
+        "en" : "Edit"
+        },
+"save" : 
+        {
+        "uk" : "Зберегти",
+        "en" : "Save"
+        },
+"reply" : 
+        {
+        "uk" : "Відповісти",
+        "en" : "Reply"
+        },
+"change" : 
+        {
+        "uk" : "Виправити",
+        "en" : "Correct"
+        },
+"to_blocked" : 
+        {
+        "uk" : "Заблокувати",
+        "en" : "Block"
+        },
+"non_blocked" : 
+        {
+        "uk" : "Розблокувати",
+        "en" : "Unblock"
+        },
+"exist_table_already" : 
+        {
+        "uk" : "таблиця з такою назвою вже існує!",
+        "en" : "table with the same name already exists!"
+        },
+"new_chapter_add" : 
+        {
+        "uk" : "додати новий розділ",
+        "en" : "add a new section"
+        },
+"content" : 
+        {
+        "uk" : "Контент",
+        "en" : "Contents"
+        },
+"change_profile" : 
+        {
+        "uk" : "Зміна даних профілю",
+        "en" : "Change profile data"
+        },
+"database" : 
+        {
+        "uk" : "БАЗА ДАНИХ",
+        "en" : "DATABASE"
+        },
+"change_db" : 
+        {
+        "uk" : "Змінити базу даних",
+        "en" : "Change DB"
+        },
+"reconf_db" : 
+        {
+        "uk" : "Переналаштувати базу даних",
+        "en" : "Reconfigure DB"
+        },
+"change_access" :
+        {"uk" : "Змінити параметри доступу",
+         "en" : "Change parameters of access"
+        },
+"login_set_explain" :
+        {"uk" : "Лише літери, цифри і символ підкреслення",
+         "en" : "Letters, figures and underscore characters only"
+        },
+"msg_manage" : {"uk" : {"msg_registr" : "про реєстрацію", 
+                        "msg_newsletter" : "про розсилку",
+                        "msg_newsletter_add" : "додатково про розсилку", 
+                        "msg_forgot_passw" : "про відновлення паролю",
+                        "msg_about_response" : "про відповідь на відгук",
+                        "msg_change_profile" : "про зміну даних пофілю користувача"
+                        },
+                "en" : {"msg_registr" : "about registration", 
+                        "msg_newsletter" : "about Newsletter",
+                        "msg_newsletter_add" : "in addition to Newsletter", 
+                        "msg_forgot_passw" : "about password recovery",
+                        "msg_about_response" : "about response on comment",
+                        "msg_change_profile" : "about changing of the user profile"
+                        }
+               },
+"msg_registr" : {"uk" : {"one" : "Дякуємо ", 
+                        "two" : "Ви зареєструвалися на сайті ",
+                        "three" : "<br>Одначе Ви маєте ", 
+                        "four" : "Підтвердити ваш Email</a> впродовж однієї години",
+                        "five" : "Для продовження реєстрації переглянте ваш Email" 
+                        },
+                "en" : {"one" : "Thank you ", 
+                        "two" : "You have been registered on ",
+                        "three" : "<br>However you need ", 
+                        "four" : "Confirm your Email</a> during 1 hour",
+                        "five" : "To continue of registration view your Email "
+                        }
+               },
+"same_response_exist" :
+        {"uk" : "Такий відгук вже існує", 
+        "en" : "The same response is exist"},
+"message_formats" : 
+        {"uk" : "Формат повідомлень", 
+        "en" : "Message format"},
+"remind_password_form" : 
+        {"uk" : "На Email адресу, яку Ви вкажете в полі форми, буде надіслано лінк для зміни пароля",
+        "en" : "A link for password reset will be send to Email you provided in the form field"},
+"go_to_reset_passw" : 
+        {"uk" : "Перевірте свій Email, щоб продовжити",
+        "en" : "Go to your Email to continue"},
+"not_exist_email" : 
+        {"uk" : "Такого email немає в базі даних", 
+        "en" : "This email is absent in the database"},
+"edit_profile" : 
+        {"uk" : "Редагувати профіль", 
+        "en" : "Edit profile"},
+"profile" : 
+        {"uk" : "Профіль",
+        "en" : "Profile"},
+"remind_passw" : 
+        {"uk" : "Нагадування пароля",
+        "en" : "Password reminder"},
+"_sending" : 
+        {"uk" : "Розсилка",
+        "en" : "Newsletter"},
+"text_sending" : 
+        {"uk" : "Як простий текст з виділеними посиланнями на публікації",
+        "en" : "As a plain text with dedicated links to the posts"},
+"html_sending" : 
+        {"uk" : "Як оригінальна HTML сторінка, сформована вручну",
+        "en" : "As an original HTML page generated manually"},
+"sending_explain" : 
+{"text_sending" : 
+    {"uk" : "Спочатку встановіть обмеження на кількість найсвіжіших публікацій (усі розділи), з яких формуватиметься розсилка",
+    "en" : "First set the limit of the number of latest posts (all sections), from which newsletter is formed"
+    },
+ "html_sending" : 
+    {"uk" : "Сформуйте html-текст, скориставшись панеллю інструментів текстового поля",
+    "en" : "Form html-text , using the toolbar textbox"                            
+    }
+},
+"threshold_for_send" : 
+        {"uk" : "Обмеження на кількість публікацій до вибору для розсилки",
+        "en" : "Limit the number of the posts to choose for mailing"},
+"select_articles" : 
+        {"uk" : "Виберіть публікації для розсилки",
+        "en" : "Choose posts for newsletter"},
+"create_html_send" : 
+        {"uk" : "Створити html-блок для розсилки",
+        "en" : "Create html block for newsletter"},
+"continue" : 
+        {"uk" : "Продовжити  »", 
+        "en" : "Continue  »"},
+"select_users_for_sending" : 
+        {"uk" : "Виберіть користувачів, яким призначена розсилка",
+        "en" : "Select users in the newsletter"},
+
+"join" : 
+        {"uk" : "Приєднати",
+        "en" : "Attach"},
+"join_images" : 
+        {"uk" : "Приєднати зображення",
+        "en" : "Attach images"},
+"join_documents" : 
+        {"uk" : "Приєднати документи",
+        "en" : "Attach documents"},
+"join_media" : 
+        {"uk" : "Приєднати медіа",
+        "en" : "Attach media"},
+"image_library" : 
+        {"uk" : "Бібліотека зображень",
+        "en" : "image Library"},
+"underhead_image_explain" : 
+        {"uk" : "Тут можна вибрати і приєднати зображення до даної публікації",
+        "en" : "You can select and attach an image to this publication"},
+"document_library" : 
+        {"uk" : "Бібліотека документів",
+        "en" : "document Library"},
+"underhead_document_explain" : 
+        {"uk" : "Тут можна вибрати і приєднати документи до даної публікації",
+        "en" : "You can select and attach documents to this publication"},
+"media_library" : 
+        {"uk" : "Бібліотека медіа",
+        "en" : "media Library"},
+"underhead_media_explain" : 
+        {"uk" : "Тут можна вибрати і приєднати медіа до даної публікації",
+        "en" : "You can select and attach media to this publication"},
+
+"help_tw_og_explain" : 
+        {"uk" : "Що таке Open Graph Tags?<br> Метатеги Open Graph призначені для передачі інформації <br>про ваш веб-сайт у соціальних мережах, коли поширюються посилання на ваш веб-сайт.<br>Ці теги дозволяють створювати власні заголовки, описи та зображення, які будуть використані,<br> коли ви поширюєте свої сторінки у Facebook, LinkedIn та Google+.<br>Дивіться більше на https://warfareplugins.com/open-graph-tags-twitter-cards-rich-pins/",
+        "en" : "What are Open Graph Tags?<br>Open Graph meta tags are designed to communicate information<br>about your website to social networks when links to your website are shared.<br>These tags allow you to craft custom titles, descriptions, and images to be used when your<br>pages are shared on Facebook, Twitter, and Pinterest.<br>See more at https://warfareplugins.com/open-graph-tags-twitter-cards-rich-pins/"},
+"help_imageurl_explain" : 
+        {"uk" : "Щоб помістити зображення в тіло статті, скопіюйте шлях до файла зображення в поле 'URL' <br>форми властивостей зображення 'Image Properties'",
+        "en" : "To place the image into the body of the article, copy the path to the image file in the field 'URL' of the 'Image Properties' form"},
+"help_icon_explain" : 
+        {"uk" : "Тут можна скопіювати шлях до файлів 'іконок', щоб використати їх<br> для створення посилань на документи відповідного типу",
+        "en" : "You can copy the path to the icon files to use them<br> to make links to documents relevant type"},
+"help_icon_explain_media" : 
+        {"uk" : "Тут можна скопіювати шлях до зображень 'іконок', щоб використати їх<br> для створення посилань на медіа файл відповідного типу",
+        "en" : "You can copy the path to the icon files to use them<br> to make links to relevant media file type"},
+"help_icon_explain2" : 
+        {"uk" : "Шлях до файла відповідної 'іконки' вписуємо в поле 'URL' вікна 'Image Properties'",
+        "en" : "The path to the file corresponding icon fits in the box 'URL' box 'Image Properties'"},
+"help_icon_explain3" : 
+        {"uk" : "Тиснемо 'OK' і маємо посилання, позначене потрібною 'іконкою'",
+        "en" : "Hit 'OK' and have links labeled needed icon"},
+"not_view_in_menu" : 
+        {"uk" : "Не відображати в головному меню",
+        "en" : "Do not display in the main menu"},
+"social_buttons" : 
+        {"uk" : "Кнопки соціальних мереж",
+        "en" : "Social Media Buttons"},
+"social_buttons_code" : 
+        {"uk" : "Код кнопочок соціальних мереж",
+        "en" : "Code of the buttons for social networks"},
+"social_buttons_code_explain" : 
+                {"uk" : "Пояснення до застосування коду можна переглянути на цьому ресурсі: <br> <a href='https://sharethis.com/' target='_blank'>https://sharethis.com/</a>",
+                "en" : "You can get real 'property' value (view code in textarea below) for configuring share buttons on website: <a href='https://sharethis.com/' target='_blank'>https://sharethis.com</a>"},
+"transliteration" : 
+        {"uk" : "Транслітерація",
+        "en" : "Transliteration"},
+"transliteration_code" : 
+        {"uk" : "Код для транслітерації",
+        "en" : "Code for transliteration"},
+"ivalid_character" :
+        {"uk" : "Неприпустимі символи у псевдонімі назви розділу",
+        "en" : "Invalid characters in the alias of section name"},
+"message_code_explain" :
+        {"uk" : "Вміст квадратних дужок змінювати не можна. Самі квадратні дужки теж не прибирати",
+         "en" : "Don't change a text in square brackets and don't remove square brackets"
+        },
+"foot" : 
+        {"uk" : "Підвал",
+        "en" : "Foot"},
+"inclusion" : 
+        {"uk" : "Включення",
+        "en" : "Inclusions"},
+"not_found" : 
+        {"uk" : "Такої сторінки не існує",
+        "en" : "The requested page does not exist"},
+"select_language" : 
+        {"uk" : "Виберіть мову консолі адміністратора<br>(Увага: Певній мові відповідає своя окрема база даних.<br> Тому, обираючи ту чи іншу мову, Ви будете працювати з відповідною базою даних)",
+        "en" : "Choose your language Admin Console <br> (Note: the language has its own definitions separate database. <br> Therefore, choosing one or another language, you will work with the appropriate database)"
+        },
+"preview" : 
+        {"uk" : "Переглянути",
+        "en" : "Preview"
+        },
+"lang" : 
+        {
+        "uk" : {
+                "uk" : "Українська",
+                "en" : "Англійська"
+               },
+        "en" : {
+                "uk" : "Ukrainian",
+                "en" : "English"
+               }
+        },
+"remove-warn" :
+        {"uk" : "Ви впевнені, що хочете вилучити цю публікацію?",
+         "en" : "Are you sure you want to remove this post?"
+        },
+"labels" :
+            {
+            "uk" : {
+                    "archive" : "Архів",
+                    "authorization" : "Авторизація",
+                    "access_admin_config" : "Конфігурування доступу до консолі адміністратора",
+                    "dbaccess_admin_config" : "Конфігурування доступу до бази даних",
+                    "dbdriver_set" : "Встановити драйвер бази даних",
+                    "admin_console" : "Вхід до консолі адміністратора",
+                    "data_interval" : "data-interval",
+                    "transition_duration" : "transition-duration",
+                    "registration" : "Реєстрація",
+                    "responses" : "Відгуки",
+                    "response" : "Відгук",
+                    "response_from" : "Відгук від",
+                    "search" : "Пошук",
+                    "wrong_configure_db" : "Неправильно сконфігурована база даних:",
+                    "try_again" : "Спробуйте ще",
+                    "masterroom" : "Майстерня",
+                    "main" : "головна",
+                    "new_chapter" : "Новий розділ",
+                    "head" : "Заголовок",
+                    "menu" : "Меню",
+                    "comments_setting" : "Коментарі (налаштування)",
+                    "index_for_subs" : "Індексна сторінка для вкладених розділів",
+                    "add_rubric" : "Додати рубрику",
+                    "exist_rubric" : "Наявні рубрики",
+                    "no_rubric" : "Без рубрики",
+                    "edit_rubric" : "Редагувати рубрики  »",
+                    "edit_rubric_sm" : "Редагувати рубрики",
+                    "enable_comments" : "дозволити коментарі",
+                    "disable_comments" : "вимкнути коментарі",
+                    "thumb_kind" : "Стилі мініатюр зображень (для анонсів статей)",
+                    "pagination_attr" : "Посторінковий вивід (налаштування)",
+                    "rss_setting" : "RSS (налаштування)",
+                    "rubric_setting" : "Рубрики (налаштування)",
+                    "enter_confirm_code" : "Введіть підтверджувальний код"
+                   },
+            "en" : {
+                    "archive" : "Archive",
+                    "authorization" : "Authorization",
+                    "access_admin_config" : "Configuring access to the administrator console",
+                    "dbaccess_admin_config" : "Configuring database access",
+                    "dbdriver_set" : "Set database driver",
+                    "admin_console" : "Entrance to the administrator console",
+                    "data_interval" : "data-interval",
+                    "transition_duration" : "transition-duration",
+                    "registration" : "Registration",
+                    "responses" : "Responses",
+                    "response" : "Response",
+                    "response_from" : "Response from",
+                    "search" : "Searching",
+                    "wrong_configure_db" : "The data base configuration is wrong:",
+                    "try_again" : "Try again",
+                    "masterroom" : "Admin",
+                    "main" : "main",
+                    "new_chapter" : "New section",
+                    "head" : "Head",
+                    "menu" : "Menu",
+                    "comments_setting" : "Comments (settings)",
+                    "index_for_subs" : "Index page for nested sections",
+                    "add_rubric" : "Add category",
+                    "exist_rubric" : "Available Categories",
+                    "no_rubric" : "No category",
+                    "edit_rubric" : "Edit category  »",
+                    "edit_rubric_sm" : "Edit categories",
+                    "enable_comments" : "allow comments",
+                    "disable_comments" : "turn off comments",
+                    "thumb_kind" : "Styles thumbnail images (for summaries of articles)",
+                    "pagination_attr" : "Paginating output (configuration)",
+                    "rss_setting" : "RSS (configuration)",
+                    "rubric_setting" : "Categories (configuration)",
+                    "enter_confirm_code" : "Enter the confirmation code"
+                   }
+            },
+"buttons" :
+            {
+            "uk" : {
+                    "edit" : "Редагувати",
+                    "save" : "Зберегти",
+                    "_enter" : "Вхід",
+                    "enter" : "Увійти",
+                    "send" : "Надіслати",
+                    "upload" : "Завантажити",
+                    "register" : "Реєстрація",
+                    "registr" : "Зареєструватися",
+                    "forgot_passw" : "Забули пароль?",
+                    "list_of_articles" : "Список публікацій", 
+                    "publication" : "Публікація",
+                    "ban" : "Блокувати",
+                    "delete" : "Вилучити",
+                    "login" : "Логін",
+                    "logout" : "Вийти",
+                    "passw" : "Пароль",
+                    "create" : "Створити",
+                    "add_new_article" : "Додати нову статтю",
+                    "img" : "завантажити зображення",
+                    "doc" : "завантажити документ",
+                    "med" : "завантажити медіа",
+                    "select_file" : "Вибрати файл",
+                    "add_rubric" : "Додати рубрику  »",
+                    "thumb_proper" : "Особливості мініатюр зображень  »"
+                   },
+            "en" : {
+                    "edit" : "Edit",
+                    "save" : "Save",
+                    "_enter" : "Enter",
+                    "enter" : "Sign in",
+                    "send" : "Send",
+                    "upload" : "Upload",
+                    "register" : "Registration",
+                    "registr" : "Register",
+                    "forgot_passw" : "Forgot password?",
+                    "list_of_articles" : "List of Posts", 
+                    "publication" : "Publication",
+                    "ban" : "Ban",
+                    "delete" : "Remove",
+                    "login" : "Login",
+                    "logout" : "Logout",
+                    "passw" : "Password",
+                    "create" : "Create",
+                    "add_new_article" : "Add new article",
+                    "img" : "upload image",
+                    "doc" : "upload document",
+                    "med" : "upload media",
+                    "select_file" : "Choose file",
+                    "add_rubric" : "Add category  »",
+                    "thumb_proper" : "Featured Image Thumbnails  »"
+                   }
+            },
+"alert" :
+        {
+        "uk" : {
+                "invalid_login_or_passw" : "Неправильний логін або пароль",
+                "existing_login_or_passw" : "Такий логін або email вже існує",
+                "rubric_exist" : "Така рубрика вже існує",
+                "invalid_format" : "Неправильний формат",
+                "invalid_brand_format" : "Неправильний формат. Має бути '.PNG'",
+                "invalid_favicon_format" : "Неправильний формат. Має бути ",
+                "veryftext_not_entr" : "Підтверджувальний код не введений!",
+                "wrong_symbols_email" : "Неправильні символи в email!",
+                "not_allowed_characters_in_email" : "Неприпустимі символи в email",
+                "not_allowed_characters_in_login" : "Неприпустимі символи в login",
+                "too_few_chars_login" : "Занадто мало символів. Має бути щонайменше 4 символи",
+                "not_allowed_characters_in_passw" : "Неприпустимі символи в паролі",
+                "too_few_chars" : "Занадто мало символів. Має бути щонайменше 8 і щонайбільше 18 символів",
+                "too_much_chars" : "Занадто багато символів. Має бути щонайменше 8 і щонайбільше 18 символів",
+                "veryftext_wrong" : "Підтверджувальний текст неправильний",
+                "session_timeout" : "Час сесії минув",
+                "find_passw" : "Дивіться ваш Email, там має бути пароль",
+                "you_banned" : "Вам заборонено авторизуватися"
+               },
+        "en" : {
+                "invalid_login_or_passw" : "Incorrect login or password",
+                "existing_login_or_passw" : "This username or email already exists",
+                "rubric_exist" : "Such category already exists",
+                "invalid_format" : "Wrong format",
+                "invalid_brand_format" : "Wrong format. Must be '.PNG'",
+                "invalid_favicon_format" : "Wrong format. Must be ",
+                "veryftext_not_entr" : "Confirmation code not entered!",
+                "wrong_symbols_email" : "Wrong symbols in email!",
+                "not_allowed_characters_in_email" : "Not allowed characters in email",
+                "not_allowed_characters_in_login" : "Not allowed characters in login",
+                "too_few_chars_login" : "Too few characters. Requires a minimum of 4 characters",
+                "not_allowed_characters_in_passw" : "Not allowed characters in password",
+                "too_few_chars" : "Too few characters. Requires a minimum of 8 and a maximum of 18 characters",
+                "too_much_chars" : "Too much characters. Requires a minimum of 8 and a maximum of 18 characters",
+                "veryftext_wrong" : "Verified text is wrong",
+                "session_timeout" : "Session time is out",
+                "find_passw" : "Find password in your email",
+                "you_banned" : "You are under ban"
+               }
+        },
+"more_comments" : 
+    {
+    "uk": "Показати ще ", 
+    "en": "Show more "
+    },
+"press_indicat" :
+    {   
+    "no" :
+        {
+        "uk": "Приховано", 
+        "en": "Covered"
+        },
+    "yes" :
+        {
+        "uk": "", 
+        "en": ""
+        }
+},
+"time_ago_comment" :
+    {   
+    "less_sec" :
+        {
+        "uk": "Нещодавно ", 
+        "en": "right now "
+        },
+    "less_minute" :
+        {
+        "uk": "сек. тому ", 
+        "en": "sec. ago "
+        },
+    "less_hour" :
+        {
+        "uk": "хв. тому ", 
+        "en": "min. ago "
+        },
+    "less_day" :
+        {
+        "uk": "год. тому ", 
+        "en": "hours ago "
+        },
+    "less_month" :
+        {
+        "uk": "днів тому ", 
+        "en": "days ago "
+        }
+    }
+}

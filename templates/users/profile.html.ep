@@ -1,0 +1,70 @@
+% layout 'layout_admin';
+% use Mojo::Util qw(encode decode);
+% my($newsletter_checked);
+% my $admin_check = $self->sess_check->admin($self);
+
+% if( $admin_check ){
+<h3 style="color:#428BCA">
+<%= link_to $self->lang_config->{'labels'}->{$language}->{'masterroom'} => 'manager' %>
+</h3>
+% }
+
+<h3>
+<%= $self->lang_config->{'profile'}->{$language} %>
+</h3>
+
+<h3>
+<%= $self->session('client')->[1] %>
+</h3>
+
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+
+<div class="col-md-4" id="user_form">
+
+% $newsletter_checked = 'checked' if($content->{'newsletter'} eq 'yes');
+
+%= form_for '/user/profile' => (method => 'post') => begin
+% if ( $message ) {
+    <b style="color:red"><%== $message %></b><br>
+  % }
+<%= decode 'utf8', $body %>
+  
+<fieldset disabled>
+<%= $self->lang_config->{'buttons'}->{$language}->{'login'} %>: 
+<br>
+%= text_field 'login', class => 'form-control', value => $content->{'login'}
+<br>
+Email: 
+<br>
+%= text_field 'email', class => 'form-control', value => $content->{'email'}
+<br>
+</fieldset>
+<%= $self->lang_config->{'buttons'}->{$language}->{'passw'} %>: 
+<br>
+%= password_field 'pass', class => 'form-control', value => $content->{'pass'}
+<br>
+<input type="checkbox" name="newsletter" value="yes" <%= $newsletter_checked %>> <%= $self->lang_config->{subscribe_newsletter}->{$language} %>  
+<br><br>
+%= hidden_field 'redirect_to' => $redirect_to
+%= hidden_field 'id' => $content->{'id'}
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'save'} , name => 'edit', class => 'btn btn-primary'
+
+% end
+
+</div>
+<div class="col-md-4" style="background-color:#F3F3F3; border: 1px solid gray; border-radius:3px; padding:10px; margin:20px">
+<b>
+<a href="/user.menu_manage" class="breadcr_href">
+<h2><%= $self->lang_config->{'editing'}->{$language} %></h2>
+(<%= $self->lang_config->{'editing_explain'}->{$language} %>)
+</a>
+</b>
+</div>
+<div class="col-md-2"></div>
+
+</div>
+
+</div>

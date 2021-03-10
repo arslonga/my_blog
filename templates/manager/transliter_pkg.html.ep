@@ -1,0 +1,18 @@
+package Transliter;
+use Mojo::Base 'Mojolicious::Controller';
+
+#---------------------------
+sub transliter {
+#---------------------------
+my $self = shift;
+my $arg;
+
+if(@_){ ($arg) = @_; }
+
+$arg = lc $arg;
+$arg =~ tr/<%= $local_symb %>/<%= $latin_symb %>/;
+$arg =~ s/[\W]+/\_/g;
+
+return $arg;
+}#----------------
+1;

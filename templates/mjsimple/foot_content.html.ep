@@ -1,0 +1,7 @@
+% use Mojo::Util qw(decode);
+% my $file_foot_content;
+% eval{
+% $file_foot_content = $self->slurp( $self->top_config->{'foot_file'} );
+% };
+
+%== decode('utf8', $file_foot_content)

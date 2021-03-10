@@ -1,0 +1,127 @@
+% layout 'layout_admin';
+% my $height_select;
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+%= link_to $head => '/logo.manage'
+</h3>
+<hr>
+
+<h3>
+%= $self->lang_config->{$exist_logo_type}->{$language}
+%= link_to ' ['.$self->lang_config->{'preview'}->{$language}.']' => '/', target => 'blank'
+</h3>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8 form-group" style="text-align:left">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+    <h4><b><%= $self->lang_config->{fit_to_height}->{$language} %></b></h4>
+    % $height_select = '<select class="form-control" name="height_fit">'."\n";
+    
+    </div>
+  </div>
+  <hr size="2">
+<% foreach my $slide(@$slides_ref){ %>
+<div class="row">
+<div class="col-sm-9"><img class="img-responsive" src="<%= '/'.$slides_image_path.'/'.$slide->{image_file} %>" width="500" height="150"></div> 
+<div class="col-sm-2">
+<%= $self->lang_config->{queue}->{$language} %>: <b style="color:green" id="que<%= $slide->{id} %>"><%= $slide->{queue} %></b>
+<%== MyBlog::Tag->carousel_queue($self, $language, $slideshow_table, $slide->{queue}, $slide->{id}); %>
+<script>
+function queueChange<%= $slide->{id} %>(slideId, Lang){
+  var queue = document.getElementById("queue" + slideId).value;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      window.location.replace("logo.set_slideshow?language="+ Lang);
+    }
+  };
+  xhttp.open("GET", "/logo.set_slideshow?slide_id=" + slideId + '&req=queue&queue=' + queue + '&language='+ Lang, true);
+  xhttp.send();
+}
+</script>
+
+</div>
+</div>
+%= form_for 'logo.set_slideshow' =>(enctype => 'multipart/form-data', method => 'post') => begin
+Change image:
+<input type="hidden" name="language" value="<%= $language %>">
+<input type="hidden" name="image_id" value="<%= $slide->{id} %>">
+<div class="row">
+<div class="col-sm-8">
+%= file_field 'slide_img', class => 'filestyle', 'data-icon' => 'false', 'data-size' => 'sm', 'data-buttonText' => $self->lang_config->{'buttons'}->{$language}->{'select_file'} 
+</div>
+<div class="col-sm-3">
+<input type="submit" style="margin-bottom:4px" name="upload_slide" id="upload_button" class="btn btn-primary" value="<%= $self->lang_config->{'buttons'}->{$language}->{'upload'} %>">
+<input type="submit" name="del_slide" id="upload_button" class="btn btn-danger" value="<%= $self->lang_config->{'buttons'}->{$language}->{'delete'} %>"></div>
+</div>
+% end
+<hr style="color:gray; height:2px; background-color:gray">
+<% } %>
+</div>
+</div>
+</div>
+
+<p id="demo"></p>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8" style="text-align:left">
+
+%= form_for 'logo.set_slideshow' =>(enctype => 'multipart/form-data', method => 'post') => begin
+<input type="hidden" name="language" value="<TMPL_VAR NAME = LANG>">
+%= hidden_field language => $language
+<div class="form-group">
+
+<label for="data_interval" class="col-sm-6 control-label" style="text-align:right">
+<%= $self->lang_config->{'labels'}->{$language}->{'data_interval'} %>
+</label>
+<div class="col-md-2">
+<select class="form-control" id="data_interval" name="data_interval">
+<% my $selected = ""; %>
+<% foreach my $item(@$data_interval_ref){ %>
+<%    if($item eq $data_interval_exist){ %>
+<%        $selected = ' selected'; %>
+<%    } %>
+<option value="<%= $item %>"<%=$selected %>> <%= $item %>
+<% $selected = ""; %>
+<% } %>
+</select>
+</div>
+<br><br>
+
+</div>
+<div class="form-group">
+<label for="transition_duration" class="col-sm-6 control-label" style="text-align:right">
+<%= $self->lang_config->{'labels'}->{$language}->{'transition_duration'} %>
+</label>
+<div class="col-md-2">
+<select class="form-control" id="transition_duration" name="transition_duration">
+<% my $selctd = ""; %>
+<% foreach my $td(@$transition_duration_ref){ %>
+<%    if($td eq $transition_duration_exist){ %>
+<%        $selctd = ' selected'; %>
+<%    } %>
+<option value="<%= $td %>"<%=$selctd %>> <%= $td %>
+<% $selctd = ""; %>
+<% } %>
+</select>
+</div>
+<br><br>
+</div>
+
+%= file_field 'new_slide', class => 'filestyle', 'data-icon' => 'false', 'data-size' => 'sm', 'data-buttonText' => $self->lang_config->{'buttons'}->{$language}->{'select_file'} 
+<div class="form-group" style="text-align:center">
+<br>
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'set_type', id => 'upload_button'
+</div>
+% end
+
+</div>
+
+<div class="col-md-2"></div>
+</div>

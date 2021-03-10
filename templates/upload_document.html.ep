@@ -1,0 +1,118 @@
+% layout 'layout_admin';
+% my $action = 'decode_'.$self->db_driver;
+% my $admin_check = $self->sess_check->admin($self);
+% my $client_id;
+% eval{ $client_id = $self->session('client')->[0]; };
+% my $client_check = $self->sess_check->client( $self, $client_id );
+
+% if( $admin_check ){
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+% }
+
+<div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        % if( $admin_check ){
+            <p class="mr_menu_item">
+            <a href="/menu_manage">Menu</a>
+            </p>
+        % }elsif( $client_check ){
+            <h3>
+            <b><%= $self->session('client')->[1] %></b>
+            </h3>
+        % }
+        </div>
+        <div class="col-md-4"></div>
+</div>
+<!--------------------------------------------->
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+% my $form_act = '/article_manage' if( $admin_check );
+% $form_act = '/user.article_manage' if( $client_check && !$admin_check );
+%= form_for $form_act => begin
+%= hidden_field title_alias => $title_alias
+%= hidden_field id => $id
+%= submit_button $self->$action( $head ), name => 'go_article', id => 'go_article'
+% end
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!--------------------------------------------->
+
+<hr>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+    
+% my $enable_formats = '('.join(', ', @{$self->$valid_format_func}).')';
+
+% my $form_action = '/upload_document' if( $admin_check );
+% $form_action = '/user.upload_document' if( $client_check && !$admin_check );
+
+%= form_for $form_action => (enctype => 'multipart/form-data', method => 'post') => begin
+<%= ${lang_config->{'upload_items'}->{$language}}{'doc'} %> <b><%= $enable_formats %></b>:
+<br><br>
+<b style="color:red"><%= $empty_form_message %></b>
+<br>
+<input type="checkbox" id="change_filename" name="change_filename">
+<label for="change_filename"> <%= $self->lang_config->{'not_change_filename'}->{$language} %></label><br>
+
+<b style="color:red"><%= $c_err %></b>
+%= file_field 'c', class => 'filestyle', 'data-icon' => 'false', 'data-size' => 'sm', 'data-buttonText' => $self->lang_config->{'buttons'}->{$language}->{'select_file'} 
+<div class="form-group">
+<label for="alt_text" class="col-sm-1 control-label" style="text-align:right">Alt: </label>
+<%= text_field 'c_alt', id => 'alt_text', class => 'form-control' %>
+</div>
+<b style="color:red"><%= $d_err %></b><br>
+%= file_field 'd', class => 'filestyle', 'data-icon' => 'false', 'data-size' => 'sm', 'data-buttonText' => $self->lang_config->{'buttons'}->{$language}->{'select_file'}
+<div class="form-group">
+<label for="alt_text" class="col-sm-1 control-label" style="text-align:right">Alt: </label>
+<%= text_field 'd_alt', id => 'alt_text', class => 'form-control' %>
+</div>
+<b style="color:red"><%= $e_err %></b><br> 
+%= file_field 'e', class => 'filestyle', 'data-icon' => 'false', 'data-size' => 'sm', 'data-buttonText' => $self->lang_config->{'buttons'}->{$language}->{'select_file'}
+<div class="form-group">
+<label for="alt_text" class="col-sm-1 control-label" style="text-align:right">Alt: </label>
+<%= text_field 'e_alt', id => 'alt_text', class => 'form-control' %>
+</div>
+<b style="color:red"><%= $f_err %></b><br>
+%= file_field 'f', class => 'filestyle', 'data-icon' => 'false', 'data-size' => 'sm', 'data-buttonText' => $self->lang_config->{'buttons'}->{$language}->{'select_file'} 
+<div class="form-group">
+<label for="alt_text" class="col-sm-1 control-label" style="text-align:right">Alt: </label>
+<%= text_field 'f_alt', id => 'alt_text', class => 'form-control' %>
+</div>
+
+%= hidden_field redirect_to => $redirect_to
+%= hidden_field title_alias => $title_alias
+%= hidden_field request => $request
+%= hidden_field id => $id
+%= hidden_field valid_format_func => $valid_format_func
+%= hidden_field template_for_upload => $template_for_upload
+%= hidden_field path_for_upload => $path_for_upload
+<br>
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{doc}, class => 'btn btn-primary', name => 'upload', id => 'upload_button'
+%= submit_button $self->lang_config->{'reset'}->{$language}, class => 'btn btn-warning'
+% end
+    </div>
+    <div class="col-md-3"></div>
+    </div>
+    
+% my $form_action2 = '/document_library' if($admin_check);
+% $form_action2 = '/user.document_library' if( $client_check && !$admin_check );
+
+%= form_for $form_action2 => (enctype => 'multipart/form-data', method => 'post') => begin
+%= hidden_field redirect_to => $redirect_to
+%= hidden_field title_alias => $title_alias
+%= hidden_field page_id => $id
+%= hidden_field valid_format_func => $valid_format_func
+%= hidden_field template_for_upload => $template_for_upload
+%= hidden_field path_for_upload => $path_for_upload
+<br>
+%= submit_button $self->lang_config->{'document_library'}->{$language}, class => 'btn btn-info', name => 'add', id => 'upload_button'
+% end
+
+</div>

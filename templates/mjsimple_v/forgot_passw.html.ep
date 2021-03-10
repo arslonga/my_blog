@@ -1,0 +1,26 @@
+% layout lc($self->template).'/bootstrap_serv';
+
+
+<div class="row">
+  <div class="col-sm-12" id="articl_box">
+<div class="col-sm-2"></div>
+<div class="col-sm-8" id="serv_block">
+    <h4><%= $self->lang_config->{'remind_password_form'}->{$language} %></h4>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6" id="serv_block">
+%= form_for 'forgot-passw' => (method => 'post') => begin
+%= hidden_field 'redirect_to' => $redirect_to
+<h4 id="delete_chbox"><%= $message %></h4>
+%= text_field 'email', class => 'form-control input-sm', id => 'auth_form'
+<br>
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'send'}, name => 'send', class => 'btn btn-primary btn-lg', id => 'enter_button'
+<br><br>
+% end
+
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+<div class="col-sm-2"></div>
+    
+  </div>
+</div>

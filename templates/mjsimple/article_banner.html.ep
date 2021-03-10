@@ -1,0 +1,4 @@
+% use Mojo::Util qw(decode);
+% my $template = $self->template;
+% my $inclusion_code = decode('utf8', $self->slurp( 'conf/'.$template.'/article_banner' ));
+%== $inclusion_code

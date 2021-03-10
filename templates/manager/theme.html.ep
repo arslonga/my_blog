@@ -1,0 +1,45 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+<hr>
+
+<div class="row">
+<div class="col-md-5"></div>
+<div class="col-md-4" style="text-align:left">
+
+%= form_for 'theme_manage' => (method => 'post') => begin
+
+% my $i = 1;
+% foreach my $item( @{$self->top_config->{'css_theme_list'}} ){
+% my $checked_attr = 'checked' if($item eq $current_theme);
+
+<div class="radio">
+  <label>
+    <input type="radio" name="theme" id="logo_type<%= $i %>" value="<%= $item %>" <%= $checked_attr %>>
+    <span style="background-color:<%= $self->top_config->{theme_colors}->{$item} %>; border-style:solid; border-width:1px; padding-top:3px; padding-bottom:2px; padding-left:80px; padding-right:0px; text-align:left"> </span>&nbsp;&nbsp;&nbsp;
+    <%= $self->lang_config->{$item}->{$self->language} %> [ <%= $self->top_config->{theme_colors}->{$item} %> ]
+  </label>
+</div>
+% $checked_attr = "";
+% $i++;
+% }
+<br>
+<div class="form-group" style="text-align:left">
+%= submit_button $self->lang_config->{'set'}->{$self->language}, class => 'btn btn-primary', name => 'set_theme', id => 'upload_button'
+</div>
+
+% end
+
+</div>
+
+<div class="col-md-3"></div>
+
+</div>
+
+</div>

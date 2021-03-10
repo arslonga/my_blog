@@ -1,0 +1,64 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+% if($file_content){
+    <h3>
+    %= link_to $head => '/msg.manage'
+    </h3>
+    <h4>
+    %= $self->lang_config->{'msg_manage'}->{$language}->{$message}.' ('.$message.')'
+    </h4>
+% }else{
+<h3>
+<%= $head %>
+</h3>
+% }
+<hr>
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
+%#= ########################################################
+% if($self->param('message')){
+    <div style="float:right">
+    <button type="button" class="btn btn-default btn-md" data-container="body" 
+    data-toggle="popover" data-placement="bottom" 
+    data-content="<%= $self->lang_config->{'message_code_explain'}->{$language} %>
+    <br>
+    " 
+    data-html="true">
+    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+    </button>
+    </div>
+    <br><br>
+% }
+%#= ########################################################
+
+% if($file_content){
+%= form_for '/msg.manage' => (method => 'post') => begin
+%= text_area 'content' => $file_content, class => 'form-control', rows => 5, cols => 130, wrap => 'hard', id => 'textar'
+%= hidden_field 'message' => $message
+<br>
+%= submit_button $self->lang_config->{'save'}->{$language}, name => 'go', class => 'btn btn-primary'
+% end
+% }
+
+% foreach my $file(@$msg_files){
+    %= form_for '/msg.manage' => (method => 'post') => begin
+    %= hidden_field 'message' => $file
+    %= submit_button $self->lang_config->{'msg_manage'}->{$language}->{$file} , name => 'set_format', class => 'btn btn-default'
+    % end
+    
+    <hr>
+% }
+
+</div>
+
+<div class="col-md-1"></div>
+
+</div>
+</div>

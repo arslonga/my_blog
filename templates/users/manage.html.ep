@@ -1,0 +1,41 @@
+% layout 'layout_admin';
+% my $table_users = $self->top_config->{'table'}->{'users'};
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+    <table class="table table-striped">
+    <tr><th>ID</th>
+        <th>nickname</th>
+        <th>editing priority</th>
+        % foreach my $item( @$content ){
+            % my $ban = $self->ban_status( $table_users, $item->{id} );
+            <tr align="left"><td><%= $item->{id} %></td>
+            <td>
+            %= form_for 'user.properties' => (method => 'post') => begin
+            %= hidden_field id => $item->{id}
+            %= submit_button $item->{login}, class => 'btn btn-default', name => 'user_properties', id => 'upload_button'
+            <span style="color: red"> <%= $self->lang_config->{$ban}->{$language} %></span>
+            % end
+            </td>
+            % $item->{edit_priority} =~ s/\|/ \| /g;
+           <td><%= $item->{edit_priority} %></td> 
+        % }
+    </table>
+
+</div>
+
+<div class="col-md-2"></div>
+
+</div>
+
+</div>

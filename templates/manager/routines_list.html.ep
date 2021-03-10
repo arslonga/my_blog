@@ -1,0 +1,50 @@
+% layout 'layout_admin';
+% use Mojo::Util qw(decode);
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+%= link_to $self->lang_config->{'continue'}->{$language} => 'manager'
+<hr>
+
+<div class="row">
+<div class="col-sm-12" style="text-align:left">
+
+% foreach my $routine(@$routines){
+<div class="row">
+  <div class="col-sm-12">
+    <div class="col-sm-6">
+    %= image '/img/'.$routine.'.jpg', vspace => '4px', hspace => '10px', class => 'img-thumbnail img-responsive', style => 'border-color: silver'
+    </div>
+    <div class="col-sm-6">
+    <br>
+    <b><%= $routine %> 
+    % if ($routine eq $active_routine){
+        (<b style="color:blue">active</b>)
+    % }
+    </b>
+    <br>
+    %= form_for 'routines' => (method => 'post') => begin
+    % my $routine_descr = $self->slurp('conf/'.$routine.'/'.$language.'/description');
+    %== decode('utf8', $routine_descr)
+    %= hidden_field 'routine' => $routine
+    % if($routine ne $active_routine){
+    <br><br>
+    %= submit_button $self->lang_config->{'set'}->{$language}, name => 'set_routine', class => 'btn btn-primary', id => 'upload_button'
+    % }
+    % end
+    
+    </div>    
+  </div>
+</div>
+<hr style="border-top: 1px solid gray">
+% }
+
+</div>
+</div>
+
+</div>

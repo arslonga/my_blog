@@ -1,0 +1,25 @@
+% use Mojo::Util qw(encode decode);
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title><%= $title %></title>
+    <link><%= $link %></link>
+    <description><%= $description %></description>
+    <language><%= $language %></language>
+    <lastBuildDate><%= $lastBuildDate %></lastBuildDate>
+    <atom:link href="<%= $self->protocol.'://'.$self->req->headers->host %>/articles-feed" rel="self" type="application/rss+xml" />
+    <webMaster><%= $webMaster %></webMaster>
+    % my %date_Data_hash = %{$date_Data_hash};
+    % my $i = 1;
+    % foreach my $key(reverse sort keys %date_Data_hash){
+    % last if $i > $list_number;
+      <item>
+        <title><%= $date_Data_hash{$key}->{'head'} %></title>
+        <link><%= $self->protocol.'://'.$self->req->headers->host.$date_Data_hash{$key}->{'url'} %></link>
+        <description><%= $date_Data_hash{$key}->{'announce'} %></description>
+        <guid isPermaLink="false"><%= $date_Data_hash{$key}->{'url'} %></guid>
+        <pubDate><%= Mojo::Date->new( $date_Data_hash{$key}->{'curr_date'} ) %></pubDate>
+      </item>
+    % }
+  </channel>
+</rss>

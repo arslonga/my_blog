@@ -1,0 +1,64 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $self->lang_config->{labels}->{$language}->{masterroom} => 'manager' %>
+</h3>
+
+<div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <p class="mr_menu_item">
+            <a href="/menu_manage">Menu</a>
+            </p>
+        </div>
+        <div class="col-md-4"></div>
+</div>
+<hr>
+<!--------------------------------------------->
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+%= form_for "/article_manage" => begin
+%= hidden_field title_alias => $title_alias
+%= hidden_field id => $id
+%= submit_button $head, name => 'go_article', id => 'go_article'
+% end
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!--------------------------------------------->
+
+<hr>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+    
+    <%= $self->lang_config->{'labels'}->{$language}->{'thumb_kind'} %>:
+    <br><br>
+    %= form_for "/thumb_img" => (method => 'post') => begin
+    % foreach my $item(@{$styles_list}){
+    % my $checked;
+        % if($item eq $exist_style){
+        %   $checked = 'checked';
+        % }
+    %    my $bg = (split(/\-/, $item))[1];
+    <div class="center-block" style="background-image: url(/img/<%= $bg %>.png); background-repeat: no-repeat; width:140px; height: 140px">
+    <br>
+    <%= $bg %>
+    <br>
+    <input type="radio" name="thumb_img_style" value="<%= $item %>" <%= $checked %>>
+    
+    </div>
+    <br>
+    % }
+    %= hidden_field title_alias => $title_alias
+    %= hidden_field id => $id
+    %= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary btn-sm', name => 'set_style'
+    % end
+ 
+    </div>
+    <div class="col-md-3"></div>
+    </div>
+
+</div>

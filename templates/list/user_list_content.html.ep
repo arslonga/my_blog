@@ -1,0 +1,68 @@
+% layout 'layout_admin';
+% my $action = 'decode_'.$self->db_driver;
+<div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        <h3>
+        <b><%= $client->[1] %></b>
+        </h3>
+        <p class="mr_menu_item">
+            %= link_to $self->lang_config->{'chapter_list'}->{$language} => '/user.menu_manage'
+        </p>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+  <h2><%= $self->param('title') %></h2>
+<hr>
+  
+%= form_for "/user_list_content_manage" => (class => 'form-horizontal') => begin
+<div class="form-group">
+    <div class="col-sm-1">
+        <%= $self->lang_config->{'labels'}->{$language}->{'head'} %>:
+    </div>
+
+    <div class="col-md-4">
+        <input class="form-control" type="text" name="head">
+        <br>
+    </div>
+    <span data-alertid="example"></span>
+    
+    <div class="col-sm-2 text-center">
+        <input type="submit" class="btn btn-primary" name="add" value="<%= $self->lang_config->{'buttons'}->{$language}->{'add_new_article'} %>">
+    </div>
+</div>
+%= hidden_field 'title_alias' => $title_alias
+%= hidden_field 'title' => $self->param('title')
+%= hidden_field 'user_id' => $user_id
+% end
+  
+<hr>
+    <div class="row" id="list_articles">
+        <div class="col-md-8">
+        
+        % foreach my $item(@$data_ref){
+<div class="row" style="text-align:left">
+%= form_for "/user.article_manage" => begin
+%= hidden_field 'user_id' => $user_id
+%= hidden_field level_id => $item->{'level_id'}
+%= hidden_field level => $item->{'level'}
+%= hidden_field title_alias => $self->param('title_alias')
+%= hidden_field id => $item->{'id'}
+%= hidden_field template => $item->{'template'}
+%= $item->{'curr_date'} 
+%= submit_button $self->$action( $item->{'head'} ), name => 'go_article', id => 'go_article'
+<br>
+% if( $item->{'lead_img'} ){
+<img src="/illustration/lid_<%= $item->{'lead_img'} %>" vspace="2" hspace="4" align="left" alt="" class="<%= $self->thumb_img_style %>">
+% }
+%== $self->$action( $item->{'announce'} )
+% end
+
+</div>
+            <hr>    
+        % }
+        
+        </div>
+    </div>
+</div>

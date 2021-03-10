@@ -1,0 +1,36 @@
+% layout 'bootstrap';
+
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4 text-center">
+<h2><%= $self->db_driver %></h2>
+
+<hr>
+
+%= form_for 'admin' => (method => 'post') => begin
+<br>
+<h3 style="color:#428BCA"><%= $title %></h3><br>
+% if ( $message ) {
+    <b style="color:red"><%== $message %></b><br>
+    % if($db_err){
+        %= link_to $self->lang_config->{'labels'}->{$self->language}->{'try_again'} => 'dbaccess'
+    % }
+    <br><br>
+  % }
+<%= $self->lang_config->{'buttons'}->{$self->language}->{'login'} %>: 
+<br>
+%= text_field 'login', class => 'form-control', size => 10
+<br>
+<%= $self->lang_config->{'buttons'}->{$self->language}->{'passw'} %>:
+<br>
+%= password_field 'pass', class => 'form-control', size => 10
+<br>
+<br>
+%= submit_button $self->lang_config->{'buttons'}->{$self->language}->{'enter'}, name => 'enter', class => 'btn btn-default'
+%= input_tag 'reset', type => 'reset', value => $self->lang_config->{'reset'}->{$self->language}, class => 'btn btn-warning'
+% end
+</div>
+<div class="col-md-4"></div>
+</div>
+</div>
+<hr>

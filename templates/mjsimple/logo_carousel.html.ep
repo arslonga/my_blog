@@ -1,0 +1,14 @@
+<% my $img_path; my $item_status = 'item'; %>
+<div id="myCarousel" class="carousel slide carousel-fade logo-carousel" data-interval="<%= $data_interval %>" data-ride="carousel">
+  <div class="carousel-inner">
+% my $i = 1; 
+% foreach my $img(@$slides_arr){ 
+%    $item_status = 'active item' if($i == 1);
+    <div class="<%= $item_status %>">
+      <img style="width:100%" src="<%= '/'.$slides_image_path.'/'.$img %>">
+    </div>
+% $item_status = 'item'; 
+% $i++; 
+% }
+  </div>
+</div>

@@ -1,0 +1,1 @@
+<link rel="shortcut icon" href="data:image/<%= $self->serve->favicon_mime( $extension ) %>; base64, <%= $favicon_data %>" title="MornCat">

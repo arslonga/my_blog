@@ -1,0 +1,38 @@
+% $self->req->url;
+% my $admlink;
+% my $admin_check = $self->sess_check->admin($self);
+% my $client_id;
+% eval{ $client_id = $self->session('client')->[0]; };
+% my $client_check = $self->sess_check->client( $self, $client_id );
+
+% if( $self->authorize_enable eq 'yes'){
+% if( $client_check ){
+<span> 
+<%= link_to '/user/profile?redirect_to='.$self->req->url => begin %>
+<span class="login_auth"><%= $self->session('client')->[1] %></span>
+<% end %>
+</span> 
+<span>
+<a href="/user/profile?redirect_to=<%= $self->req->url %>&id=<%= $self->session('client')->[0] %>&exit=1">
+  <span class="glyphicon glyphicon-log-out profile" title="Exit"></span>
+</a>
+</span>
+% }
+% else{
+<span>
+<%= link_to '/authentication?redirect_to='.$self->req->url => begin %>
+<span class="signin"><%= lc( $self->lang_config->{'sign_in'}->{$language} ) %></span>
+<% end %> 
+</span>
+% }
+% }
+<span class="searcn-icon-container">
+<span class="glyphicon glyphicon-search search-icon"></span>
+</span>
+% if( $admin_check ){
+<span>
+<a class="admlink" href="/manager">
+   <span class="glyphicon glyphicon-cog" title="Admin"></span>
+</a>
+</span>
+% }

@@ -1,0 +1,56 @@
+% layout 'layout_admin';
+% use Mojo::Util qw(encode decode);
+% my $showed_status;
+% my $action = 'decode_'.$self->db_driver;
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+<br>
+<h4><%= link_to uc($self->lang_config->{'list'}->{$language}) => '/users.manage' %></h4>
+
+<h3>
+<%= link_to $title => '/user.properties?id='.$id %> <span style="color: red"> <%= $self->lang_config->{$ban}->{$language} %></span>
+</h3>
+
+<h3>
+<%= $self->lang_config->{'comments_of_user'}->{$language} %>
+</h3>
+
+<hr>
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-11" id="comments_list">
+<span style="display: inline-block; font-weight: bold; width: 50px"> ID</span>
+<span class="link_button" style="padding-left: 50px; color: #000; border-color: #000; font-weight: bold"> COMMENT LINK </span>
+<hr>
+
+% foreach my $head(@{$page_head}){
+        <a href="<%= $head->{'url'} %>"><h3><%= $self->$action( $head->{'page_head'} ) %></h3></a>
+        % foreach my $comment(@{$head->{'comments'}}){
+        % my $press_indicat = $comment->{'press_indicat'};
+        % if( !$press_indicat || $press_indicat eq 'no' ){
+        %   $press_indicat = 'no';
+        % }
+        %   $showed_status = $self->lang_config->{'press_indicat'}->{$press_indicat}->{$language};
+        % my $annotation = substr($comment->{'comment'}, 0, 120);
+        % $annotation = $self->$action( $annotation );
+            <span class="date_post" style="display: inline-block; margin-left: 54px"><%= substr( $comment->{'curr_date'}, 0, 10 ) %></span>
+            <br>
+            <span>
+            <span style="display: inline-block; font-weight: bold; width: 50px"><%= $comment->{'id'} %>
+            </span> <%= link_to $annotation.'...>>' => '/user.comment?id='.$comment->{'id'}.'&user_id='.$id, class => 'link_button' %> 
+            <span style="color: red"><%= $showed_status %></span>           
+            </span>
+            <hr>
+        % }
+     % }
+
+</div>
+
+<!--<div class="col-md-1"></div>-->
+
+</div>
+
+</div>

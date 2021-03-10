@@ -1,0 +1,11 @@
+or the sample below:<br>
+===========================
+<textarea class="form-control" style="border-width:0px" cols="70" rows="8" wrap="hard">
+<meta name="twitter:site" content="@USERNAME">
+<meta name="twitter:creator" content="@USERNAME">
+<meta property="og:type" content="TYPE OF CONTENT"> 
+<meta property="og:url" content="PERMALINK">
+<meta property="og:title" content="TITLE OF YOUR POST OR PAGE">
+<meta property="og:image" content="LINK TO THE IMAGE FILE"><br>
+<meta property="og:description" content="DESCRIPTION OF PAGE CONTENT">
+</textarea>

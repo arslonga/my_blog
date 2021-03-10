@@ -1,0 +1,21 @@
+-m
+
+log/**
+conf/*
+public/*
+templates/mjsimple/head
+templates/mjsimple_v/head
+templates/mjsimple/sitemap.html.ep
+templates/mjsimple_v/sitemap.html.ep
+
+!*.json
+!*.js
+!*.css
+
+## To add files needed in repository but ignored with this file (.gitignore) use follow commands
+
+# git add --force conf/Mjsimple/top_conf.json conf/Mjsimple_v/top_conf.json public/js/lang_features.json
+
+# git add --force public/js/admin.js public/js/morncat.js public/js/mjsimple/morncat.js public/js/mjsimple_v/morncat.js
+
+# git add --force public/css/main.css public/css/mjsimple/main.css public/css/mjsimple_v/main.css

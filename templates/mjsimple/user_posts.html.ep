@@ -1,0 +1,19 @@
+% layout lc($self->template).'/other';
+% my $action = 'decode_'.$self->db_driver;
+    <div class="col-md-12" id="articl_box">
+    
+     <a class="breadcr_href" href="/view.user?id=<%= $user_id %>"><%= $self->lang_config->{'comments_of_user'}->{$language} %> <span class="glyphicon glyphicon-arrow-right"></span></a>
+     <h4><%= $user_name %> (<%= lc($self->lang_config->{'posts'}->{$language}) %>)</h4>
+     <hr>
+     % foreach my $table_name(sort keys %$tab_name_posts){
+        % foreach my $item(@{$$tab_name_posts{$table_name}}){
+        <span class="date_post"><%= substr( $item->[1], 0, 10 ) %></span>
+            <br>
+            <a href="<%= $item->[4] %>">
+            <h3 class="titl"><%= $self->$action( $item->[2] ) || $item->[2] %></h3>
+            </a>
+            <%== $self->$action( $item->[3] ) || $item->[3] %>
+            <hr>
+        % }
+     % }
+    </div>

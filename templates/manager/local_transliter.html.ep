@@ -1,0 +1,72 @@
+% use Locale::Codes::Language;
+% layout 'layout_admin';
+% my $lng_name;
+% my $selected = '';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+
+<hr>
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-2 text-left">
+
+%= form_for 'local_transliter' => (method => 'post', id => 'transl_form') => begin
+<div class="row">
+<div class="col-sm-12">
+<h4>Select language for site</h4>
+<select class="form-control" name="sitelang">
+% foreach my $lng_code( @$lng_codes ){
+    % if( $lng_code eq $site_lang ){ $selected = 'selected' }
+    % $lng_name = code2language($lng_code);  
+    <option value="<%= $lng_code %>" <%= $selected %>> <%= $lng_code %> [ <%= $lng_name %> ] </option>
+    % $selected = '';
+% }
+</select>
+
+Edit character pairs and click <span style="font-family: 'Courier New'; font-weight: bold; font-size: 18px">'Set'</span> button:<br>
+</div>
+</div>
+<table>
+  <caption style="text-align:left; padding:4px; font-family: Courier; font-weight:bold; font-size:18px">
+  <span class="lng-left"><%= uc( $language ) %></span> : EN</caption>
+    <tr>
+    <td>
+    <div class="form-group">
+    <%= text_area 'local_transliter_code' => $exist_local_transliter_code, class => 'form-control', 
+    wrap => 'hard', style => 'font-family: Courier; font-weight:bold; font-size:18px', 
+    rows => 40, cols => 7, id => 'textar' %>
+    </div>
+    </td>
+</table>
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'set', id => 'upload_button'
+% end
+</div>
+<script>
+function selectLang(event){
+  //console.log(event.target.value);
+  leftCaption.innerHTML = event.target.value.toUpperCase();
+  form.append
+}
+document.addEventListener('change', selectLang);
+let form = document.getElementById('transl_form');
+let leftCaption = form.querySelector('.lng-left');
+//console.log(leftCaption.textContent);
+</script>
+<br>
+<br>
+<div class="col-md-9">
+<%= text_area 'package_code' => $package_code, readonly => 1, class => 'form-control', 
+'data-icon' => 'false', wrap => 'hard', style => 'font-family: Courier; font-size:12px', 
+rows => 24, cols => 80, id => 'pkg' %>
+</div>
+
+</div>
+
+</div>

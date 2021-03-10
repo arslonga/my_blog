@@ -1,0 +1,7 @@
+% my $action = 'decode_'.$self->db_driver;
+% my $file_foot_content;
+% eval{
+% $file_foot_content = $self->slurp( $self->top_config->{'foot_file'} );
+% };
+
+%== $self->$action( $file_foot_content )

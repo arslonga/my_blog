@@ -1,0 +1,57 @@
+% layout 'bootstrap';
+% my $name_param = (split(/\|/, $added_param))[0];
+% my $value_param = (split(/\|/, $added_param))[1];
+
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4 text-center">
+<h2><%= $self->db_driver %></h2>
+<form action="/dbdriver" method="post">
+<input type="hidden" name="request" value="change_db">
+<input type="submit" name="set_new_db" id="forgotn_button" value="<%= $self->lang_config->{'change_db'}->{$self->language} %>">
+</form>
+<hr>
+% if( $checking_reconf ){
+<form action="/access" method="post">
+%= hidden_field 'change_access' => 'jolimocious'
+<p>  
+%= submit_button $self->lang_config->{'change_access'}->{$self->language}, name => 'go_access', class => 'btn btn-info'
+</p>
+</form>        
+</div>
+<div class="col-md-4"></div>
+</div>        
+% }else{
+<%== $explain_ab_restart %>
+%= form_for 'dbaccess' => (method => 'post') => begin
+<br>
+<h3 style="color:#428BCA"><%= $title %></h3><br>
+% if ( $message ) {
+    <h3 style="color:#428BCA"><%== $message %></h3><br>
+  % }
+host: 
+<br>
+%= text_field 'host' => $host_name, class => 'form-control', size => 25
+<br>
+DB_name: 
+<br>
+%= text_field 'dbname', class => 'form-control', size => 25
+<br>
+User: 
+<br>
+%= text_field 'user', class => 'form-control', size => 25
+<br>
+<input type="hidden" name="<%= $name_param %>" value="<%= $value_param %>">
+Password: 
+<br>
+%= password_field 'pass', class => 'form-control', size => 25
+<br>
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'create'}, name => 'dbaccess', class => 'btn btn-default'
+%= input_tag 'reset', type => 'reset', value => $self->lang_config->{'reset'}->{$language}, class => 'btn btn-warning'
+% end
+</div>
+<div class="col-md-4"></div>
+</div>
+% }
+</div>
+<hr>

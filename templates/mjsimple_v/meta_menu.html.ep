@@ -1,0 +1,15 @@
+% my $of_publ_frase = $self->lang_config->{'of_posts'}->{$language};
+% my $of_comment_frase = $self->lang_config->{'of_comments'}->{$language};
+<h4 class="head_right" id="header"><%= uc($self->lang_config->{'meta'}->{$language}) %></h4>
+<div class="row">
+<div class="col-sm-12">
+<a href="/articles-feed"><img src="<%= $self->protocol.'://'.$self->req->headers->host %>/img/<%= $self->slurp( $self->top_config->{'css_theme_file'} ) %>/rss_icon.png" vspace="4"> &nbsp;<%= $of_publ_frase %></a>
+</div>
+</div>
+% if( $self->authorize_enable eq 'yes' ){
+<div class="row">
+<div class="col-sm-12">
+<a href="/comments-feed"><img src="<%= $self->protocol.'://'.$self->req->headers->host %>/img/<%= $self->slurp( $self->top_config->{'css_theme_file'} ) %>/rss_icon.png" vspace="4"> &nbsp;<%= $of_comment_frase %></a>
+</div>
+</div>
+% }

@@ -1,0 +1,48 @@
+% layout 'layout_admin';
+% my $action = 'decode_'.$self->db_driver;
+% my($newsletter_checked, $no_newsletter_checked,
+%     $viewed_checked, $not_viewed_checked);
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<b><a href="/user.properties?id=<%= $id %>"><%= $login %></a></b> <span style="color: red"> <%= $self->lang_config->{$ban}->{$language} %></span>
+</h3>
+<h4><%= link_to $self->lang_config->{users}->{$language} => '/users.manage' %></h4>
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+
+<div class="col-md-8" id="user_form">
+%= form_for '/set.priority_edit' => (method => 'post') => begin
+
+% foreach my $item(@$content){
+    % my $checked_attr;
+    % foreach(@$edit_priority){
+        % $checked_attr = 'checked' if($item eq $_);
+    % }
+    
+    <div class="form-group">
+     <label for="checkChapter" class="col-sm-5 control-label"><%= $item %></label>
+       <input id="checkChapter" type="checkbox" name="chapter" value="<%= $item %>" <%= $checked_attr %>> <%= $self->$action( $chapter->{$item} ) %>
+    </div>
+    <hr>
+% }
+
+%= hidden_field 'id' => $id
+<div style="float:right">
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'set', id => 'upload_button'
+</div>
+
+% end
+
+</div>
+
+<div class="col-md-2"></div>
+
+</div>
+
+</div>

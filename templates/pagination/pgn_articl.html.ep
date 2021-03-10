@@ -1,0 +1,96 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $self->lang_config->{'labels'}->{$self->language}->{'masterroom'} => 'manager' %>
+</h3>
+
+<h3>
+<%= $self->lang_config->{'labels'}->{$self->language}->{'pagination_attr'} %>
+</h3>
+<hr>
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
+%= form_for 'pagination_articl' => (method => 'post') => begin
+
+<div class="form-group">
+<label for="selectRound" class="col-sm-6 control-label" style="text-align:right"><%= $self->lang_config->{'pgn_round_numb'}->{$self->language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectRound" placeholder="selectRound" size="1" name="pgn_round">
+
+% foreach( @{$self->top_config->{'round_num_list'}} ){
+    % my $select_attr = 'selected' if($_ == $pagination_attr->{'round'});
+	<option value="<%= $_ %>" <%= $select_attr %>><%= $_ %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br><br>
+
+<div class="form-group">
+<label for="selectOuter" class="col-sm-6 control-label" style="text-align:right"><%= $self->lang_config->{'pgn_outer_numb'}->{$self->language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectOuter" placeholder="selectOuter" size="1" name="pgn_outer">
+
+% foreach( @{$self->top_config->{'outer_num_list'}} ){
+    % my $select_attr = 'selected' if($_ == $pagination_attr->{'outer'});
+	<option value="<%= $_ %>" <%= $select_attr %>><%= $_ %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+
+<br><br>
+
+<div class="form-group">
+<label for="selectAnnotNumb" class="col-sm-6 control-label" style="text-align:right"><%= $self->lang_config->{'annot_numb_of_page'}->{$self->language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectAnnotNumb" placeholder="selectAnnotNumb" size="1" name="annot_numb">
+
+% foreach(2..50){
+    % my $select_attr = 'selected' if($_ == $pagination_attr->{'annot_numb'});
+	<option value="<%= $_ %>" <%= $select_attr %>><%= $_ %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+
+<br><br>
+
+<div class="form-group">
+<label for="selectPgnPlace" class="col-sm-6 control-label" style="text-align:right"><%= $self->lang_config->{'pgn_place'}->{$self->language} %>:</label>
+<div class="col-sm-3">
+  <select class="form-control" id="selectPgnPlace" placeholder="selectPgnPlace" size="1" name="pgn_place">
+
+% foreach( @{$self->top_config->{'pagination_place'}} ){
+    % my $select_attr = 'selected' if($_ eq $pagination_attr->{'pgn_place'});
+	<option value="<%= $_ %>" <%= $select_attr %>><%= $self->lang_config->{$_}->{$self->language} %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+
+<br><br>
+
+<div>
+%= submit_button $self->lang_config->{'set'}->{$self->language}, class => 'btn btn-primary', name => 'set_pgn_attr', id => 'upload_button'
+</div>
+% end
+
+</div>
+
+<div class="col-md-1"></div>
+
+</div>
+
+</div>

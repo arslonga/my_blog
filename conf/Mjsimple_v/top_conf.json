@@ -1,0 +1,308 @@
+{
+    "langs" : ["be", "cs", "cy", "da", "de", "el", "en", "eo", "es", "et", "fi", "fr", 
+                   "ga", "is", "it", "ka", "lt", "lv", "nl", "no", "pl", "pt", "sv", "uk"],
+	"_exist_langs" : "uk",
+    "exist_langs" : "en",
+    "lang_file" : "conf/site_lang",
+    "lang_file_js" : "js/site_lang",
+    "grinvich_plus" : "+0300",
+    "webMaster" : "",
+    "routine" : "Mjsimple_v",
+    "routines_file" : "public/routines",
+    "brand_image_maxwidth" : "120",
+    "css_file_path" : "public/css/mjsimple_v/main.css",
+    "css_theme_file" : "conf/Mjsimple_v/theme",
+    "css_theme_list" : ["default", "red", "green", "blue"],
+    "theme_colors" : {"default" : "#F8F8F8", "red" : "#FF8C68", "green" : "#C4DD1D", "blue" : "#91A3C9"},
+"css_theme_path" : "public/css/mjsimple_v/theme.css",
+"color_themes" :
+    {
+    "red" : {"lightmore" : "#FFCDAE", "light" : "#EDA07D", "normal" : "#E08E76", "dark" : "#a20e01"},
+    "blue" : {"lightmore" : "#E8E5FA", "light" : "#BFC5E7", "normal" : "#91A3C9", "dark" : "#551A8B"},
+    "green" : {"lightmore" : "#E5EDB3", "light" : "#C8D574", "normal" : "#B6C45B", "dark" : "#626F0E"},
+    "default" : {"lightmore" : "#F8F8F8", "light" : "#E7E7E7", "normal" : "#D3D3D3", "dark" : "#8B8A8C"},
+    "_default" : {"lightmore" : "#F8F8F8", "light" : "#F8F8F8", "normal" : "#E7E7E7", "dark" : "#8B8A8C"}
+    },
+"need_tables_adm" : ["user_passw", "illustrations", "documents", "media", "auser", "rubric", "comments_artcl", 
+                         "search", "archive_menu", "rss_setting", "rss_data", "carousel"],
+"structure_list" : [
+                    "routines|admin/routines", "transliteration|admin/local_transliter", 
+                    "theme|theme_manage", "logo|logo.manage", "brand|setbrand", 
+                    "menu|menu_manage", "authorize_form|admin/authorize_setting", 
+                    "comments|comments_setting", "pagination|pagination_articl", "rss|rss_setting", 
+                    "rubric_list|rubric-setting", "users|users.manage", "message_formats|msg.manage", 
+                    "sending|admin/sending", "social_buttons|admin/social_buttons",
+                    "foot|foot", "inclusion|inclusion"
+                    ],
+    "need_tables_main" : ["level0-level", "main-main"],
+    "need_ditectories" : ["log", "public/illustration", "public/document", "public/media"],
+    "db_drivers_list" : ["mysql", "Pg"],
+    "db_attr_file" : "comirka",
+    "default_db_attr" : "host:host|username:username|password:password|database:database",
+    "db_driver_file" : "db_driver",
+    "db_configured_status_file" : "db_configured_status",
+    "access_configured_status_file" : "access_configured_status",
+    "dbdriver_configured_status_file" : "dbdriver_configured_status",
+    
+    "captcha_temp" : "public/captcha/captcha/temp",
+    "registr_temp" : "public/captcha/temp",
+    "reset_temp" : "public/captcha/temp_reset",
+    
+    "authorize_setting_file" : "conf/authorize_setting",
+    "authorize_available" : ["yes", "no"],
+    "_logo_type" : ["logo_image", "logo_background", "logo_slideshow"],
+    "logo_type" : ["logo_image", "logo_slideshow"],
+    "next_logo_set" : {"logo_image" : "logo.set_img", 
+                       "logo_background" : "logo.set_bg", 
+                       "logo_slideshow" : "logo.set_slideshow"},
+    "logo_type_file" : "conf/logo_type",
+    "logo_title_file" : "conf/Mjsimple_v/logo_title",
+    "logo_motto_file" : "conf/Mjsimple_v/logo_motto",
+    "logo_img_file" : "conf/Mjsimple_v/logo_img",
+    "brand_margin_list" : ["-20", "-19", "-18", "-17", "-16", "-15", "-14", "-13", "-12", "-11", "-10", "-9", "-8", "-7", "-6", 
+    "-5", "-4", "-3", "-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", 
+    "17", "18", "19", "20"],
+    "_brand_max_height_list" : ["18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", 
+    "52", "54", "56", "58", "60", "62", "64", "66", "68", "70", "72", "74", "76", "78", "80", "82", "84", "86", "88", "90"],
+    "brand_max_height_list" : ["36", "38", "40", "42"],
+    "slides_file" : "conf/Mjsimple_v/slideshow",
+    "logo_title_img" : "title.png",
+    "logo_motto_img" : "motto.png",
+    "logo_title_path" : "public/img",
+    "logo_motto_path" : "public/img",
+    "brand_path" : "img",
+    "brand_image_name" : "brand.png",
+    "brand_margin_top_file" : "conf/Mjsimple_v/brand_margin_top",
+    "brand_margin_left_file" : "conf/Mjsimple_v/brand_margin_left",
+    "brand_margin_right_file" : "conf/Mjsimple_v/brand_margin_right",
+    "brand_max_height_file" : "conf/Mjsimple_v/brand_max_height",
+    "brand_css_path" : "css/mjsimple_v",
+    "brand_templ_file" : "brand",
+    "head_templ_file" : "templates/mjsimple_v/head",
+    "slideshow_template" : "mjsimple_v/logo_carousel",
+    "logo_img_template" : "mjsimple_v/logo_img",
+    "logo_image_path" : "img",
+    "slides_image_path" : "img/slides",
+    "name_pattern" : {"slide" : "slide_", "imade" : "image", "background" : "bg_image"},
+    "data_interval" : ["3000", "4000", "5000", "6000", "7000", "8000", "9000", "10000"],
+    "transition_duration" : ["1s", "2s", "3s", "4s", "5s", "6s", "7s"],
+    "transition_dur_file" : "conf/Mjsimple_v/transition_duration",
+    "data_interval_file" : "conf/Mjsimple_v/data_interval",
+    "height_fit_file" : "conf/Mjsimple_v/height_fit",
+    "_logo_head_file" : "conf/head",
+    "logo_head_file" : "templates/mjsimple_v/head",
+    "logo_image_filename" : "logo.jpg",
+    "logo_img_geometry" : ["300", "970"],
+    "logo_img_height_fit" : ["", "150", "175", "200", "225", "250", "300"],
+    "social_buttons_file" : "conf/social_buttons",
+    "local_transliter_file" : "conf/local_transliter",
+    "foot_file" : "conf/Mjsimple_v/foot",
+    "feed_path" : "conf/Mjsimple_v/feed",
+    "in_js_conf_path" : "public/js/config.json",
+    
+    "sitemap_templ_file" : "templates/mjsimple_v/sitemap.html.ep",
+    "altermenu_templ_file" : "templates/mjsimple_v/altermenu.html.ep",
+    
+	"languages" : ["uk", "en"],
+    "static_path" : "/my_blog/public",
+    "img_path" : "/img",
+    "rss_articles_path" : "public/feed/articles-feed.rdf",
+    "rss_comments_path" : "public/feed/comments-feed.rdf",
+    "_rss_articles_path" : "public/feed/articles-feed.xhtml",
+    "_rss_comments_path" : "public/feed/comments-feed.xhtml",
+    "tables_of_upload" : ["illustrations", "documents", "media"],
+    "type_of_upload_keys" : ["img", "doc", "med"],
+    
+    "rel_upload_tables" : {"img" : "illustrations", "doc" : "documents", "med" : "media"},
+    
+    "path_upload_keys" : ["illustration_path", "document_path", "media_path"],
+    "type_of_upload" : {"img" : "image", "doc" : "document", "med" : "media"},
+    "template_for_type_upload" : {"img" : "upload_image", "doc" : "upload_document", "med" : "upload_media"},
+    "path_upload_hash" : {"img" : "illustration_path", "doc" : "document_path", "med" : "media_path"},
+    "style_upload_box" : {"img" : "img_block", "doc" : "doc_block", "med" : "med_block"},
+    "add_rubric_required_fields" : ["rubric"],
+    "rubric_list_size_file" : "conf/rubric_list_size",
+    "rubric_list_size" : ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
+    "comment_prefix" : "comnt_",
+    "comments_deep_levels" : ["2", "3", "4", "5"],
+    "comments_showed_number" : ["3", "10", "15", "20", "30", "40", "50"],
+    "comments_showed_step" : ["7", "10", "20", "30", "40", "50"],
+    "comments_levels_deep_file" : "conf/comments_deep",
+    "comments_showed_numbers_file" : "conf/showed_comments_numb",
+    "comments_numbers_step_file" : "conf/showed_comments_step",
+    "numb_for_sending_artcl_file" : "conf/numb_for_sending",
+    "html_sending_file" : "conf/html_sending_data",
+    "round_num_list" : ["2", "3", "4", "5", "6"],
+    "outer_num_list" : ["1", "2"],
+    "pagination_place" : ["bottom", "top_bottom"],
+    "pagination_attr_file" : "conf/pgn_articl",
+    "pagination_attr_image" : "conf/pgn_image",
+    "artcl_numb_rss" : ["3", "5", "8", "10", "13", "15", "17", "20"],
+    "numb_for_sending" : ["3", "5", "7", "9", "11", "13", "15", "17", "19", "21"],
+    "rss_link_number" : "5",
+    
+    "_rel_numb_items_of_address" : "визначення таблиці рівня в залежності від url в адресному рядку",
+    "rel_numb_items_of_address" : {"0" : "level0", "2" : "level1", "3" : "level2"},
+    
+    "_image_thumbn_proper" : "variations of thumbnail classes",
+    "thumb_img" : ["img-thumbnail", "img-rounded", "img-circle"],
+    "thumb_img_style_file" : "conf/thumb_img_style",
+    
+    "noreply_mail" : "no-reply@gmail.com",
+    "incorr_login_pattern" : ["user", "manag", "author", "admin", "autor"],
+    
+    "kind_of_sending" : ["text_sending", "html_sending"],
+    "inclusion_kinds" : ["meta_head_inclusion", "index_banner1", "index_banner2", "article_banner", "right_banner",
+                         "under_menu_inclusion"],
+    
+    "msg_type" :
+    {
+    "registration" : "msg_registr",
+    "newsletter" : "msg_newsletter",
+    "newsletter_add" : "msg_newsletter_add",
+    "forgot_passw" : "msg_forgot_passw",
+    "msg_respons" : "msg_about_response",
+    "change_profile" : "msg_change_profile"
+    },
+    
+    "table" :
+    {
+    "access" : "user_passw",
+    "rubric" : "rubric",
+    "users" : "auser",
+    "comments" : "comments_artcl",
+    "search_artcl" : "search",
+    "archive_menu" : "archive_menu",
+    "rss_setting" : "rss_setting",
+    "rss_data" : "rss_data",
+    "slideshow" : "carousel"
+    }, 
+    "profile_required_fields" : ["pass"],
+    "logo_required_fields" : 
+        {
+        "logo_image" : ["title"],
+        "logo_background" : ["title"]
+        },
+    "redirect_logo" : 
+        {
+        "logo_image" : "logo.set_img",
+        "logo_background" : "logo.set_bg",
+        "logo_slideshow" : "logo.set_slideshow"
+        },
+    "authorize_required_fields" : ["login", "pass"],
+    "forgot_passw_required_fields" : ["email"],
+    "reset_passw_required_fields" : ["passw"],
+    "comment_required_fields" : ["log_in", "passw", "response"],
+    "comment_required_fields_authorized" : ["response"],
+    "answer_required_fields" : ["answer"],
+    "edit_respons_fields" : ["edit_answ"],
+	"block_color" : 
+    {
+    "level0" : "#E7E7E7", "level1" : "#D8D8D8", "level2" : "#C5C5C5"
+    },
+   
+    "illustration_path" : "/illustration",
+    "document_path" : "/document",
+    "media_path" : "/media",
+    
+    "adm" :
+    {
+    "admin_lang" : "admin_lang",
+    "language" : "interface_langs",
+    "color_scheme" : "color_scheme",
+    "routine" : "routine",
+    "table" : 
+    {
+    "access" : {"name" : "user_passw", "columns" : ["admin", "password", "email"]},
+    "register" : {"name" : "auser", "columns" : ["login", "pass", "email"]}
+    },
+    "dbaccess_required_fields" : ["host", "dbname", "user", "pass"],
+    "admin_required_fields" : ["login", "pass"],
+    "access_required_fields" : ["login", "pass", "email"],
+    "_registration_required_fields" : ["login", "email", "verifytext"],
+    "registration_required_fields" : ["login", "email", "passw", "verifytext"],
+    "article_required_fields" : ["head", "description", "keywords"],
+    "rss_setting_required_fields" : ["title", "description"]
+    },
+    
+    "path_to_flag" :
+    {
+        "uk" : "/img/uk.jpg",
+        "ru" : "/img/ru.jpg",
+        "en" : "/img/en.jpg"
+    },
+    
+    "path_to_icon" :
+    {
+        "doc"  : "/img/doc_icon.png",
+        "docx" : "/img/docx_icon.png",
+        "rtf"  : "/img/rtf_icon.png",
+        "pdf"  : "/img/pdf_icon.png",
+        "txt"  : "/img/text_icon.png",
+        "rar" : "/img/rar_icon.png",
+        "zip" : "/img/zip_icon.png",
+        "tar" : "/img/tar_icon.png",
+        "7z" : "/img/7z_icon.png",
+        "aac" : "/img/aac_icon.png",
+        "mp3" : "/img/mp3_icon.png",
+        "mp4" : "/img/mp4_icon.png",
+        "webm" : "/img/webm_icon.png",
+        "ogg" : "/img/ogg_icon.png"
+    },
+    "path_to_docs_icon" :
+    {
+        "doc"  : "/img/doc_icon.png",
+        "docx" : "/img/docx_icon.png",
+        "rtf"  : "/img/rtf_icon.png",
+        "pdf"  : "/img/pdf_icon.png",
+        "txt"  : "/img/text_icon.png",
+        "rar" : "/img/rar_icon.png",
+        "zip" : "/img/zip_icon.png",
+        "tar" : "/img/tar_icon.png",
+        "7z" : "/img/7z_icon.png"
+    },
+    "path_to_imageurl_insert" : "/img/imageurl_insert.jpg",
+    "path_to_link_docs_icon" : "/img/help_doc_icon_link.jpg",
+    "path_to_link_docs_icon2" : "/img/help_doc_icon_link2.jpg",
+    
+    "path_to_media_icon" :
+    {
+        "aac" : "/img/aac_icon.png",
+        "mp3" : "/img/mp3_icon.png",
+        "mp4" : "/img/mp4_icon.png",
+        "webm" : "/img/webm_icon.png",
+        "ogg" : "/img/ogg_icon.png"
+    },
+    
+    "get_valid_format_func" :
+    {
+        "image" : "valid_img_format",
+        "document" : "valid_doc_format",
+        "media" : "valid_media_format"
+    },
+    "upload_populate_options" :
+    {
+        "upload_image" : {"action" : "illustr_for", "table" : "illustrations"},
+        "upload_document" : {"action" : "documents_for", "table" : "documents"},
+        "upload_media" : {"action" : "media_for", "table" : "media"}
+    },
+    
+"comments_block" : "BEGIN==================================",
+"comment_enable" :
+{"yes" : {"onload_func" : " onload=\"commentsArr(0, 4)\"",
+          "js_file" : "<script language=\"javascript\" src=\"/js/comments.js\"></script>"
+         },
+ "no" : {"onload_func" : "",
+         "js_file" : ""
+        }
+},
+"showed_comments_numb" : {"yes" : "4"},
+"comments_block_end" : "END==================================",
+    
+"routine_block" : "BEGIN==================================",
+"_levels" : ["level0", "level1", "level2"],
+"_max_level" : "level2",
+"levels" : ["level0", "level1", "level2"],
+"max_level" : "level2",
+"_end_of_routine_block" : "END=================================="
+}

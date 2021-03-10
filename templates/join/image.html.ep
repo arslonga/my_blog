@@ -1,0 +1,132 @@
+% layout 'layout_admin';
+% my($checked, $class_chbox);
+% my $action = 'decode_'.$self->db_driver;
+% my $admin_check = $self->sess_check->admin($self);
+% my $client_id;
+% eval{ $client_id = $self->session('client')->[0]; };
+% my $client_check = $self->sess_check->client( $self, $client_id );
+
+% if( $admin_check ){
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+% }
+
+<div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        % if( $admin_check ){
+            <p class="mr_menu_item">
+            <a href="/menu_manage">Menu</a>
+            </p>
+        % }elsif( $client_check ){
+            <h3>
+            <b><%= $self->session('client')->[1] %></b>
+            </h3>
+        % }
+        </div>
+        <div class="col-md-4"></div>
+</div>
+<!--------------------------------------------->
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+% my $form_act = '/article_manage' if( $admin_check );
+% $form_act = '/user.article_manage' if( $client_check && !$admin_check );
+%= form_for $form_act => begin
+%= hidden_field title_alias => $title_alias
+%= hidden_field id => $page_id
+%= submit_button $self->$action( $head ), name => 'go_article', id => 'go_article'
+% end
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!--------------------------------------------->
+<h4><%= $self->lang_config->{'underhead_image_explain'}->{$language} %></h4>
+
+<hr>
+<div class="row">
+    <div class="col-md-12">
+    
+    <h4><%= $self->lang_config->{'image_library'}->{$language} %></h4>
+<hr>
+
+% my $form_action = '/image_library' if( $admin_check );
+% $form_action = '/user.image_library' if( $client_check && !$admin_check );
+
+%= form_for $form_action => (enctype => 'multipart/form-data', method => 'post') => begin
+
+<div class="col-sm-12 docs-library-containr">
+<div class="row docs-library-row">
+  <div class="col-sm-4 text-left">
+
+% my %exist_file_image;
+% my $i = 1;
+% foreach my $item(@$content){
+    % if($exist_img_file->{$item->{'file'}} && $item->{'file'} eq $exist_img_file->{$item->{'file'}}){
+        % $checked = 'checked';
+        % $class_chbox = 'bg_chbox';
+    % }
+    <b>ID: <%= $item->{'id'} %></b> | <b>Alt: </b><%= $self->$action( $item->{'alt'} ) %><br>
+    <img src="<%= $item->{'path'}.'/tn_'.$item->{'file'} %>">
+    <br>
+    % if($class_chbox){
+    <fieldset disabled>
+    <span class="<%= $class_chbox %>">
+    <input type="checkbox" name="illustr" value="<%= $item->{'file'} %>" <%= $checked %>>
+    </span>
+    </fieldset>
+    % }else{
+    <span>
+    <input type="checkbox" name="illustr" value="<%= $item->{'file'} %>" <%= $checked %>>
+    </span>
+    % }
+    <p class="library-path">
+     <%= $item->{'path'} %>/<%= $item->{'file'} %> <%#= $item->{'alt'} %>
+    </p>
+    % $checked = "";
+    % $class_chbox = "";
+    % if(!($i % 3) && $i != 0 && $i < $limit_str){
+  </div>
+</div>
+<div class="row" style="border-top: 1px solid silver; margin-left: 2px; margin-right: 2px">
+  <div class="col-sm-4 text-left">
+    % }else{
+        % if($i < $limit_str){
+  </div>
+  <div class="col-sm-4 text-left">
+        % }
+    % }
+    % $i++;
+% }
+  </div>
+</div>
+</div>
+%= hidden_field redirect_to => $redirect_to
+%= hidden_field title_alias => $title_alias
+%= hidden_field page_id => $page_id
+%= hidden_field id => $page_id
+%= hidden_field page => $current_page
+%= hidden_field template_for_upload => $template_for_upload
+%= submit_button $self->lang_config->{'join'}->{$language}, class => 'btn btn-primary', name => 'join', id => 'upload_button'
+% end
+    </div>
+    </div>
+
+% if($total_pages > 1){    
+<div class="row">
+<div class="col-sm-12 text-center">
+<ul class="pagination pagination-md">
+% foreach(1..$total_pages){
+    % if($current_page == $_){
+    <li class="active"><span><%= $_ %></span></li>
+    % }else{
+    <li><a href="/image_library?redirect_to=article_manage&page=<%= $_ %>&title_alias=<%= $title_alias %>&page_id=<%= $page_id %>&template_for_upload=<%= $template_for_upload %>"><%= $_ %></a></li>
+    % }
+% }
+</ul>
+</div>
+</div>
+% }
+</div>

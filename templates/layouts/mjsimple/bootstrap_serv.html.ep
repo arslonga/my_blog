@@ -1,0 +1,51 @@
+% my $templ = lc($self->template);
+% use Mojo::Util qw(decode);
+% my $meta_inclusion_code;
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= $title %></title>
+%== $self->slurp( 'public/'.$self->top_config->{'favicon_code_file'} );
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="description" content="<%= $description %>"/>
+<meta name="keywords" content="<%= $keywords %>"/>
+<meta charset="utf-8">
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/bootstrap.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/main.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/brand.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/theme.css') %>" />
+<script src="<%= url_for("/js/jquery-1.9.1.js") %>"></script>
+<script language="javascript" src="<%= url_for("/js/bootstrap.min.js") %>"></script>
+% eval{
+% $meta_inclusion_code = $self->slurp( 'conf/'.$self->template.'/'.$self->top_config->{'inclusion_kinds'}->[0] );
+% };
+<%== $meta_inclusion_code %>  
+</head>
+
+<body> 
+<div class="container-fluid">    
+   
+<div class="row">
+     <div class="col-md-12">
+    
+    <%= include lc($self->template).'/menu' =%>
+    
+</div>
+%#== decode('utf8', $self->slurp('conf/head'));
+
+%# modal widow of search form 
+<%= include lc($self->template).'/search_form' %>
+
+<div class="row">
+ <div class="col-sm-12">
+    <%= content %>
+</div>
+</div>
+<footer class="footer">  
+  <%= include lc($self->template).'/foot_content' =%>
+</footer>
+<!-------------------->
+</div>
+<script language="javascript" src="<%= url_for('/js/'.$templ.'/morncat.js') %>"></script>
+  </body>
+</html>

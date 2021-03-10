@@ -1,0 +1,2 @@
+% use Mojo::Util qw(encode decode);
+%== decode('utf8', $self->slurp('conf/'.$self->template.'/right_banner') )

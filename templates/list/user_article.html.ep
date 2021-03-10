@@ -1,0 +1,223 @@
+% layout 'layout_admin';
+% use LiteralIdent;
+
+% my $site_link;
+% my $action = 'decode_'.$self->db_driver;
+
+<h3>
+<b><%= $client->[1] %></b>
+</h3>
+
+<div class="row">
+    <div class="col-md-4"></div>
+        <div class="col-md-4">
+% if( $list_enable eq 'yes' ){
+%= form_for "/user_list_content_manage" => begin
+%= hidden_field title_alias => $title_alias
+%= hidden_field title => $title_chapter
+%= submit_button $title_chapter.' ('.$self->lang_config->{'list_enable'}->{$list_enable}->{$language}.')', class => 'mr_menu_item', name => 'go_article'
+% end
+% }else{
+<p class = "mr_menu_item"><%= $self->$action( $title_chapter ) %> (<%= $self->lang_config->{'list_enable'}->{$list_enable}->{$language} %>)</p>
+% }
+        </div>
+        <div class="col-md-4"></div>
+</div>
+
+% if($url eq '/' && $list_enable eq 'no' || ($list_enable eq 'no')){
+    % $site_link = $url;
+% }else{
+    % my $literal_ident = LiteralIdent->literal_for_url( $self, $self->$action($content->[0]->{'head'}) );
+    % $site_link = $url.'/'.$id.'/'.$literal_ident;
+% }
+    
+  <h3>
+  <%= $self->$action($head) %> <%= link_to '('.$self->lang_config->{'to_site'}->{$language}.')' => $site_link %>
+  </h3>
+<hr>
+
+<div class="row" style="text-align:left">
+<!------------------------------------------------->
+    <div class="col-md-8">
+    
+%= form_for 'user.article_manage' => (enctype => 'multipart/form-data', method => 'post') => begin
+
+% foreach my $item(@$content){
+% my $comment_enable_checked;
+% my $comment_disable_checked;
+% if($item->{'comment_enable'} eq 'yes'){$comment_enable_checked = 'checked'}
+% if($item->{'comment_enable'} eq 'no'){$comment_disable_checked = 'checked'}
+
+<div class="row">
+
+<div class="col-sm-6">
+<div class="radio">
+  <label class="radio-inline">
+    <input type="radio" name="comment_enable" value="yes" <%= $comment_enable_checked %>> <%= $self->lang_config->{'labels'}->{$language}->{'enable_comments'} %>
+  </label>
+</div>
+</div>
+
+<div class="col-sm-6">
+<div class="radio">
+  <label class="radio-inline">
+<input type="radio" name="comment_enable" value="no" <%= $comment_disable_checked %>> <%= $self->lang_config->{'labels'}->{$language}->{'disable_comments'} %>
+  </label>
+</div>
+</div>
+
+</div>
+<hr>
+
+Description:
+<br>
+%= text_field 'description', value => $self->$action( $item->{'description'} ), class => 'form-control'
+<br>
+Keywords:
+<br>
+%= text_field 'keywords', value => $self->$action( $item->{'keywords'} ), class => 'form-control', size => 100
+<br>
+
+<div>
+
+<div style="float:right">
+<button type="button" class="btn btn-default btn-md" data-container="body" 
+data-toggle="popover" data-placement="bottom" 
+data-content="<%= $self->lang_config->{'help_tw_og_explain'}->{$language} %><br><%== $tw_og_sample %>"
+data-html="true">
+  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+</button>
+</div>
+
+tw_opengraph meta:
+<br>
+%= text_area 'tw_opengraph' => $item->{'tw_opengraph'}, class => 'form-control', wrap => 'hard', rows => 7, cols => 84, id => 'og_area'
+</div>
+<br>
+
+<%= $self->lang_config->{'rubric'}->{$language} %>: <br>
+<div class="row">
+    <div class="col-sm-10">
+    
+    <select name="rubric" class="form-control" style="background-color:#EDEDED">
+    % my $select_attr;
+    <option value=""><%= $self->lang_config->{'labels'}->{$language}->{'no_rubric'} %>
+    % foreach(@$rubric_list){
+    % $select_attr = 'selected' if($_->{'id'} eq $item->{'rubric_id'});
+        <option value="<%= $_->{'id'} %>" <%= $select_attr %>><%= $self->$action($_->{'rubric'}) %>
+    % $select_attr = "";
+    % }
+    </select>
+    
+    </div>
+    
+    <div class="col-sm-2">
+    </div>
+    
+</div>
+
+<br>
+Date: <br>
+%= text_field 'curr_date', value => $item->{'curr_date'}, class => 'form-control', size => 40
+<br>
+
+<%= $self->lang_config->{title}->{$language} %>:
+<br>
+%= text_field 'head', value => $self->$action( $item->{'head'} ), class => 'form-control', size => 100
+
+<br>
+%# Вивід списку ілюстрацій ########################################
+<div id="img_block">
+% if($illustr_arr){
+    <%= include 'placed_illustr' =%>
+% }
+</div>
+
+%# Вивід списку документів ########################################
+<div id="doc_block">
+% if($docs_arr){
+    <%= include 'placed_docs' =%>
+% }
+</div>
+
+%# Вивід списку media ########################################
+<div id="med_block">
+% if($media_arr){
+    <%= include 'placed_media' =%>
+% }
+</div>
+
+<div>
+Annotation:
+<br>
+%= text_area 'announce' => $self->$action( $item->{'announce'} ), class => 'form-control', rows => 5, cols => 84, id => 'textar'
+</div>
+
+<br>
+%= text_area 'cont_text', id => 'textar' => begin
+%= $self->$action( $item->{'content'} )
+% end
+
+<script>
+CKEDITOR.replace( 'cont_text' );
+</script>
+
+<br>
+<div class="row">
+    <div class="col-xs-5 col-sm-6">
+%= hidden_field title_alias => $title_alias
+%= hidden_field id => $id
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-9 text-center">
+    <br>
+%#= submit_button 'edit', name => 'edit', class => "btn btn-primary"
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'save'}, name => 'edit', class => "btn btn-primary"
+<input type="reset" value="reset" class = "btn btn-warning">
+    </div>
+</div>
+
+% }
+% end    
+<br><br>
+    </div>
+<!------------------------------------------------------>
+
+    <div class="col-md-3" id="upload_box">
+    
+    <div id="add_rubr">    
+%= form_for '/user.add_rubric' => (method => 'post') => begin
+%= hidden_field title_alias => $title_alias
+%= hidden_field title => $title_chapter
+%= hidden_field id => $id
+%= hidden_field redirect_to => $redirect_to
+%= submit_button $self->lang_config->{'labels'}->{$language}->{'add_rubric'}, class => 'btn btn-primary btn-sm', name => 'go_new_rubric'
+% end
+
+</div>
+    
+    % foreach( @{$self->top_config->{'type_of_upload_keys'}} ){
+    
+        <div id="<%= $self->top_config->{'style_upload_box'}->{$_} %>">
+        %= form_for 'user.'.$self->top_config->{'template_for_type_upload'}->{$_} => (enctype => 'multipart/form-data', method => 'post') => begin
+        %= hidden_field redirect_to => $redirect_to
+        %= hidden_field title_alias => $title_alias
+        %= hidden_field sourse_key => $_
+        %= hidden_field id => $id
+        %= hidden_field head => $head
+        %= hidden_field valid_format_func => $self->top_config->{'get_valid_format_func'}->{$type_of_upload->{$_}}
+        %= hidden_field template_for_upload => $self->top_config->{'template_for_type_upload'}->{$_}
+        %= hidden_field path_for_upload => $self->top_config->{$self->top_config->{'path_upload_hash'}->{$_}}
+        %= submit_button $self->lang_config->{'buttons'}->{$language}->{$_}, class => 'btn btn-primary btn-sm', name => $self->top_config->{'template_for_type_upload'}->{$_}, id => 'upload_button'
+        % end
+        
+        </div>
+    % }
+ 
+    </div>
+    
+</div>  
+
+</div>

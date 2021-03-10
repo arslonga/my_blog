@@ -1,0 +1,54 @@
+% layout lc($self->template).'/bootstrap_main';
+% use Mojo::Util qw(encode decode);
+% use RubricList;
+% my $action = 'decode_'.$self->db_driver; 
+
+% my $admin_check = $self->sess_check->admin($self);
+% my $client_id;
+% eval{ $client_id = $self->session('client')->[0]; };
+% my $client_check = $self->sess_check->client( $self, $client_id );
+
+% my $id = (split(/\//, $self->req->url))[-1] || $content->[0]->{'id'};
+<div class="row">
+  <div class="col-sm-12 main-feature" id="articl_box">
+    
+<%= include lc($self->template).'/index_banner1' %> 
+<span class="date_post"><%= substr($content->[0]->{'curr_date'}, 0, 10) %></span>
+
+% if( $content->[0]->{'rubric_id'} ){
+|&nbsp; <span class="date_post"><%== $self->$action( RubricList->rubric_link($self, $content->[0]->{'rubric_id'}) ) %></span>|
+% }
+
+% if($admin_check){
+    % # $title_alias is the name of the table for given post
+    % my $title_alias = (split(/\//, $self->req->url))[-2] || 'main';
+    % if( scalar(split(/\//, $self->req->url)) == 2 || scalar(split(/\//, $self->req->url)) == 3 ){
+        % $title_alias = (split(/\//, $self->req->url))[-1];
+        % $id = $content->[0]->{'id'};
+    % }
+<span class="edit_str">&nbsp;
+  <a href="<%= '/article_manage?title_alias='.${title_alias}.'&id='.$id %>"><span class="glyphicon glyphicon-edit"></span></a>
+</span>
+% }
+%# If user is authorized
+% elsif( $client_check && !$admin_check ){
+% my $author_id = $self->menu->find($title_alias, ['author_id'], {'id' => $id})->list;
+% if($author_id){
+    % # Тут $title_alias - назва таблиці для даної публікації
+    % my $title_alias = (split(/\//, $self->req->url))[-2] || 'main';
+    % if( scalar(split(/\//, $self->req->url)) == 2 || scalar(split(/\//, $self->req->url)) == 3 ){
+        % $title_alias = (split(/\//, $self->req->url))[-1];
+        % $id = $content->[0]->{'id'};
+    % }
+<span class="edit_str">|&nbsp;
+    <a href="<%= '/user.article_manage?title_alias='.${title_alias}.'&id='.$id %>"> <span class="glyphicon glyphicon-pencil"></span></a>
+</span>
+% }
+% }
+<h3 class="titl"><%= $self->$action( $content->[0]->{'head'} ) %></h3> 
+<div class="main_content">
+<%== $self->$action( $content->[0]->{'content'} ) %>
+</div>
+
+  </div>
+</div>

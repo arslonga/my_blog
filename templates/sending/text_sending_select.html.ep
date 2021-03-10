@@ -1,0 +1,52 @@
+% layout 'layout_admin';
+% my $action = 'decode_'.$self->db_driver;
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3 style="color:#428BCA">
+<%= link_to $self->lang_config->{'sending'}->{$language} => '/admin/sending' %>
+</h3>
+
+<h3>
+<%= $self->lang_config->{'text_sending'}->{$language} %>
+</h3>
+
+<h4>
+%= $self->lang_config->{'select_articles'}->{$language}
+</h4>
+<hr>
+
+<div class="row">
+<div class="col-md-12" style="text-align:left">
+
+%= form_for '/admin/text_sending_users' => (method => 'post') => begin
+
+% my $i = 1;
+% foreach my $table(sort keys %{$table_url}){
+    % my $title = $table_title->{$table};
+    <h3><%= $self->$action( $title ) %></h3>
+    % foreach my $url(@{$table_url->{$table}}){
+        <h4>
+        <span class="bg_chbox">
+        %= check_box 'item_sending' => $table.'='.$url->{'id'}, id => 'bg_chbox'
+        </span>&nbsp;
+        <%= link_to $self->$action( $url->{'head'} ) => $url->{'url'}, target => '_blank' %>
+        </h4>
+        <%== $self->$action( $url->{'announce'} ) %>
+        <br>
+      % $i++;
+    % }
+    <hr>
+% $i++;
+% }
+
+%= submit_button $self->lang_config->{'continue'}->{$language}, class => 'btn btn-primary', id => 'upload_button'
+
+% end
+
+</div>
+</div>
+
+</div>

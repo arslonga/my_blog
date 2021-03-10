@@ -1,0 +1,6 @@
+#brand_style{
+max-height:<%= $max_height %>px; 
+margin-top:<%= $margin_top %>px;
+margin-left:<%= $margin_left %>px;
+margin-right:<%= $margin_right %>px
+}

@@ -1,0 +1,31 @@
+% layout 'layout_admin';
+% my $action = 'decode_'.$self->db_driver;
+<h3>
+<b><%= $self->session('client')->[1] %></b>
+</h3>
+
+<h3>
+<%= $self->lang_config->{'list_enabled_for_edit'}->{$self->language} %>
+</h3>
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+
+% foreach my $item(sort keys %{$title_alias_title}){
+%= form_for 'user_list_content_manage' => (method => 'post') => begin
+%= hidden_field 'title_alias' => $item
+%= hidden_field 'title' => $self->$action( $title_alias_title->{$item} )
+%= hidden_field 'user_id' => $self->session('client')->[0]
+%= submit_button $self->$action( $title_alias_title->{$item} ), name => 'add_publication', class => 'btn btn-info btn-md'
+% end
+<br>
+% }
+</div>
+
+<div class="col-md-2"></div>
+
+</div>
+
+</div>

@@ -1,0 +1,23 @@
+% layout lc($self->template).'/bootstrap_serv';
+
+<div class="row" style="padding-top:100px">
+
+<div class="col-sm-12 text-center">
+<h4><%= $actual_title %></h4>
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+%= form_for 'forgot-passw' => (method => 'post') => begin
+%= hidden_field 'redirect_to' => $redirect_to
+<h4 id="delete_chbox"><%= $message %></h4>
+%= text_field 'email', class => 'form-control input-sm', id => 'auth_form'
+<br>
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'send'}, name => 'send', class => 'btn btn-primary btn-lg', id => 'enter_button'
+<br>
+<br>
+% end
+
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+    
+</div>

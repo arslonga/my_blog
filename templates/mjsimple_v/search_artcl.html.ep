@@ -1,0 +1,76 @@
+% layout lc($self->template).'/other';
+% my $action = 'decode_'.$self->db_driver;
+<div class="row">
+<div class="col-md-12" id="articl_box">
+    <%= include lc($self->template).'/index_banner1' %>
+<br>    
+%== $self->lang_config->{'you_suchen'}->{$language}
+<b class="arch_link"><%= $search_frase_begin %></b> <%#= $search_frase %>
+<hr>
+% if($size == 1){
+    % foreach my $item(@$search_result){
+    % $item->{'search_text'} = $self->$action( $item->{'search_text'} );
+        % my @strings = split(/(\.\s?)/, $item->{'search_text'});
+        % INNER:
+        % foreach my $data(@strings){
+        %    if($data =~ /.*($search_frase).*/gi || $data =~ /($search_frase)/gi){
+        %        $data =~ s/$1/<b class=\"searched\">$search_frase<\/b>/g;
+        %        $item->{'search_text'} = $data;
+        %    last INNER;
+        %    }else{
+        %       $item->{'search_text'} = 'no';
+        %    }
+        % }
+        % if(!$item->{'url'} && ($length < 3)){
+            %= $self->lang_config->{'not_enough_chars'}->{$language}
+        % }elsif($item->{'search_text'} eq 'no' && scalar(@$search_result) == 1){
+            %= $self->lang_config->{'no_search_result'}->{$language}
+        % }elsif($item->{'search_text'} eq 'no'){
+        
+        % }else{
+        <a class="arch_link" href="<%= $item->{'url'} %>"><%= $self->$action( $item->{'head'} ) %></a>
+                <br>        
+                <%== $item->{'search_text'} %>
+        <hr>
+        % }
+    % }
+% }else{
+    % my @words = split(/ /, $search_frase);
+    % foreach my $item(@$search_result){ 
+    % $item->{'search_text'} = $self->$action( $item->{'search_text'} );
+        % my @strings = split(/(\.\s?)/, $item->{'search_text'});
+        % INNER:
+        % foreach my $data(@strings){
+        %    if($data =~ /.*($words[0]).+($words[1]).+($words[2]).+($words[3]).*/gi){
+        %       $data =~ s/(.*)($words[0])(.+)($words[1])(.+)($words[2])(.+)($words[3])(.*)/$1<b class=\"searched\">$2<\/b>$3<b class=\"searched\">$4<\/b>$5<b class=\"searched\">$6<\/b>$7<b class=\"searched\">$8<\/b>$9/gi;
+        %       $item->{'search_text'} = $data;
+        %       last INNER;
+        %    }elsif($data =~ /.*($words[0]).+($words[1]).+($words[2]).*/gi){
+        %       $data =~ s/(.*)($words[0])(.+)($words[1])(.+)($words[2])(.*)/$1<b class=\"searched\">$2<\/b>$3<b class=\"searched\">$4<\/b>$5<b class=\"searched\">$6<\/b>$7/gi;
+        %       $item->{'search_text'} = $data;
+        %       last INNER;
+        %    }elsif($data =~ /.*($words[0]).+($words[1]).*/gi){
+        %       $data =~ s/(.*)($words[0])(.+)($words[1])(.*)/$1<b class=\"searched\">$2<\/b>$3<b class=\"searched\">$4<\/b>$5/gi;
+        %       $item->{'search_text'} = $data;
+        %       last INNER;
+        %    }elsif($data =~ /.*($words[0]).*/gi){
+        %       $data =~ s/(.*)($words[0])(.*)/$1<b class=\"searched\">$2<\/b>$3/gi;
+        %       $item->{'search_text'} = $data;
+        %       last INNER;
+        %    }else{
+        %       $item->{'search_text'} = 'no';
+        %    }
+        % }
+        % if($item->{'search_text'} eq 'no'){
+            
+        % }else{
+        <a class="arch_link" href="<%= $item->{'url'} %>"><%= $self->$action( $item->{'head'} ) %></a>
+                <br>        
+                <%== $item->{'search_text'} %>
+        <hr>
+        % }
+    % }
+
+% }
+</div>
+</div>

@@ -1,0 +1,32 @@
+% layout lc($self->template).'/other';
+% my $action = 'decode_'.$self->db_driver;
+
+<div class="col-sm-12" id="articl_box">
+    <h5>
+    <a href="/all.rubrics"><%= $self->lang_config->{'all_rubrics'}->{$language} %> <span class="glyphicon glyphicon-arrow-right"></span></a>
+    </h5>
+    <h4><%== $self->lang_config->{'rubric'}->{$language}.' &laquo;'.$self->$action( $rubric ).'&raquo;' %></h4>
+    <hr>
+    % my $ind = 0;
+    % foreach my $item(@$content){
+    <div class="row" id="indx_style">
+        <span class="date_post"><%= substr($item->{'curr_date'}, 0, 10) %></span>
+        % $item->{'url_chaptr'} = "" if $item->{'url_chaptr'} eq '/';
+        % if(!$item->{'url_chaptr'}){
+            <a href="/">
+        % }else{
+        <a href="<%= $item->{'url_chaptr'} %>">
+        % }
+            <h3 class="head_post"><%= $self->$action($item->{'head'}) %></h3>
+            </a>
+            <span class="artcl_content">
+            <%== $self->$action( $item->{'announce'} ) %>
+            </span>
+    </div>
+      % if( $ind < (scalar(@$content) - 1) ){
+        <hr>
+      % }
+    %   $ind++;
+    % }    
+</div>
+<br>

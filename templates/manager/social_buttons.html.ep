@@ -1,0 +1,36 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<h4><%== $self->lang_config->{'social_buttons_code_explain'}->{$language} %></h4>
+<br>
+%= form_for 'social_buttons' => (method => 'post') => begin
+
+<div class="form-group">
+
+%= text_area 'share_buttons' => $exist_share_buttons_code, class => 'form-control', wrap => 'hard', rows => 5, cols => 84, id => 'textar'
+
+</div>
+<br>
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'set', id => 'upload_button'
+
+% end
+
+</div>
+
+<div class="col-md-2"></div>
+
+</div>
+
+</div>

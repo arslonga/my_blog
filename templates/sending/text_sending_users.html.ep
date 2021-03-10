@@ -1,0 +1,59 @@
+% layout 'layout_admin';
+% my $style;
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3 style="color:#428BCA">
+<%= link_to $self->lang_config->{'sending'}->{$language} => '/admin/sending' %>
+</h3>
+
+<h3>
+<%= $self->lang_config->{'text_sending'}->{$language} %>
+</h3>
+
+<h4>
+% if(!$users){
+    % $style = 'delete_chbox';
+% }
+%= link_to $self->lang_config->{'select_articles'}->{$language} => '/admin/text_sending_select', id => $style
+</h4>
+<hr>
+
+<h4>
+<%= $self->lang_config->{'select_users_for_sending'}->{$language} %>
+</h4>
+
+<div class="row">
+<div class="col-md-12">
+
+%= form_for '/admin/text_sending_tosend' => (method => 'post') => begin
+<table class="table table-bordered table-striped">
+<tr align="left"><td>
+% my $i = 0;
+% foreach my $user(@$users){
+    % my $param_name = $i + 1;
+    % my $user_id = $user->{'id'};
+    <input type="checkbox" name="user_id" value="<%= $user_id %>" checked>
+    %= $user->{'login'}
+    % if(!($i % 5) && $i != 0){
+        </td>
+        <tr align="left"><td>
+    % }else{
+        </td>
+        <td>
+    % }
+    % $i++;
+% }
+</table>
+
+%= hidden_field 'selected_items' => $selected_items
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'send'}, class => 'btn btn-primary', id => 'upload_button'
+
+% end
+
+</div>
+</div>
+
+</div>

@@ -1,0 +1,62 @@
+% my $client_id;
+% eval{ $client_id = $self->session('client')->[0]; };
+% my $client_check = $self->sess_check->client( $self, $client_id );
+
+<br>
+%= form_for $self->req->url => (method => 'post') => begin
+
+% if( $client_check ){
+<b name="err-locat" id="err-locat"></b>
+<br>
+<h3 class="label_style" name="comnt-label" id="comnt-label"><%= $self->lang_config->{'labels'}->{$self->language}->{'responses'} %> (<%= $count_response %>):</h3>
+% }
+% else{ 
+<b name="err-locat" id="err-locat"></b>
+<br>
+<h3 class="label_style" name="comnt-label" id="comnt-label"><%= $self->lang_config->{'labels'}->{$self->language}->{'responses'} %> (<%= $count_response %>):</h3>
+<b style="color:red"><%= $message_of_comment %></b><%# Message about invalid login or password ############## %>
+<br>
+%= hidden_field 'redirect_to' => $self->req->url
+<%= $self->lang_config->{'buttons'}->{$self->language}->{'login'} %>: 
+<br>
+<div class="row">
+    <div class="col-xs-8 col-sm-4">
+%= text_field 'log_in', class => 'form-control input-sm', id => 'auth_form'
+    </div>
+    <div class="col-xs-8 col-sm-8"></div>
+</div>
+
+<%= $self->lang_config->{'buttons'}->{$self->language}->{'passw'} %>: 
+<br>
+<div class="row">
+    <div class="col-xs-8 col-sm-4">
+%= password_field 'passw', class => 'form-control input-sm', id => 'auth_form'
+    </div>
+    <div class="col-xs-8 col-sm-8"></div>
+
+</div>
+
+<div class="row">  
+    <div class="col-xs-1 col-sm-1">  
+    %= submit_button $self->lang_config->{'buttons'}->{$self->language}->{'register'}, name => 'registration', class => 'btn btn-default btn-lg', id => 'enter_button'
+    </div>
+</div>
+% }
+
+<br>
+%= hidden_field 'page_id' => $content->[0]->{'id'}
+% if( $client_check ){
+    <%= $self->lang_config->{'labels'}->{$self->language}->{'response_from'} %> <b class="nickname"><%= $self->session('client')->[1] %></b>:
+    <b style="color:red"><%= $message_of_comment %></b> <%#= Message about repeated comment ############## %>
+% }else{
+<%= $self->lang_config->{'labels'}->{$self->language}->{'response'} %>:
+% }
+<br>
+%= text_area 'response' , class => 'form-control', rows => 8, maxlength => 1500, id => 'textar'
+%= submit_button $self->lang_config->{'buttons'}->{$self->language}->{'send'}, name => 'send_respons', class => 'btn btn-default btn-lg active', id => 'enter_button'
+
+% end
+
+<%#= Comments output ------ %>
+%== $comments_tree
+<%#= Comments output END -- %>

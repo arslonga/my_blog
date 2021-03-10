@@ -1,0 +1,40 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+<h4><%= link_to $article_title => '/article_manage?id='.$id.'&title_alias='.$title_alias %></h4>
+<h4><%= $head %></h4>
+
+<hr>
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
+<div>
+%= form_for 'article_inclusion' => (method => 'post') => begin
+
+<div>
+%= text_area 'inclusion', id => 'inclusion' => begin
+<%= $content %>
+% end
+
+<script>
+CKEDITOR.replace( 'inclusion' );
+</script>
+</div>
+%= hidden_field 'id' => $id
+%= hidden_field 'title_alias' => $title_alias
+%= hidden_field 'title' => $chapter
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', id => 'upload_button' 
+% end
+
+</div>
+
+</div>
+<div class="col-md-1"></div>
+
+</div>
+
+</div>

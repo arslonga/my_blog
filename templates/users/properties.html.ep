@@ -1,0 +1,137 @@
+% layout 'layout_admin';
+% my($newsletter_checked, $no_newsletter_checked,
+%    $viewed_checked, $not_viewed_checked);
+% my $admin_check = $self->sess_check->admin($self);
+
+% if( $admin_check ){
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+% }
+
+<h3>
+<%= $content->{'login'} %> <span style="color: red"> <%= $self->lang_config->{$ban}->{$language} %></span>
+</h3>
+<h4><%= link_to uc($self->lang_config->{'list'}->{$language}) => '/users.manage' %></h4>
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+
+<div class="col-md-5" id="user_form">
+
+%= form_for '/user.properties' => (method => 'post') => begin
+<fieldset disabled>
+ID:
+<br>
+%= text_field 'id', value => $content->{'id'}, class => 'form-control' 
+<br>
+<%= $self->lang_config->{'registration_date'}->{$language} %>:
+<br>
+%= text_field 'curr_date', value => $content->{'curr_date'}, class => 'form-control'
+<br>
+<%= $self->lang_config->{'buttons'}->{$language}->{'login'} %>:
+<br>
+%= text_field 'login', value => $content->{'login'}, class => 'form-control'
+<br>
+<%= $self->lang_config->{'buttons'}->{$language}->{'passw'} %>:
+<br>
+%= text_field 'pass', value => $content->{'pass'}, class => 'form-control' 
+<br>
+Email:
+<br>
+%= text_field 'email', value => $content->{'email'}, class => 'form-control' 
+<br>
+<%= $self->lang_config->{'comments_quantity'}->{$language} %>:
+<br>
+%= text_field 'comment_quant', value => $content->{'comments_count'}, class => 'form-control'   
+
+</fieldset>
+
+<!------------------------------------->
+<br>
+% $newsletter_checked = 'checked' if($content->{'newsletter'} eq 'yes');
+% $no_newsletter_checked = 'checked' if($content->{'newsletter'} eq 'no');
+<%= $self->lang_config->{'sending'}->{$language} %>:
+<div class="row">
+
+<div class="col-xs-2">
+<div class="radio">
+  <label class="radio-inline">
+    <input type="radio" name="newsletter" value="yes" <%= $newsletter_checked %>> yes
+  </label>
+</div>
+</div>
+
+<div class="col-xs-2">
+<div class="radio">
+  <label class="radio-inline">
+<input type="radio" name="newsletter" value="no" <%= $no_newsletter_checked %>> no
+  </label>
+</div>
+</div>
+
+</div>
+<!------------------------------------->
+
+<!------------------------------------->
+% $viewed_checked = 'checked' if($content->{'view_status'} eq 'yes');
+% $not_viewed_checked = 'checked' if($content->{'view_status'} eq 'no');
+<%= $self->lang_config->{'viewing'}->{$language} %>:
+<div class="row">
+
+<div class="col-xs-2">
+<div class="radio">
+  <label class="radio-inline">
+    <input type="radio" name="view_status" value="yes" <%= $viewed_checked %>> yes
+  </label>
+</div>
+</div>
+
+<div class="col-xs-2">
+<div class="radio">
+  <label class="radio-inline">
+<input type="radio" name="view_status" value="no" <%= $not_viewed_checked %>> no
+  </label>
+</div>
+</div>
+
+</div>
+<!------------------------------------->
+
+<%= $self->lang_config->{'edit_priority'}->{$language} %>:
+<br>
+<fieldset disabled>
+%= text_area 'edit_priority' => $content->{'edit_priority'}, class => 'form-control'
+</fieldset>
+<br>
+%= hidden_field 'id' => $content->{'id'}
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'save'}, class => 'btn btn-primary', name => 'edit', id => 'upload_button' 
+% end
+
+%= form_for '/users.manage' => (method => 'post') => begin
+%= hidden_field 'id' => $content->{'id'}
+%#= submit_button $self->lang_config->{'buttons'}->{$language}->{'delete'}, class => 'btn btn-danger', name => 'delete', id => 'del_button'
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'ban'}, class => 'btn btn-warning ban-button', name => 'ban'
+% end
+
+</div>
+
+<div class="col-md-3" id="user_form">
+<br>
+<a href="/set.priority_edit?id=<%= $content->{'id'} %>"><%= $self->lang_config->{'set_edit_priority'}->{$language} %>
+<span class="glyphicon glyphicon-arrow-right"></span>
+</a>
+
+<br><br><br>
+<a href="/comments_list?id=<%= $content->{'id'} %>"><%= $self->lang_config->{'user_comments'}->{$language} %> (<%= $content->{'comments_count'} %>)
+<span class="glyphicon glyphicon-arrow-right"></span>
+</a>
+
+</div>
+
+<div class="col-md-1"></div>
+
+</div>
+
+</div>

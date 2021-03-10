@@ -1,0 +1,2 @@
+% my $action = 'decode_'.$self->db_driver;
+<%== $self->$action( $menu ) %>

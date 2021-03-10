@@ -1,0 +1,48 @@
+% layout 'bootstrap';
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 text-left">
+    <h2><%= $self->db_driver %></h2>
+    <form action="/dbdriver" method="post">
+    <input type="hidden" name="request" value="change_db">
+    <input type="submit" name="set_new_db" id="forgotn_button" value="<%= $self->lang_config->{'change_db'}->{$self->language} %>">
+    </form>
+<hr>
+
+%= form_for 'access' => (method => 'post') => begin
+    <br>
+    <h3 style="color:#428BCA"><%= $title %></h3><br>
+    % if ( $message ) {
+    <b style="color:#428BCA"><%== $message %></b><br>
+    %= link_to $self->lang_config->{'labels'}->{$self->language}->{'try_again'} => '/dbaccess?request=fatal_err'
+    <br><br>
+    % }
+
+    <b><%= $self->lang_config->{'buttons'}->{$self->language}->{'login'} %></b>:
+    <span style="font-size:12px">(<%= lc ($self->lang_config->{'login_set_explain'}->{$self->language} ) %>)</span>
+    <b style="color:red"> <%= $err_login %></b> 
+    <br>
+    %= text_field 'login', class => 'form-control'
+    <br>
+    <b><%= $self->lang_config->{'buttons'}->{$self->language}->{'passw'} %></b>:
+    <span style="font-size:12px">(<%= lc ($self->lang_config->{'login_set_explain'}->{$self->language} ) %>)</span>
+    <b style="color:red"> <%= $err_passw %></b>  
+    <br>
+    %= password_field 'pass', , class => 'form-control'
+    <br>
+    <b>Email</b>: 
+    <b style="color:red">
+    <%= $email_err %>
+    </b>
+    <br>
+    %= text_field 'email', , class => 'form-control'
+    <br><br>
+    %= submit_button $self->lang_config->{'buttons'}->{$self->language}->{'create'} , name => 'access', class => 'btn btn-default'
+    %= input_tag 'reset', type => 'reset', value => $self->lang_config->{'reset'}->{$self->language}, class => 'btn btn-warning'
+        % end
+    
+    </div>
+    <div class="col-md-2"></div>
+    </div>
+    </div>
+<hr>

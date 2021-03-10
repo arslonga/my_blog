@@ -1,0 +1,101 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+<hr>
+
+<h4>
+%= link_to ' ['.$self->lang_config->{'preview'}->{$language}.']' => '/', target => 'blank'
+</h4>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8" style="text-align:left">
+
+%= form_for 'setbrand' =>(enctype => 'multipart/form-data', method => 'post') => begin
+
+<br>
+<%= $self->lang_config->{'image'}->{$language} %>: <img src="/img/<%== $exist_brand_img %>" width="50"> <b style="color:red"><%= $img_format_err %></b>
+<br><br>
+%= file_field 'brand_img', class => 'filestyle', 'data-icon' => 'false', 'data-size' => 'sm', 'data-buttonText' => $self->lang_config->{'buttons'}->{$language}->{'select_file'} 
+<br>
+<div class="form-group">
+<label for="selectMarginTop" class="col-sm-6 control-label" style="text-align:right"><%= $self->lang_config->{'brand_margin_top'}->{$language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectMarginTop" size="1" name="margin_top">
+
+% foreach my $item(@$brand_margin_list){
+    % my $select_attr = 'selected' if($item == $exist_margin_top);
+	<option value="<%= $item %>" <%= $select_attr %>><%= $item %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br><br>
+<div class="form-group">
+<label for="selectMarginLeft" class="col-sm-6 control-label" style="text-align:right"><%= $self->lang_config->{'brand_margin_left'}->{$language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectMarginLeft" size="1" name="margin_left">
+
+% foreach my $item(@$brand_margin_list){
+    % my $select_attr = 'selected' if($item == $exist_margin_left);
+	<option value="<%= $item %>" <%= $select_attr %>><%= $item %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br><br>
+<div class="form-group">
+<label for="selectMarginRight" class="col-sm-6 control-label" style="text-align:right"><%= $self->lang_config->{'brand_margin_right'}->{$language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectMarginRight" size="1" name="margin_right">
+
+% foreach my $item(@$brand_margin_list){
+    % my $select_attr = 'selected' if($item == $exist_margin_right);
+	<option value="<%= $item %>" <%= $select_attr %>><%= $item %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br>
+<hr>
+<div class="form-group">
+<label for="selectMaxHeight" class="col-sm-6 control-label" style="text-align:right"><%= $self->lang_config->{'brand_max_height'}->{$language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectMaxHeight" size="1" name="max_height">
+
+% foreach my $item(@$brand_max_height_list){
+    % my $select_attr = 'selected' if($item == $exist_max_height);
+	<option value="<%= $item %>" <%= $select_attr %>><%= $item %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br><br>
+<div class="form-group" style="text-align:center">
+<br>
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'set_brand', id => 'upload_button'
+</div>
+
+% end
+
+</div>
+
+<div class="col-md-2"></div>
+
+</div>
+
+</div>

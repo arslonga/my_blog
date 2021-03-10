@@ -1,0 +1,3 @@
+% my $action = 'decode_'.$self->db_driver;
+<h4 class="header_style" id="headr"><%= uc($self->lang_config->{'archive'}->{$language}) %></h4>
+<%== $self->$action( $archive_menu ) %>

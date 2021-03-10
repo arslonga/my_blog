@@ -1,0 +1,28 @@
+% layout 'bootstrap';
+
+<div style="margin:200px auto; width:30%; text-align:center">
+<br>
+<h3 style="color:#428BCA"><%= $title %></h3><br>
+% if ( $message ) {
+    <b style="color:red"><%== $message %></b><br>
+% }
+
+%= form_for 'user.admin' => (method => 'post') => begin
+
+<%#= Повідомлення про неправильний логін або пароль ############## %>
+<%= $self->lang_config->{'buttons'}->{$language}->{'login'} %>: 
+<b style="color:red"><%= $login_err %></b>
+<br>
+%= text_field 'login', class => 'form-control input-sm', id => 'auth_form'
+
+<%= $self->lang_config->{'buttons'}->{$language}->{'passw'} %>: 
+<b style="color:red"><%= $pass_err %></b>
+<br>
+%= password_field 'pass', class => 'form-control input-sm', id => 'auth_form'
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'enter'}, name => 'authorize', class => 'btn btn-default btn-sm active', id => 'enter_button'
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'register'}, name => 'registration', class => 'btn btn-default btn-sm', id => 'enter_button'
+<br>
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'forgot_passw'}, name => 'forgot_passw', id => 'forgotn_button'
+% end
+
+</div>

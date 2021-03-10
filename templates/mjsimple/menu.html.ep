@@ -1,0 +1,8 @@
+% my $action = 'decode_'.$self->db_driver;
+% $menu = $self->$action( $menu );
+% if( $self->authorize_enable eq 'yes'){
+% my $authoriz_form = $self->render_to_string(template => lc($self->template).'/authorize', language => $self->language);
+% $menu =~ /\<\!--autrz-form--\>/;
+% $menu =~ s/$1/$authoriz_form/;
+% }
+<%== $menu %>

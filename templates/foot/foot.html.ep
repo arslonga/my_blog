@@ -1,0 +1,31 @@
+% layout 'layout_admin';
+% my $hidden_checked;
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+<br>
+<h4><%= $head %></h4>
+
+<hr>
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
+%= form_for 'foot' => (method => 'post') => begin
+
+<div>
+<br>
+%= text_area foot_content => $foot_code, class => 'form-control', wrap => 'hard', rows => 7, cols => 84, id => 'foot'
+</div>
+<br>
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', id => 'upload_button' 
+% end
+
+</div>
+
+<div class="col-md-1"></div>
+
+</div>
+</div>

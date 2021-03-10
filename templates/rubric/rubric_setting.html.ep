@@ -1,0 +1,43 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+
+%= form_for 'rubric_setting' => (method => 'post') => begin
+
+<div class="form-group">
+<label for="selectLevel" class="col-sm-5 control-label"><%= $self->lang_config->{'rubric_list_numbers'}->{$language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectLevel" placeholder="selectLevel" size="1" name="rubric_list_size">
+
+% foreach(@$list_of_rubric_numbers){
+    % my $select_attr = 'selected' if($_ == $exist_rubric_numbers);
+	<option value="<%= $_ %>" <%= $select_attr %>><%= $_ %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br><br><br>
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'set_rubric_numbers', id => 'upload_button'
+
+% end
+
+</div>
+
+<div class="col-md-2"></div>
+
+</div>
+
+</div>

@@ -1,0 +1,149 @@
+% layout lc($self->template).'/bootstrap';
+% my $action = 'decode_'.$self->db_driver;
+% use RubricList;
+% my $client_id;
+% eval{ $client_id = $self->session('client')->[0]; };
+% my $client_check = $self->sess_check->client( $self, $client_id );
+
+% my $admin_check = $self->sess_check->admin($self);
+% my $id = (split(/\//, $self->req->url))[-1] || $content->[0]->{'id'};
+<div class="row">
+  <div class="col-sm-12" id="articl_box">
+    
+<%= include lc($self->template).'/index_banner1' %>
+    <br>   
+% if($list_enable eq 'no'){
+<span><%== $bread_crumbs %></span>
+<span class="date_post"><%= substr($content->[0]->{'curr_date'}, 0, 10) %></span>
+
+% if( $content->[0]->{'rubric_id'} ){
+|&nbsp; <span class="date_post"><%== $self->$action( RubricList->rubric_link($self, $content->[0]->{'rubric_id'}) ) %></span>|
+% }
+%# If admin is authorized
+% if($admin_check){
+    % # $title_alias is the name of the table for given post
+    % my $title_alias = (split(/\//, $self->req->url))[-2] || 'main';
+    % if( scalar(split(/\//, $self->req->url)) == 2 || scalar(split(/\//, $self->req->url)) == 3 ){
+        % $title_alias = (split(/\//, $self->req->url))[-1];
+        % $id = $content->[0]->{'id'};
+    % }
+<span class="edit_str">&nbsp;
+  <a href="<%= '/article_manage?title_alias='.${title_alias}.'&id='.$id %>"><span class="glyphicon glyphicon-edit"></span></a>
+</span>
+% }
+%# If user is authorized
+% elsif( $client_check && !$admin_check ){
+% my $author_id = $self->menu->find($title_alias, ['author_id'], {'id' => $id})->list;
+% if($author_id){
+    % # $title_alias is the name of the table for given post
+    % my $title_alias = (split(/\//, $self->req->url))[-2] || 'main';
+    % if( scalar(split(/\//, $self->req->url)) == 2 || scalar(split(/\//, $self->req->url)) == 3 ){
+        % $title_alias = (split(/\//, $self->req->url))[-1];
+        % $id = $content->[0]->{'id'};
+    % }
+<span class="edit_str">|&nbsp;
+    <a href="<%= '/user.article_manage?title_alias='.${title_alias}.'&id='.$id %>"> <span class="glyphicon glyphicon-pencil"></span></a>
+</span>
+% }
+% }
+<h3 class="titl"><%= $self->$action( $content->[0]->{'head'} ) %></h3> 
+<div class="artcl_content">
+<%== $self->$action( $content->[0]->{'content'} ) %>
+</div>
+<br>
+% if($content->[0]->{'comment_enable'} eq 'yes'){
+
+<div class="row"> 
+ <div class="col-sm-11 text-right">
+ 
+%# Like/Unlike block ##########################
+% my $status = "";
+% my $like_id = 'like_'.$title_alias.'_'.$id;
+% my $unlike_id = 'unlike_'.$title_alias.'_'.$id;
+% my $like_btn_name = 'like'.$title_alias.'_'.$id;
+% my $unlike_btn_name = 'unlike'.$title_alias.'_'.$id;
+% my $liked_cnt = $content->[0]->{'liked'} || 0;
+% my $unliked_cnt = $content->[0]->{'unliked'} || 0;
+% if( !$client_check ){
+%    $status = ' disabled';
+% }elsif( defined $c->cookie( 'user'.$client_id.'_'.$title_alias.'_'.$id ) && 
+%    $title_alias.'_'.$id eq $c->cookie( 'user'.$client_id.'_'.$title_alias.'_'.$id ) ){
+%    $status = ' disabled';
+% }else{
+%   $status = "";
+% }
+
+<button type="button" name="<%= $like_btn_name %>" class="btn btn-default" 
+onclick="LikeArtcl('<%= $title_alias %>', '<%= $id %>', 'like_<%= $title_alias.'_'.$id %>', '<%= $client_id %>', 'unlike<%= $title_alias.'_'.$id %>'); this.disabled='disabled';" id="chevron_stl"<%= $status %>>
+<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+</button>
+<span id="<%= $like_id %>" class="like_unlike"><%= $liked_cnt %></span>
+
+<button type="button" name="<%= $unlike_btn_name %>" class="btn btn-default" 
+onclick="UnlikeArtcl('<%= $title_alias %>', '<%= $id %>', 'unlike_<%= $title_alias.'_'.$id %>', '<%= $client_id %>', 'like<%= $title_alias.'_'.$id %>'); this.disabled='disabled';" id="chevron_stl"<%= $status %>>
+&nbsp;<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+</button>&nbsp;
+<span id="<%= $unlike_id %>" class="like_unlike"><%= $unliked_cnt %></span>
+%# Like/Unlike block END ##########################
+
+  </div>
+</div>
+    
+<div id="comment-section" class="col-sm-12">
+    % if( $self->authorize_enable eq 'yes' ){
+        <%= include 'comment_form' =%>
+    % }
+</div>    
+% }
+    
+% }else{    
+    % if($list_enable eq 'yes' && $pagination_attr->{'pgn_place'} eq 'top_bottom'){       
+        <div class="row text-center">
+            <div class="col-sm-12">
+            <%= bootstrap_pgn( $current_page, $total_pages, 
+    {round => $pagination_attr->{'round'}, 
+    outer => $pagination_attr->{'outer'},
+    start => 1,
+    class => 'pagination-md', 
+    param => 'page' } ) %>
+            </div>
+        </div>
+% }
+        
+        <span><%== $bread_crumbs %></span>
+        % foreach my $item(@$content){
+        <div class="row" id="indx_style">
+            <span class="date_post"><%= substr($item->{'curr_date'}, 0, 10) %></span>
+            %# Link to the post of given category
+            % if($item->{'rubric_id'} != 0){
+            |&nbsp; <span class="date_post"><%== $self->$action( RubricList->rubric_link($self, $item->{'rubric_id'}) ) %></span>
+            % }
+            <a href="<%= "$item->{'url'}" %>">
+                <h3 class="head_post"><%= $self->$action( $item->{'head'} ) %></h3>
+            </a>
+            <div class="artcl_content">
+            % if($item->{'lead_img'}){
+            % my $alt = $self->menu->find('illustrations', ['alt'], {'file' => $item->{'lead_img'}})->list;
+            <img src="/illustration/lid_<%= $item->{'lead_img'} %>" vspace="2" hspace="4" align="left" title="<%= $alt %>" class="<%= $self->thumb_img_style %>">
+            % }
+            <%== $self->$action( $item->{'announce'} ) %>
+            </div>
+        </div>
+        <hr>
+        % }
+    % }
+    % if($list_enable eq 'yes'){
+         <div class="row text-center">
+            <div class="col-sm-12">
+        <%= bootstrap_pgn( $current_page, $total_pages, 
+        {round => $pagination_attr->{'round'}, 
+        outer => $pagination_attr->{'outer'},
+        start => 1, 
+        class => 'pagination-md', 
+        param => 'page' } ) %>
+            </div>
+        </div>
+    % }
+
+  </div>
+</div>

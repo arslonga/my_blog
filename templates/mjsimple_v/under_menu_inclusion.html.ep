@@ -1,0 +1,4 @@
+% use Mojo::Util qw(decode);
+% my $inclusion_file = 'conf/'.$self->template.'/under_menu_inclusion';
+% my $inclusion_code = decode( 'utf8', $self->slurp($inclusion_file) );
+%== $inclusion_code

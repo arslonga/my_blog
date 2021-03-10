@@ -1,0 +1,33 @@
+% layout lc($self->template).'/bootstrap_serv';
+% use Mojo::Util qw(encode decode);
+<div class="container">
+<div class="row">
+ <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+<h3 class="titl_auth"><%= $title %></h3><br>
+%= form_for 'registration' => (method => 'post') => begin
+% if ( $message ) {
+    <b style="color:red"><%== $message %></b><br>
+  % }
+  
+%= hidden_field 'redirect_to' => $redirect_to
+
+<%= $self->lang_config->{'buttons'}->{$language}->{'login'} %>: 
+<br>
+%= text_field 'login', class => 'form-control input-md'
+<br>
+Email: 
+<br>
+%= text_field 'email', class => 'form-control input-md'
+<br>
+<%= check_box 'newsletter' => 'yes' %> <%= $self->lang_config->{subscribe_newsletter}->{$language} %>
+<br><br>
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'register'} , name => 'register', id => 'enter_button', class => 'btn btn-default btn-lg active'
+%= input_tag 'reset', type => 'reset', value => $self->lang_config->{'reset'}->{$language}, class => 'btn btn-warning btn-lg'
+% end
+
+  </div>
+ <div class="col-sm-4"></div>
+</div>
+</div>
+<hr>

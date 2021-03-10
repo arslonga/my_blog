@@ -1,0 +1,31 @@
+% layout 'layout_admin';
+%= form_for '/manager' => (method => 'post') => begin
+<div class="text-center">
+%= submit_button $self->lang_config->{'buttons'}->{$self->language}->{'logout'}, name => 'logout', class => 'btn btn-info'
+</div>
+% end
+<h3 style="color:#428BCA">
+<%= $title %>
+</h3>
+<hr>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        % foreach my $pair(@{$self->top_config->{'structure_list'}}){
+            <p class="mr_menu_item">
+            % my($key, $val) = split(/\|/, $pair);
+            %= link_to $self->lang_config->{$key}->{$self->language} => $val
+            </p>
+        % }
+        
+%= form_for '/access' => (method => 'post') => begin
+%= hidden_field 'change_access' => 'jolimocious'
+<p class="mr_menu_item">  
+%= submit_button $self->lang_config->{'change_access'}->{$self->language}, name => 'go_access', class => 'btn btn-info'
+</p>
+% end
+        
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

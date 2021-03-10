@@ -1,0 +1,106 @@
+% layout 'layout_admin';
+% my($direct_checked, $reverse_checked);
+% my $action = 'decode_'.$self->db_driver;
+% if($order_for_time ne 'reverse'){
+%   $direct_checked = 'checked';   
+% }else{
+%   $reverse_checked = 'checked';
+%   @$data_ref = reverse @$data_ref;
+% }
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <p class="mr_menu_item">
+            %= link_to $self->lang_config->{menu}->{$language} => '/menu_manage'
+            </p>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    
+  <h2><%= $self->$action( $title ) %></h2>
+<hr>
+<div class="row text-center">
+<div class="col-sm-1">&nbsp;</div>
+<div class="col-sm-10">
+%= form_for "/list_content_manage" => (class => 'form-horizontal') => begin
+
+<div class="form-group sorting-bg">
+
+<div class="radio">
+<div class="row">
+<div class="col-sm-3">
+<b><%= $self->lang_config->{'order_for_time'}->{$language} %>:</b>
+</div>
+<div class="col-sm-3" style="margin-left:-50px; margin-top:-5px">
+  <label class="radio-inline">
+    <input type="radio" name="order_for_time" value="direct" <%= $direct_checked %>> <%= $self->lang_config->{'direct'}->{$language} %>
+  </label>
+  <label class="radio-inline">
+    <input type="radio" name="order_for_time" value="reverse" <%= $reverse_checked %>> <%= $self->lang_config->{'reverse'}->{$language} %>
+  </label>
+  </div>
+  <div class="col-sm-4">
+        <input type="submit" class="btn btn-primary" value="<%= $self->lang_config->{'set'}->{$language} %>">
+%= hidden_field title_alias => $title_alias
+%= hidden_field title => $self->param('title')
+</div>
+</div>
+</div>
+</div>
+% end
+</div>
+<div class="col-sm-1">&nbsp;</div>
+</div>
+<hr>
+  
+%= form_for "/list_content_manage" => (class => 'form-horizontal') => begin
+<div class="form-group">
+    <div class="col-sm-1">
+        <%= $self->lang_config->{'labels'}->{$language}->{'head'} %>:
+    </div>
+    <div class="col-md-4">
+        <input class="form-control" type="text" name="head">
+    </div>
+    <span data-alertid="example"></span>
+    
+    <div class="col-xs-2">
+        <input type="submit" class="btn btn-primary" name="add" value="<%= $self->lang_config->{'buttons'}->{$language}->{'add_new_article'} %>">
+    </div>
+</div>
+%= hidden_field title_alias => $title_alias
+%= hidden_field title => $self->param('title')
+% end
+  
+<hr>
+    <div class="row" id="list_articles">
+        <div class="col-md-8">
+        
+        % foreach my $item(@$data_ref){
+<div class="row" style="text-align:left">
+%= form_for "/article_manage" => begin
+%= hidden_field level_id => $item->{'level_id'}
+%= hidden_field level => $item->{'level'}
+%= hidden_field title_alias => $self->param('title_alias')
+%= hidden_field id => $item->{'id'}
+%= hidden_field template => $item->{'template'}
+%= $item->{'curr_date'} 
+%= submit_button $self->$action( $item->{'head'} ), name => 'go_article', id => 'go_article'
+<br>
+% if ($item->{'lead_img'}){
+    <img src="/illustration/lid_<%= $item->{'lead_img'} %>" vspace="2" hspace="4" align="left" alt="" class="<%= $self->thumb_img_style %>">
+% }
+%== $self->$action( $item->{'announce'} )
+% end
+
+</div>
+            <hr>    
+        % }
+        
+        </div>
+    </div>
+</div>

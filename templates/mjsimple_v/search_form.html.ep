@@ -1,0 +1,10 @@
+%# search form block =============================================
+<div class="suchen-style">
+  <form name="suchen" action="/search_artcl" method="post">
+  <div class="form-group has-feedback">
+    <input type="text" class="form-control search_frase" name="search_frase" id="search_form" maxlength="100" placeholder="<%= $self->lang_config->{search}->{$language} %>">
+    <i class="glyphicon glyphicon-search form-control-feedback"></i>
+  </div>
+  </form>
+</div>
+%# search form block END =========================================

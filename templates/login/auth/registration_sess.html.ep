@@ -1,0 +1,55 @@
+% layout lc($self->template).'/bootstrap_serv';
+% use Mojo::Util qw(encode decode);
+<div class="container"> 
+<div class="row">
+ <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+<h3 class="titl_auth"><%= $title %></h3><br>
+%= form_for 'registration' => (method => 'post') => begin
+% if ( $message ) {
+    <b style="color:red"><%== $message %></b><br>
+  % }
+  
+%= hidden_field 'redirect_to' => $redirect_to
+%= hidden_field 'session_code' => $session_code
+
+<%= $self->lang_config->{'buttons'}->{$language}->{'login'} %>: *
+<span style="font-size:12px">(<%= lc ($self->lang_config->{'login_set_explain'}->{$language} ) %>)</span> 
+<b style="color:red"><%= $err_login %></b>
+<br>
+%= text_field 'login', class => 'form-control input-md', maxlength => 30
+<br>
+Email: * <b style="color:red"><%= $err_email %></b>
+<br>
+%= text_field 'email', class => 'form-control input-md'
+<br>
+<%= $self->lang_config->{'buttons'}->{$language}->{'passw'} %>: * 
+<span style="font-size:12px">(<%= lc ($self->lang_config->{'login_set_explain'}->{$language} ) %>)</span>
+<b style="color:red"><%= $err_passw %></b>
+<br>
+%= password_field 'passw', class => 'form-control input-md', maxlength => 24
+<br>
+<%= $self->lang_config->{'labels'}->{$language}->{'enter_confirm_code'} %>: * 
+<br>
+<div class="form-group">
+<div class="row">
+<div class="col-sm-6">
+<label for="verText" class="control-label"><img src="<%=$url_tempdir %>/<%= $fileimag %>" border="0"></label>
+</div>
+<div class="col-sm-6">
+%= text_field 'verifytext', id => 'verText', class => 'form-control input-md', maxlength => 5
+</div>
+</div>
+</div>
+
+<%= check_box 'newsletter' => 'yes' %> <%= $self->lang_config->{subscribe_newsletter}->{$language} %>
+<br><br>
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'registr'} , name => 'register', id => 'enter_button', class => 'btn btn-default btn-lg active'
+%= input_tag 'reset', type => 'reset', value => $self->lang_config->{'reset'}->{$language}, id => 'warn-button', class => 'btn btn-warning btn-lg'
+% end
+
+<br>
+  </div>
+ <div class="col-sm-4"></div>
+</div>
+</div>

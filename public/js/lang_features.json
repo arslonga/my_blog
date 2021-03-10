@@ -1,0 +1,40 @@
+{
+"more_comments" : 
+    {
+    "uk": "Показати ще ", 
+    "en": "Show more "
+    },
+"please_wait" : 
+    {
+    "uk": "Зачекайте... ", 
+    "en": "Please wait... "
+    },
+"time_ago_comment" :
+    {   
+    "less_sec" :
+        {
+        "uk": "Нещодавно ", 
+        "en": "right now "
+        },
+    "less_minute" :
+        {
+        "uk": "сек. тому ", 
+        "en": "sec. ago "
+        },
+    "less_hour" :
+        {
+        "uk": "хв. тому ", 
+        "en": "min. ago "
+        },
+    "less_day" :
+        {
+        "uk": "год. тому ", 
+        "en": "hours ago "
+        },
+    "less_month" :
+        {
+        "uk": "днів тому ", 
+        "en": "days ago "
+        }
+    }
+} 

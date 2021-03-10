@@ -1,0 +1,59 @@
+% layout lc($self->template).'/other';
+% use RubricList;
+% my $action = 'decode_'.$self->db_driver;
+
+<div class="row">
+<div class="col-sm-12" id="articl_box">
+% my $i = 0;
+% foreach my $month( @$other_month ){
+    %= link_to $self->lang_config->{'num_month'}->{(split(/-/, $month))[1]}->{$language} => '/archive/'.(split(/-/, $month))[0].'/'.(split(/-/, $month))[1] => (class => 'arch_link')
+    % if($i == scalar(@$other_month)-1){
+    % }else{
+|
+    % }
+% $i++;
+% }
+<h4><%= $year_month %></h4>    
+% if($list_enable eq 'yes' && $pagination_attr->{'pgn_place'} eq 'top_bottom'){        
+<div class="row">
+    <div class="col-xs-8 col-sm-12">
+    %= bootstrap_pgn( $current_page, $total_pages, {round => $pagination_attr->{'round'}, outer => $pagination_attr->{'outer'}, class => 'pagination-md', param => 'page' } )
+    </div>
+</div>
+% }
+
+% my $ind = 0;    
+% foreach my $key(reverse sort keys %{$content}){
+<div class="row" id="indx_style">
+%# Creating address of the post
+    <span class="date_post"><%= substr($$content{$key}->{'curr_date'}, 0, 10) %></span>
+    %# Link to the post from given cathegory
+    % if($$content{$key}->{'rubric_id'} != 0){
+    |&nbsp; <span class="date_post"><%== $self->$action( RubricList->rubric_link($self, $$content{$key}->{'rubric_id'}) ) %></span>
+    % }
+    % if(!$$content{$key}->{'url'}){
+        </div>
+    % next;
+    % }else{
+        <a href="<%= $$content{$key}->{'url'} %>">
+    % }
+    <h3 class="head_post">
+    %= $self->$action( $$content{$key}->{'head'} )
+    </h3>
+    </a>
+    <%== $self->$action( $$content{$key}->{'announce'} ) %>
+</div>
+    % if( $ind < (scalar(keys %{$content}) - 1) ){
+        <hr>
+      % }
+    % $ind++;
+% }
+<br>
+    
+<div class="row">
+    <div class="col-xs-8 col-sm-12">
+    %= bootstrap_pgn( $current_page, $total_pages, {round => $pagination_attr->{'round'}, outer => $pagination_attr->{'outer'}, class => 'pagination-md', param => 'page' } )
+    </div>
+</div>
+</div>    
+</div>

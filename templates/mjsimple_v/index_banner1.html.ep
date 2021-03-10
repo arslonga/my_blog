@@ -1,0 +1,4 @@
+%# my $action = 'decode_'.$self->db_driver;
+%#== $self->$action( $self->slurp( 'conf/'.$self->template.'/index_banner1' ) )
+% use Mojo::Util qw(encode decode);
+%== decode('utf8', $self->slurp('conf/'.$self->template.'/index_banner1') )

@@ -1,0 +1,19 @@
+%# modal widow of alert message ###################################################
+<div class="row">
+  <div id="bg-modal" class="col-sm-12 modl-style">
+      <span class="glyphicon glyphicon-remove" style="color: gray; opacity: 1 !important"></span>
+  </div>
+</div>
+
+%# message block =============================================
+<div class="row" id="message-block">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6 alert-message-style">
+  <button type="button" id="close-button">
+      <span class="glyphicon glyphicon-remove" style="color: gray; opacity: 1 !important"></span>
+    </button>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+%# message block END =========================================
+%# modal widow of alert message END ############################################  

@@ -1,0 +1,40 @@
+% layout lc($self->template).'/bootstrap_serv';
+
+<div class="row" style="padding-top:100px">
+
+<div class="col-sm-12 text-center">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+% #***************************************
+% if($reset_data ne 'session_timeout'){
+% #***************************************
+<h4><%= $self->lang_config->{'enter_new_password'}->{$language} %>
+<br><span style="font-size:12px">(<%= lc ($self->lang_config->{'login_set_explain'}->{$language} ) %>)</span>
+</h4>
+%= form_for 'forgot-passw' => (method => 'post') => begin
+<h4 id="delete_chbox"><%= $message %></h4>
+%= hidden_field 'redirect_to' => $redirect_to
+%= hidden_field 'session' => $session_code
+%= password_field 'passw', id => 'reset_passw', class => 'form-control input-md', maxlength => 24
+<br>
+%= submit_button $self->lang_config->{'change_password'}->{$language}, name => 'change_passw', class => 'btn btn-primary btn-lg', id => 'enter_button'
+<br><br>
+<div class="form-group">
+    <input id="viewpassw" type="checkbox" name="viewpassw"> Show password
+</div>
+<br>
+<br>
+% end
+%} #*******
+% else{
+<h4 id="delete_chbox"><%== $message %></h4>
+<a href="/user/forgot-passw"><span id="enter_button" class="btn btn-primary btn-lg">
+$self->lang_config->{'labels'}->{$language}->{'try_again'}</span>
+</a>
+<br><br>
+%} #*******
+</div>
+<div class="col-sm-4"></div>
+</div>
+    
+</div>

@@ -1,0 +1,71 @@
+% my $templ = lc($self->template);
+% use Mojo::Util qw(decode);
+% my $meta_inclusion_code;
+% my $action = 'decode_'.$self->db_driver;
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= $self->$action( $title ) %></title>
+%== $self->slurp( 'public/'.$self->top_config->{'favicon_code_file'} );
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="description" content="<%= $self->$action( $description ) %>"/>
+<meta name="keywords" content="<%= $self->$action( $keywords ) %>"/>
+<meta charset="utf-8">
+<%== $tw_og %>
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/bootstrap.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/main.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/brand.css') %>" />
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/theme.css') %>" />
+<script src="<%= url_for("/js/jquery-1.9.1.js") %>"></script>
+<script language="javascript" src="<%= url_for("/js/bootstrap.min.js") %>"></script>
+% eval{
+% $meta_inclusion_code = $self->slurp( 'conf/'.$self->template.'/'.$self->top_config->{'inclusion_kinds'}->[0] );
+% };
+<%== $meta_inclusion_code %>  
+%# Sharebuttons code 
+<%== $self->slurp( $self->top_config->{'social_buttons_file'} ) %>
+</head>
+
+<body> 
+<div class="container-fluid">    
+   
+<div class="row">
+  <div class="col-sm-12">
+    
+    <%= include lc($self->template).'/menu' =%>
+    
+</div>
+%== decode('utf8', $self->slurp( $self->top_config->{'logo_head_file'} ));
+
+%# modal widow of search form 
+<%= include lc($self->template).'/search_form' %>
+
+<div class="row">
+ <div class="col-sm-9">
+    <%= content %>
+</div>
+
+<div class="col-sm-3 right_column_main">
+    <%= include lc($self->template).'/right_banner' %>
+    <%= include lc($self->template).'/incl_article' =%>
+    
+    <%= include lc($self->template).'/rubric_list' %>
+    <%= include lc($self->template).'/archive_menu' =%>
+    <%= include lc($self->template).'/meta_menu' %>
+    <%#= include lc($self->template).'/foo' %>
+    </div>    
+</div>
+
+<div class="to-top">
+<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+</div>
+
+<footer class="footer">  
+  <%= include lc($self->template).'/foot_content' =%>
+</footer>
+<!-------------------->
+</div>
+<script language="javascript" src="<%= url_for('/js/'.$templ.'/morncat.js') %>"></script> 
+  </body>
+</html>

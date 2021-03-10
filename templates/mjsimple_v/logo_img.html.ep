@@ -1,0 +1,1 @@
+  <img id="imgLogo" class="img-responsive" src="<%= '/'.$logo_image_path.'/'.$logo_image_filename %>">

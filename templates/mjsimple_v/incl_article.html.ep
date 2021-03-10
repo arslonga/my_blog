@@ -1,0 +1,2 @@
+% my $action = 'decode_'.$self->db_driver;
+%== $self->$action( $self->menu->find($title_alias, ['inclusion'], {'id' => $content->[0]->{'id'}})->list )

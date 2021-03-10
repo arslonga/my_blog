@@ -1,0 +1,35 @@
+% layout lc($self->template).'/bootstrap_serv';
+<div class="container">
+<div class="row">
+ <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+  
+  <h3 class="titl_auth"><%= $title %></h3>
+%= form_for $self->req->url => (method => 'post') => begin
+<h4 style="color:blue"><%= $message_psw %></h4>
+<h4 style="color:red"><%= $message %></h4> <%#= Повідомлення про неправильний логін або пароль ############## %>
+%= hidden_field 'redirect_to' => $redirect_to
+<%= $self->lang_config->{'buttons'}->{$language}->{'login'} %>: 
+<br>
+%= text_field 'login', class => 'form-control input-md', id => 'auth_form'
+<br>
+<%= $self->lang_config->{'buttons'}->{$language}->{'passw'} %>: 
+<br>
+%= password_field 'pass', class => 'form-control input-md', id => 'auth_form'
+<br>
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'enter'}, name => 'authorize', class => 'btn btn-default btn-lg active', id => 'enter_button'
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'register'}, name => 'registration', class => 'btn btn-default btn-lg', id => 'enter_button'
+<br>
+% end
+
+%= form_for '/user/forgot-passw' => (method => 'post') => begin
+%= hidden_field 'redirect_to' => $self->req->url
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'forgot_passw'}, name => 'forgot_passw', id => 'forgotn_button'
+
+% end
+<br>
+</div>
+ <div class="col-sm-4"></div>
+</div>
+
+</div>

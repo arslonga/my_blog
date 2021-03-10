@@ -1,0 +1,46 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+<hr>
+
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4 text-center">
+
+%= form_for 'authorize_setting' => (method => 'post') => begin
+
+% my $i = 1;
+% foreach my $item( @{$self->top_config->{'authorize_available'}} ){
+
+% my $checked_attr = 'checked' if($item eq $authorize_setting);
+
+<div class="radio">
+  <label>
+    <input type="radio" name="set_auth_form" id="logo_type<%= $i %>" value="<%= $item %>" <%= $checked_attr %>>
+    <%= $self->lang_config->{$item}->{$self->language} %>
+  </label>
+</div>
+
+% $checked_attr = "";
+% $i++;
+% }
+<br>
+<div class="form-group text-center">
+%= submit_button $self->lang_config->{'set'}->{$self->language}, class => 'btn btn-primary', name => 'set_type', id => 'upload_button'
+</div>
+
+% end
+
+</div>
+
+<div class="col-sm-4"></div>
+
+</div>
+
+</div>

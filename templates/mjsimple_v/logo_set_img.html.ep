@@ -1,0 +1,41 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+%= link_to $head => '/logo.manage'
+</h3>
+<hr>
+
+<h4>
+%= $self->lang_config->{$exist_logo_type}->{$language}
+%= link_to ' ['.$self->lang_config->{'preview'}->{$language}.']' => '/', target => 'blank'
+</h4>
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8" style="text-align:left">
+
+%= form_for 'logo.set_img' =>(enctype => 'multipart/form-data', method => 'post') => begin
+
+<%= $self->lang_config->{'image'}->{$language} %>: <%== $exist_logo_img %>
+<br><br>
+%= file_field 'logo_img', class => 'filestyle', 'data-icon' => 'false', 'data-size' => 'sm', 'data-buttonText' => $self->lang_config->{'buttons'}->{$language}->{'select_file'} 
+
+<div class="form-group" style="text-align:center">
+<br>
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'set_type', id => 'upload_button'
+</div>
+
+% end
+
+</div>
+
+<div class="col-md-2"></div>
+
+</div>
+
+</div>

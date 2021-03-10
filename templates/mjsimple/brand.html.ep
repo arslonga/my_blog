@@ -1,0 +1,8 @@
+#brand_style{
+position: relative;
+max-height:<%= $max_height %>px; 
+margin-top:<%= $margin_top %>px;
+margin-left:<%= $margin_left %>px;
+margin-right:<%= $margin_right %>px;
+z-index: 100;
+}

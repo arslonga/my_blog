@@ -1,0 +1,43 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+%= link_to $head => '/favicon'
+</h3>
+<hr>
+
+<h4>
+%= link_to ' ['.$self->lang_config->{'preview'}->{$language}.']' => '/', target => 'blank'
+</h4>
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8" style="text-align:left">
+
+<%== $exist_favicon_code %>
+
+%= form_for 'favicon' =>(enctype => 'multipart/form-data', method => 'post') => begin
+
+<%= $self->lang_config->{'image'}->{$language} %>: <%== $exist_favicon %> <b style="color:red"><%= $img_format_err %></b>
+<br><br>
+<%= file_field 'favicon_img', class => 'filestyle', 'data-icon' => 'false', 'data-size' => 'sm', 
+'data-buttonText' => $self->lang_config->{'buttons'}->{$language}->{'select_file'} %>
+
+<div class="form-group" style="text-align:center">
+<br>
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'set_favicon', id => 'upload_button'
+</div>
+
+% end
+
+</div>
+
+<div class="col-md-2"></div>
+
+</div>
+
+</div>

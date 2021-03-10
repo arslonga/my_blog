@@ -1,0 +1,66 @@
+% my $action = 'decode_'.$self->db_driver;
+
+<div style="float:right">
+<button type="button" class="btn btn-default btn-md" data-container="body" 
+data-toggle="popover" data-placement="bottom" 
+data-content="<%= $self->lang_config->{'help_imageurl_explain'}->{$language} %> 
+<br>
+
+<img src='<%= $self->protocol.'://'.$self->req->headers->host.$self->top_config->{'path_to_imageurl_insert'} %>'>
+" 
+data-html="true">
+  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+</button>
+</div>
+<!----------------------------->
+
+<b>Placed illustrations: </b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<%= "/thumb_img?title_alias=$title_alias&id=$id" %>"><%= $self->lang_config->{'buttons'}->{$language}->{'thumb_proper'} %></a>
+<br>
+% foreach my $illustr(@$illustr_arr){
+% my $lead_image_checked;
+% my $img_label = $illustr->{'alt'};
+% $lead_image_checked = 'checked' if( $illustr->{'file'} eq $lead_img );
+
+    <label class="radio-inline">
+    <input type="radio" name="lead_img" value="<%= $illustr->{'file'} %>" <%= $lead_image_checked %>>lead
+    </label>
+    
+    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">-->
+<!------------------- modal window ---------------------->
+<%= image $illustr->{'path'}.'/tn_'.$illustr->{'file'}, vspace => '2', 'data-toggle' => 'modal', 'data-target' => '#'.$illustr->{'id'}, style => 'cursor:pointer' %>
+    <!--</button>-->
+    
+<div class="modal fade" tabindex="-1" id="<%= $illustr->{'id'} %>" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"><%= $self->$action( $illustr->{'alt'} ) %></h4>
+      </div>
+        <div class="modal-body">
+        <!--<a href="/">головна</a><br>-->
+        <%= image $illustr->{'path'}.'/'.$illustr->{'file'}, class => 'img-responsive' %>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+<!----------------------------------------->
+
+    <%= $self->protocol.'://'.$self->req->headers->host.$illustr->{'path'}.'/'.$illustr->{'file'} %>
+ 
+%= check_box delete_illustr => $illustr->{'id'}.'|'.$illustr->{'file'}
+<span id="delete_chbox">delete</span><br>
+
+<div class="row">
+<div class="col-sm-11">
+    <div class="form-group">
+    <label for="alt_text" class="col-sm-1 control-label">Alt: </label>
+    %= text_field 'alt|'.$illustr->{'id'}.'_img', value => $self->$action( $illustr->{'alt'} ), class => 'form-control', id => 'alt_text'
+    </div>
+</div>
+<hr>
+</div>
+%}

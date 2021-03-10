@@ -1,0 +1,24 @@
+% layout lc($self->template).'/bootstrap';
+% use Mojo::Util qw(encode decode);
+% my $comment_prefix  = $c->top_config->{'comment_prefix'};
+
+<div class="col-md-12" id="articl_box">
+     <a href="/user.allposts?id=<%= $user_id %>"><%= $self->lang_config->{'posts_of_user'}->{$language} %> <span class="glyphicon glyphicon-arrow-right"></span></a>
+     <h4><%= $user_name %> (<%= lc($self->lang_config->{'labels'}->{$language}->{'responses'}) %>)</h4>
+     <hr>
+     % foreach my $head(@{$page_head}){
+        <a href="<%= $head->{'url'} %>"><h3><%= $head->{'page_head'} %></h3></a>
+        % foreach my $comment(@{$head->{'comments'}}){
+        % if($comment->{'press_indicat'} eq 'no'){ next; }
+            <span class="date_post"><%= substr( $comment->{'curr_date'}, 0, 10 ) %></span>
+            <br>
+            <a href="<%= $head->{'url'}.'#'.$comment_prefix.$comment->{'id'} %>">
+            <span class="user_comment">
+            <%== decode('utf8', $comment->{'comment'}) || $comment->{'comment'} %>
+            </span>
+            </a>
+            <hr>
+        % }
+     % }
+</div>
+

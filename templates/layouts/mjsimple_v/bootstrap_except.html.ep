@@ -1,0 +1,55 @@
+% use Mojo::Util qw(decode);
+% my($db, $menu);
+% my $template = $self->template;
+% my $templ = lc $template;
+% my $head_file;
+% require "lib/$template/RewrMenu.pm";
+% eval{
+% use DB;
+% $db = DB->db();
+%   $db = DB->connect_db($self);
+
+% $db->abstract = SQL::Abstract->new;
+% $menu = RewrMenu->active_rewrite($db);
+% };
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Not found</title>
+    <link rel="stylesheet" href="<%= url_for("/css/bootstrap.css") %>" />
+    <link rel="stylesheet" href="<%= url_for("/css/bootstrap-theme.min.css") %>" />
+    <link rel="stylesheet" href="<%= url_for("/css/$templ/main.css") %>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/theme.css') %>" />
+    <script src="<%= url_for("/js/jquery-1.9.1.js") %>"></script>
+     <script language="javascript" src="<%= url_for("/js/bootstrap.min.js") %>"></script>
+     
+  </head>
+  <body>  
+  <div id="body_innr">
+  
+  <div id="content">
+    <div class="container-fluid">
+    
+    % $head_file = Mojo::Asset::File->new( path => 'conf/head' );
+    %== decode('utf8', $head_file->slurp);
+    
+<div class="row">
+
+ <table width="100%">
+ <tr valign="top">
+ <td style="padding-left:15px; width:200px">
+ <%== $menu %><!-------------------->
+ </td>
+ <td>
+    <%= content %>
+ </td>
+</table>
+       
+    </div>
+  </div>
+  
+  </div>
+  </body>
+</html>

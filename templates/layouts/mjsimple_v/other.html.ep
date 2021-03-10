@@ -1,0 +1,101 @@
+% my $templ = lc($self->template);
+% use Mojo::Util qw(decode);
+% my( $meta_inclusion_code, $comments_showed_numbers, $comments_numbers_step, $body_attr);
+% my $brand_path = $c->top_config->{'brand_path'};
+% my $brand_image = $c->top_config->{'brand_image_name'};
+% my $host_href = $c->protocol.'://'.$c->req->headers->host;
+% my $action = 'decode_'.$self->db_driver;
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= $title %></title>
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="description" content="<%= $description %>"/>
+<meta name="keywords" content="<%= $keywords %>"/>
+<meta charset="utf-8">
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/bootstrap.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/main.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/brand.css') %>" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/theme.css') %>" />
+<script src="<%= url_for("/js/jquery-1.9.1.js") %>"></script>
+<script language="javascript" src="<%= url_for("/js/bootstrap.min.js") %>"></script>
+% eval{
+% $meta_inclusion_code = $self->slurp( 'conf/'.$self->template.'/'.$self->top_config->{'inclusion_kinds'}->[0] );
+% };
+<%== $meta_inclusion_code %>   
+<%== $self->slurp( $self->top_config->{'social_buttons_file'} ) %>
+</head>
+ 
+<body<%== $body_attr %> id="mjsimple_v"> 
+<div class="container-fluid">    
+   
+<div id="altermenu">
+    <button type="button" id="close-button" onclick="closeAltermenu()">
+        <span class="glyphicon glyphicon-remove" style="color:silver; opacity: 1 !important"></span>
+    </button>
+    <%== include lc($self->template).'/sitemap' %>
+</div> 
+
+<div class="row">
+  <div class="col-sm-12 testborder top_panel colored">
+    <a href="javascript:void(0);" class="icon"> <!--onclick="showNavigV()">-->
+        <i class="fa fa-bars"></i>
+    </a>
+    <div class="brand">
+    <a href="<%= $host_href %>/"><img src="/<%= $brand_path %>/<%= $brand_image %>" id="brand_style" border="0"></a>
+    </div>
+    <div class="top_containr">
+        <div class="search_containr"><%= include lc($self->template).'/search_form' %></div>
+        <div class="right-top"><%= $self->render_to_string(template => lc($self->template).'/authorize', language => $self->language) %></div>
+    </div>
+  </div>
+</div> 
+
+<div class="row">
+        <div class="col-sm-12 testborder colored">
+            <!--content_plus_Right_container-->
+            <div class="row">
+                <div class="col-sm-10 testborder logo_content">
+                    <!--Logo_content_container-->
+                    <div class="row">
+                    <div class="col-sm-12 testborder">
+                        <div class="logo heightdiv">
+                        %#== decode('utf8', $self->slurp( $self->top_config->{'logo_head_file'} ));
+                        <!--LOGO-->
+                        </div> 
+                    </div>
+                    </div>
+                    <div class="row sidebar">
+                    <div class="col-sm-3">
+                        <div class="menu">
+                            <%= include $templ.'/menu' %>
+                            <%== decode('utf8', $self->slurp('conf/'.$self->template.'/under_menu_inclusion')) %>
+                        </div>    
+                    </div>
+                    <div class="col-sm-9 content">
+                        <%= content %>
+                    </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-2 testborder right_container colored">
+                    <div class="row">
+                      <div class="col-sm-12" style="position:initial">
+                    <%= include lc($self->template).'/right_banner' %>
+                    <%= include lc($self->template).'/rubric_list' %>
+                    <%= include lc($self->template).'/archive_menu' =%>
+                    <%= include lc($self->template).'/meta_menu' %>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer class="footer">
+<%= include lc($self->template).'/foot_content' =%>
+</footer>
+</div>
+<script language="javascript" src="<%= url_for('/js/'.$templ.'/morncat.js') %>"></script>
+  </body>
+</html>

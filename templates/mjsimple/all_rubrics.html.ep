@@ -1,0 +1,23 @@
+% layout lc($self->template).'/other';
+% my $action = 'decode_'.$self->db_driver;
+% my $rubric_name;
+
+<div class="col-md-12" id="articl_box">
+    <h3 class="head_post">
+    <%= $self->lang_config->{'all_rubrics'}->{$language} %> [<%= $rubr_count %>]
+    </h3>
+    
+    <table class="table table-striped">
+    
+    % foreach my $cat_id(sort keys %{$rubrics_all}){
+    <tr><td>
+    <h4>
+    % $rubric_name = $self->$action( $$rubrics_all{$cat_id} ) || $$rubrics_all{$cat_id};
+    %= link_to $rubric_name.' ('.$$number_for_rubric_all{$cat_id}.')' => '/rubric/'.$cat_id
+    </h4>
+    </td>
+    % }
+    
+    </table>
+    
+</div>

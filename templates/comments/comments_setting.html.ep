@@ -1,0 +1,80 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+
+%= form_for 'comments_setting' => (method => 'post') => begin
+
+<div class="form-group">
+<label for="selectLevel" class="col-sm-5 control-label"><%= $self->lang_config->{'comments_level_deep'}->{$self->language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectLevel" placeholder="selectLevel" size="1" name="comments_deep">
+
+% foreach(@$list_of_levels){
+    % my $select_attr = 'selected' if($_ == $exist_comments_deep);
+	<option value="<%= $_ %>" <%= $select_attr %>><%= $_ %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br><br>
+
+<hr>
+
+<div class="form-group">
+<label for="selectCommentsNumb" class="col-sm-5 control-label"><%== $self->lang_config->{'commentsShowedNumber'}->{$self->language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectCommentsNumb" size="1" name="comments_showed">
+
+% foreach(@$list_of_showed_comments_numbers){
+    % my $select_attr = 'selected' if($_ == $exist_comments_numbers);
+	<option value="<%= $_ %>" <%= $select_attr %>><%= $_ %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br><br>
+
+<hr>
+
+<div class="form-group">
+<label for="selectCommentsStep" class="col-sm-5 control-label"><%== $self->lang_config->{'commentsShowedStep'}->{$self->language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectCommentsStep" size="1" name="comments_step">
+
+% foreach(@$list_of_comments_step){
+    % my $select_attr = 'selected' if($_ == $exist_comments_step);
+	<option value="<%= $_ %>" <%= $select_attr %>><%= $_ %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br><br>
+
+<hr>
+%= submit_button $self->lang_config->{'set'}->{$self->language}, class => 'btn btn-primary', name => 'set_comments_opt', id => 'upload_button'
+% end
+
+</div>
+
+<div class="col-sm-2"></div>
+
+</div>
+
+</div>

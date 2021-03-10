@@ -1,0 +1,12 @@
+% my $action = 'decode_'.$self->db_driver;
+% my $rubric_count_showed = $self->slurp( $self->top_config->{'rubric_list_size_file'} );
+<h4 class="header_style" id="headr"><%= uc($self->lang_config->{'rubric_list'}->{$self->language}) %></h4>
+% foreach my $categ_id(sort keys %{$rubrics}){
+    % if( $$number_for_rubric{$categ_id} == 0 ){ next }
+    <%= link_to $self->$action( $$rubrics{$categ_id}.'('.$$number_for_rubric{$categ_id}.')' ) || 
+    $$rubrics{$categ_id}.'('.$$number_for_rubric{$categ_id}.')' => "/rubric/$categ_id" %>
+    <br>
+% }
+% if($rubric_count_showed < $exist_rubr_numb){
+    <a href="/all.rubrics"><%= $self->lang_config->{'all_rubrics'}->{$language} %> <span class="glyphicon glyphicon-arrow-right"></span></a>
+% }

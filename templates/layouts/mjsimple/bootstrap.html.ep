@@ -1,0 +1,110 @@
+% my $templ = lc($self->template);
+% use Mojo::Util qw(decode);
+% my( $meta_inclusion_code, $comments_showed_numbers, $comments_numbers_step);
+% my $body_attr = "";
+% if( $comment_enable eq 'yes' && $count_response > 0 ){
+%   $comments_showed_numbers = $self->slurp( $self->top_config->{'comments_showed_numbers_file'} );
+%   $comments_numbers_step = $self->slurp( $self->top_config->{'comments_numbers_step_file'} );
+%   $body_attr = " onload=\"commentsArr('".$self->language."', 0, ".$comments_showed_numbers.', '.$comments_numbers_step.')"';
+% }
+% my $action = 'decode_'.$self->db_driver;
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= $self->$action( $title ) || $title %></title>
+%== $self->slurp( 'public/'.$self->top_config->{'favicon_code_file'} );
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="description" content="<%= $self->$action( $description ) || $description %>"/>
+<meta name="keywords" content="<%= $self->$action( $keywords ) || $keywords %>"/>
+<meta charset="utf-8">
+<%== $tw_og %>
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/bootstrap.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/main.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/brand.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/theme.css') %>" />
+<script src="<%= url_for("/js/jquery-1.9.1.js") %>"></script>
+<script language="javascript" src="<%= url_for("/js/bootstrap.min.js") %>"></script>
+% eval{
+% $meta_inclusion_code = $self->slurp( 'conf/'.$self->template.'/'.$self->top_config->{'inclusion_kinds'}->[0] );
+% };
+<%== $meta_inclusion_code %>  
+%# Sharebuttons code 
+<%== $self->slurp( $self->top_config->{'social_buttons_file'} ) %>
+
+<style> 
+        #loader { 
+            border: 12px solid #f3f3f3; 
+            border-radius: 50%; 
+            border-top: 12px solid #444444; 
+            width: 70px; 
+            height: 70px; 
+            animation: spin 1s linear infinite; 
+        } 
+          
+        @keyframes spin { 
+            100% { 
+                transform: rotate(360deg); 
+            } 
+        } 
+          
+        .center { 
+            position: absolute; 
+            top: 0; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            margin: auto; 
+        } 
+    </style> 
+
+</head>
+ 
+<body<%== $body_attr %>>
+%# if( $comment_enable eq 'yes' && $list_enable eq 'no'){
+%# say "\$comment_enable \= $comment_enable";
+<!---<div id="loader" class="center"></div>-->
+%# } 
+<div class="container-fluid">    
+   
+<div class="row">
+  <div class="col-sm-12">
+    
+    <%= include lc($self->template).'/menu' =%>
+    
+</div>
+%#== decode('utf8', $self->slurp( $self->top_config->{'logo_head_file'} ));
+
+%# modal widow of search form 
+<%= include lc($self->template).'/search_form' %>
+
+<div class="row">
+  <div class="col-sm-9">
+    <%= content %>
+  </div>
+
+  <div class="col-sm-3 right_column">
+    <%= include lc($self->template).'/right_banner' %>
+    % if($list_enable eq 'no'){
+    <%= include lc($self->template).'/incl_article' =%>
+    % }
+    
+    <%= include lc($self->template).'/rubric_list' %>
+    <%= include lc($self->template).'/archive_menu' =%>
+    <%= include lc($self->template).'/meta_menu' %>
+    <%#= include lc($self->template).'/foo' %>
+  </div>    
+</div>
+
+<div class="to-top">
+<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+</div>
+
+<footer class="footer">  
+  <%= include lc($self->template).'/foot_content' =%>
+</footer>
+<!--------------------> 
+</div>
+
+<script src="<%= url_for('/js/'.$templ.'/morncat.js') %>"></script>
+  </body>
+</html>

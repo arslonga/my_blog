@@ -1,0 +1,15 @@
+% layout lc($self->template).'/bootstrap';
+
+<div class="col-sm-12" id="articl_box">
+    
+<%= include lc($self->template).'/index_banner1' %>
+
+<h3 class="head_post">
+  <%= $title %>
+</h3>
+<hr>
+<div class="site_map">
+  <%== include lc($self->template).'/sitemap' %>
+</div>
+
+</div>

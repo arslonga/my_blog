@@ -1,0 +1,27 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+<hr>
+
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6" style="text-align:center">
+
+% foreach my $kind(@$kind_of_sending){
+    %= link_to $self->lang_config->{$kind}->{$language} => $kind
+    <hr>
+% }
+
+</div>
+
+<div class="col-md-3"></div>
+
+</div>
+
+</div>

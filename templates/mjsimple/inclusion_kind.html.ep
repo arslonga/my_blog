@@ -1,0 +1,34 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h4><%= link_to $head => 'inclusion' %></h4>
+<h4><%= $inclusion_kind %></h4>
+
+<hr>
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
+<div>
+%= form_for 'inclusion_kind' => (method => 'post') => begin
+
+<div>
+%= text_area 'inclusion_code' => $inclusion_code, class => 'form-control', rows => 5, cols => 84, id => 'textar'
+</div>
+<br>
+%= hidden_field 'inclusion_kind' => $inclusion_kind
+%= submit_button $self->lang_config->{'set'}->{$language}, name => 'set_inclusion', class => 'btn btn-primary', id => 'upload_button' 
+% end
+
+</div>
+
+</div>
+<div class="col-md-1"></div>
+
+</div>
+
+</div>

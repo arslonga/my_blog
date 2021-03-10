@@ -1,0 +1,49 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3 style="color:#428BCA">
+<%= link_to $self->lang_config->{'sending'}->{$language} => '/admin/sending' %>
+</h3>
+
+<h3>
+<%= $self->lang_config->{'text_sending'}->{$language} %>
+</h3>
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8" style="text-align:center">
+%= $self->lang_config->{'sending_explain'}->{'text_sending'}->{$language}
+
+%= form_for '/admin/text_sending' => (method => 'post') => begin
+
+<div class="form-group">
+<label for="selectThreshold" class="col-sm-8 control-label"><%= $self->lang_config->{'threshold_for_send'}->{$language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectThreshold" size="1" name="numb_for_send">
+
+% foreach my $numb(@$list_of_numb_for_sending){
+    % my $select_attr = 'selected' if($numb == $exist_numb_for_sending);
+	<option value="<%= $numb %>" <%= $select_attr %>><%= $numb %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br><br><br>
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'set_threshold_sending', id => 'upload_button'
+%= link_to $self->lang_config->{'continue'}->{$language} => '/admin/text_sending_select'
+
+% end
+
+</div>
+
+<div class="col-md-2"></div>
+
+</div>
+
+</div>

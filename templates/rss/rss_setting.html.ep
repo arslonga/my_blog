@@ -1,0 +1,54 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3>
+<%= $head %>
+</h3>
+<b style="color:red"><%= $message %></b>
+<hr>
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
+%= form_for 'rss_setting' => (method => 'post') => begin
+
+Title:
+<br>
+%= text_field 'title', value => $data_ref->{'title'}, class => 'form-control'
+<br>
+Description:
+<br>
+%= text_field 'description', value => $data_ref->{'description'}, class => 'form-control', size => 100
+<br>
+
+<div class="form-group">
+<label for="selectArtNumb" class="col-sm-6 control-label" style="text-align:right"><%= $self->lang_config->{'numb_of_artcl_rss'}->{$language} %>:</label>
+<div class="col-sm-2">
+  <select class="form-control" id="selectArtNumb" placeholder="selectArtNumb" size="1" name="artcl_numb">
+
+% foreach my $item(@$list_of_artcl_numb){
+    % my $select_attr = 'selected' if($item == $data_ref->{'list_number'});
+	<option value="<%= $item %>" <%= $select_attr %>><%= $item %>
+	% $select_attr = "";
+% }
+
+</select>
+</div>
+</div>
+<br><br>
+
+<div>
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'set_rss_descr', id => 'upload_button'
+</div>
+% end
+
+</div>
+<div class="col-md-1"></div>
+
+</div>
+
+</div>

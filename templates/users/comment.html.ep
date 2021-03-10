@@ -1,0 +1,61 @@
+% layout 'layout_admin_add';
+% use Mojo::Util qw (encode decode);
+% my $hidden_checked;
+% my $action = 'decode_'.$self->db_driver;
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+<br>
+<h4><%= link_to uc($self->lang_config->{'all_comments'}->{$language}) => '/comments_list?id='.$user_id %></h4>
+
+<h3>
+<%= link_to $title => '/user.properties?id='.$user_id %> <span style="color: red"> <%= $self->lang_config->{$ban}->{$language} %></span>
+</h3>
+% my $anchor_url = $content->{'url'}.'#comnt_'.$id;
+<a href="<%= $anchor_url %>"><h3><%= $self->$action( $page_head ) %></h3></a>
+
+<hr>
+
+<div class="row">
+<div class="col-sm-12">
+
+%= form_for '/comments_list' => (method => 'post') => begin
+
+%= hidden_field 'id_comment' => $id
+%= hidden_field 'id' => $user_id
+%= hidden_field 'nickname' => $content->{'nickname'} 
+% end
+
+%= form_for '/user.comment' => (method => 'post') => begin
+
+% $hidden_checked = 'checked' if($content->{'press_indicat'} eq 'no');
+
+<div class="checkbox">
+  <label class="checkbox-inline">
+    <input type="checkbox" name="press_indicat" value="no" <%= $hidden_checked %>> <%= $self->lang_config->{'cover_up'}->{$language} %>
+  </label>
+</div>
+
+<div>
+<%== $self->lang_config->{textar_comment_featr}->{$language} %>
+<br><br>
+</div>
+
+<div>
+%= text_area 'comment' => $self->$action( $content->{'comment'} ), class => 'form-control', wrap => 'hard', rows => 5, cols => 84, id => 'textar'
+
+</div>
+
+%= hidden_field 'id' => $id
+%= hidden_field 'user_id' => $user_id
+%= hidden_field 'nickname' => $content->{'nickname'}
+<br>
+%= submit_button $self->lang_config->{'buttons'}->{$language}->{'save'}, class => 'btn btn-primary', name => 'edit', id => 'upload_button' 
+% end
+
+</div>
+
+</div>
+
+</div>

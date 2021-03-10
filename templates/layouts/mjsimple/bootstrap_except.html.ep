@@ -1,0 +1,46 @@
+% my $templ = lc($self->template);
+% use Mojo::Util qw(decode);
+% my $meta_inclusion_code;
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Not found</title>
+%== $self->slurp( 'public/'.$self->top_config->{'favicon_code_file'} );
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta charset="utf-8">
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/bootstrap.css') %>" />
+<!--<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/bootstrap_clear.css') %>" />-->
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/main.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/brand.css') %>" />
+<link rel="stylesheet" href="<%= url_for('/css/'.$templ.'/theme.css') %>" />
+<script src="<%= url_for("/js/jquery-1.9.1.js") %>"></script>
+<script language="javascript" src="<%= url_for("/js/bootstrap.min.js") %>"></script>
+</head>
+ 
+<body> 
+<div class="container-fluid">    
+   
+<div class="row">
+  <div class="col-sm-12">    
+    <%= include lc($self->template).'/menu_except' =%>    
+</div>
+</div>
+
+%#== decode('utf8', $self->slurp( $self->top_config->{'logo_head_file'} ));
+%# modal widow of search form 
+<%= include lc($self->template).'/search_form' %>
+
+<div class="row">
+ <div class="col-sm-12" style="margin-bottom: 100px">
+    <%= content %>
+</div>
+</div>
+  
+<footer class="footer">  
+  <%= include lc($self->template).'/foot_content' =%>
+</footer>
+<!--------------------> 
+<script src="<%= url_for('/js/'.$templ.'/morncat.js') %>"></script> 
+  </body>
+</html>

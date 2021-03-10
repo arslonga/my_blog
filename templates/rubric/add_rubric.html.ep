@@ -1,0 +1,89 @@
+% layout 'layout_admin';
+% my $action = 'decode_'.$self->db_driver;
+% my $admin_check = $self->sess_check->admin($self);
+% my $client_id;
+% eval{ $client_id = $self->session('client')->[0]; };
+% my $client_check = $self->sess_check->client( $self, $client_id );
+
+% if( $admin_check ){
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+% }
+
+<div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        % if( $admin_check ){
+            <p class="mr_menu_item">
+            <a href="/menu_manage">Menu</a>
+            </p>
+        % }elsif( $client_check ){
+            <h3>
+            <b><%= $self->session('client')->[1] %></b>
+            </h3>
+        % }
+        </div>
+        <div class="col-md-4"></div>
+</div>
+<!--------------------------------------------->
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+%= form_for $redirect_to => begin
+%= hidden_field title_alias => $title_alias
+%= hidden_field id => $id
+<%= submit_button $self->$action( $head ), 
+style => 'width: 500px; white-space: normal', 
+name => 'go_article', id => 'go_article'
+%>
+% end
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!--------------------------------------------->
+
+<hr>
+<div class="row">
+    <div class="col-md-6">
+    <%= $self->lang_config->{'labels'}->{$language}->{'exist_rubric'} %>:
+    %= text_area 'rubric_list'=> (class => 'form-control', rows => 10, disabled => 'disabled') => begin
+    % foreach( sort( @$rubric_list ) ){
+<%= $self->$action($_) %>
+    % }
+    % end
+    
+    <br>
+    % my $form_action = '/edit_rubric' if( $admin_check );
+    % $form_action = '/user.edit_rubric' if( $client_check && !$admin_check );
+    %= form_for $form_action => (method => 'post') => begin
+    %= hidden_field title_alias => $title_alias
+    %= hidden_field id => $id
+    %= hidden_field redirect_to => $redirect_to
+    %= submit_button $self->lang_config->{'labels'}->{$language}->{'edit_rubric'}, class => 'btn btn-primary btn-sm', name => 'edit_rubr'
+    % end
+    
+    </div>
+    
+    <div class="col-md-6">
+    <%= $self->lang_config->{'labels'}->{$language}->{'add_rubric'} %>: <%== $message %>
+    <div>
+    % my $form_for = '/add_rubric' if( $admin_check );
+    % $form_for = '/user.add_rubric' if( $client_check && !$admin_check );
+    %= form_for $form_for => (method => 'post') => begin
+    %= hidden_field title_alias => $title_alias
+    %= hidden_field id => $id
+    %= hidden_field redirect_to => $redirect_to
+    %= text_field 'rubric', class => 'form-control'
+    <br>
+    %= submit_button $self->lang_config->{'labels'}->{$language}->{'add_rubric'}, class => 'btn btn-primary btn-sm', name => 'add_rubric'
+    <input type="reset" value="reset" class = "btn btn-warning btn-sm">
+    % end
+    
+    </div>
+    </div>
+
+</div>
+
+</div>

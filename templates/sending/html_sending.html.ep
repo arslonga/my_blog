@@ -1,0 +1,43 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+
+<h3 style="color:#428BCA">
+<%= link_to $self->lang_config->{'sending'}->{$language} => '/admin/sending' %>
+</h3>
+
+<h3>
+<%= $self->lang_config->{'html_sending'}->{$language} %>
+</h3>
+<hr>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8" style="text-align:center">
+%= $self->lang_config->{'sending_explain'}->{'html_sending'}->{$language}
+<br><br>
+
+%= form_for '/admin/html_sending' => (method => 'post') => begin
+
+<div>
+%= text_area 'html_data' => begin
+%= $html_sending_data
+% end
+<script>
+  CKEDITOR.replace( 'html_data' );
+</script>
+
+</div>
+
+%= submit_button $self->lang_config->{'set'}->{$language}, class => 'btn btn-primary', name => 'store', id => 'upload_button'
+%= link_to $self->lang_config->{'continue'}->{$language} => '/admin/html_sending_users'
+
+% end
+
+</div>
+
+<div class="col-md-2"></div>
+</div>
+</div>

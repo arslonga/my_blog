@@ -1,0 +1,27 @@
+% layout 'layout_admin';
+
+<h3 style="color:#428BCA">
+<%= link_to $header => 'manager' %>
+</h3>
+<h4><%= $head %></h4>
+
+<hr>
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
+% foreach my $incl_kind(@$content){
+%= form_for 'inclusion_kind' => (method => 'post') => begin
+%= hidden_field 'inclusion_kind' => $incl_kind
+%= submit_button $incl_kind, class => 'btn btn-default', id => 'upload_button' 
+% end
+
+<hr>
+%}
+</div>
+
+</div>
+<div class="col-md-1"></div>
+
+</div>

@@ -1,0 +1,49 @@
+% my $action = 'decode_'.$self->db_driver;
+
+<div style="float:right">
+<button type="button" class="btn btn-default btn-md" data-container="body" 
+data-toggle="popover" data-placement="bottom" 
+data-content="<%= $self->lang_config->{'help_icon_explain_media'}->{$language} %> 
+<br>
+% foreach my $key(keys %{$self->top_config->{'path_to_media_icon'}}){
+<img vspace='4' hspace='4' src='
+<%= $self->protocol.'://'.$self->req->headers->host.$self->top_config->{'path_to_media_icon'}->{$key} %>'><%= $self->protocol.'://'.$self->req->headers->host.$self->top_config->{'path_to_media_icon'}->{$key} %>
+<br>
+% }
+------------------------
+<br>
+%= $self->lang_config->{'help_icon_explain2'}->{$language}
+<br>
+<img src='<%= $self->protocol.'://'.$self->req->headers->host.$self->top_config->{'path_to_link_docs_icon'} %>'>
+<br>
+------------------------
+<br>
+%= $self->lang_config->{'help_icon_explain3'}->{$language}
+<br>
+<img src='<%= $self->protocol.'://'.$self->req->headers->host.$self->top_config->{'path_to_link_docs_icon2'} %>'>
+" 
+data-html="true">
+  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+</button>
+</div>
+
+<b>Placed media: </b>
+<br>
+% foreach my $media(@$media_arr){
+    % my $extens = (split(/\./, $media->{'file'}))[-1]; 
+    <img src="<%= $self->top_config->{'path_to_icon'}->{$extens} %>">
+    <%= $media->{'path'}.'/'.$media->{'file'} %>
+--------------
+%= check_box delete_media => $media->{'id'}.'|'.$media->{'file'}
+<span id="delete_chbox">delete</span><br>
+
+<div class="row">
+<div class="col-sm-11">
+    <div class="form-group">
+    <label for="alt_text" class="col-sm-1 control-label">Alt: </label>
+    %= text_field 'alt|'.$media->{'id'}.'_med', value => $self->$action( $media->{'alt'} ), class => 'form-control', id => 'alt_text'
+    ------------------------------------------------------------------------
+    </div>
+</div>
+</div>
+%}
