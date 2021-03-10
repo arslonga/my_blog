@@ -1,0 +1,8 @@
+#brand_style{
+position: relative;
+max-height:36px; 
+margin-top:-3px;
+margin-left:5px;
+margin-right:4px;
+z-index: 100;
+}
