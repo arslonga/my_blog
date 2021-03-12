@@ -5,7 +5,7 @@ Web-application based [Mojolicious](https://mojolicious.org)
 
 Some Perl modules that MornCat requires cannot be installed without certain compilation tools. You need install universal GNU Compiler Collection (gcc).
 
-To install it in **Linux** type in terminale:
+To install it in **Linux** type in terminal:
 
 `$ sudo apt install build-essential`
 
@@ -21,7 +21,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 **`'make'`** utility required to install some Perl modules is supplied with build-essential usually. Check make installatuin typing
 
 `$ make --version`
-in terminale.
+in terminal.
 
 If make is not installed type the following in a shell:
 
