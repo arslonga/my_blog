@@ -1,4 +1,0 @@
-% my $template = $self->template;
-% my $language = $self->language;
-% layout lc($template).'/bootstrap_except';
-<h3 style="color:red; text-align:center; margin-top:100px"><%= $self->lang_config->{'not_found'}->{$language} %></h3>
