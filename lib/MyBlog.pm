@@ -28,7 +28,7 @@ sub startup {
   $self->helper( slurp => sub { my($self, $path) = @_ if(@_); return Moj::Util->slurp($path) } );
   $self->helper( spurt => sub { my($self, $content, $path) = @_ if(@_); return Moj::Util->spurt($content, $path) } );
   # Plugin for creating helpers
-  $self->plugin('MyBlog::Helpers');
+  #$self->plugin('MyBlog::Helpers');
 
   # Helper for the object of theme routine
   $self->helper( template => sub { $self->slurp('conf/work_routine') });
@@ -43,6 +43,9 @@ sub startup {
   my $NAMESPACE = "MyBlog::Controller::".$self->template;
 
   $self->helper( top_config => sub {$self->plugin('JSONConfig', {file => 'conf/'.$self->template.'/top_conf.json'})} );
+  $self->helper( language => sub{ my $self = shift; $self->slurp( $self->top_config->{'lang_file'} ) } );
+  # Plugin for creating helpers
+  $self->plugin('MyBlog::Helpers');
   $self->helper( dbconfig => sub {$self->plugin('Config', {file => 'conf/'.$self->language.'/comirka.conf'})} );
   
     # Helper to determine the display of the authorization form
