@@ -117,25 +117,35 @@ return [poSition, coordY];
 //////////////////////////////////////////////
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
-function showDropdown(dropdownId) { //////////////////////////////////////////
+function showDropdown(e) { //////////////////////////////////////////
+  
+  let dropdownId = e.target.name;
+  
+  if( e.target.tagName != 'BUTTON' ){
+    dropdownId = e.target.closest('button').name
+  }
+  
   let elemId = [];
   let currId = document.getElementById(dropdownId);
   currId.classList.toggle("show");
   let classCollect = document.getElementsByClassName('dropdown-content');
-  let i;
-  for (i = 0; i < classCollect.length; i++) {
+
+  for (let i = 0; i < classCollect.length; i++) {
     elemId[i] = classCollect[i].id;
     if( elemId[i] != dropdownId ){
       document.getElementById(elemId[i]).classList.remove('show');
-      //alert(document.getElementById(elemId[i]).previousElementSibling);
       document.getElementById(elemId[i]).previousElementSibling.classList.remove('hoverbg');
     }
   }
 }
 // Close the dropdown if the user clicks outside of it
 document.onclick = function(e) {
+  let checkElem = e.target;
+  if(checkElem.tagName != 'BUTTON'){
+    checkElem = e.target.closest('button');
+  }
 
-if (!e.target.matches('.dropbtn')) {
+if ( checkElem == null || !checkElem.matches('.dropbtn') ){
   let myDropdownCollect = document.querySelectorAll('.drop_down');
   for( item of myDropdownCollect ){
     item.querySelector('.dropdown-content').classList.remove('show');
@@ -149,7 +159,6 @@ if (!e.target.matches('.dropbtn')) {
     for( item of myDropdownCollect ){
       let buttoDropdwn = item.firstElementChild;
       if(item.querySelector('.dropdown-content').classList.contains('show')){
-        //let buttoDropdwn = item.firstElementChild; 
         buttoDropdwn.classList.add('hoverbg');
       }else{
         buttoDropdwn.classList.remove('hoverbg');
@@ -161,7 +170,14 @@ if (!e.target.matches('.dropbtn')) {
   if( e.target.closest('.to-top') ){
     window.scroll(0, 0);
   }
-}////////// showDropdown(dropdownId) END ///////////////////////////////////////
+}////////// showDropdown(e) END ///////////////////////////////////////
+///////////////////////////// dropdownId ONCLICK ///////////////////////////////
+let dropButtons = document.querySelectorAll('.dropbtn');
+
+for (let i = 0; i < dropButtons.length; i++) { 
+  dropButtons[i].addEventListener('mousedown', showDropdown); 
+}
+///////////////////////////// dropdownId ONCLICK END ///////////////////////////
 
 function showNavig() { //********************************
   //let posAndYarray = window.addEventListener('resize', menuAlter);
