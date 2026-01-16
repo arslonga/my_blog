@@ -50,7 +50,7 @@ $i = $i + 1;
 $dropdown_id = $dropdown_id_parretn.'_'.$i;
 $menu_components.=<<MENU;
 <div class="drop_down">
-  <button class="dropbtn" onclick="showDropdown(\'$dropdown_id\')">$_->{title}
+  <button class="dropbtn" name="$dropdown_id">$_->{title}
     <span class="down-caret">&#x25BC;</span>
   </button>
   <div class="dropdown-content" id="$dropdown_id">
@@ -123,7 +123,7 @@ $i = $i + 1;
 $dropdown_id = $dropdown_id_parretn.'_'.$i;
 $menu_subs_components.=<<MENU;
 <div class="drop_down">
-  <button class="dropbtn" onclick="showDropdown(\'$dropdown_id\')">$data->{title}
+  <button class="dropbtn" name="$dropdown_id">$data->{title}
     <span class="down-caret">&#x25BC;</span>
   </button>
   <div class="dropdown-content" id="$dropdown_id">
